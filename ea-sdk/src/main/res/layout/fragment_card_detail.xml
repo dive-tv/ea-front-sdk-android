@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    tools:context="sdk.dive.tv.ui.fragments.CardDetail">
+
+
+    <LinearLayout
+        android:id="@+id/card_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/card_detail_upper_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:orientation="horizontal"
+        android:visibility="gone" />
+
+</RelativeLayout>

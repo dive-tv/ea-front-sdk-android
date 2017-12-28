@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_module_soundtrack_item_container"
+    android:layout_width="@dimen/module_gallery_item_image_width"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_grey_three"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/module_gallery_item_image_width"
+        android:layout_height="@dimen/module_gallery_item_image_height"
+        android:layout_gravity="center"
+        android:background="@drawable/border_focus_selector"
+        android:duplicateParentState="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/module_soundtrack_item_padding"
+        android:paddingStart="@dimen/module_soundtrack_item_padding">
+
+        <ImageView
+            android:id="@+id/tv_module_soundtrack_item_icon"
+            android:layout_width="@dimen/module_soundtrack_item_icon_width"
+            android:layout_height="@dimen/module_soundtrack_item_icon_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/module_soundtrack_item_icon_margin_bot"
+            android:layout_marginTop="@dimen/module_soundtrack_item_icon_margin_top"
+            android:duplicateParentState="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ico_music"
+            android:tint="@drawable/noimage_selector" />
+
+        <TextView
+            android:id="@+id/tv_module_soundtrack_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/module_soundtrack_item_padding"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textColor="@drawable/category_selector_txt"
+            android:textSize="@dimen/text_10" />
+
+        <TextView
+            android:id="@+id/tv_module_soundtrack_item_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textColor="@drawable/subcategory_selector_txt"
+            android:textSize="@dimen/text_10" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdk.dive.tv.ui.views.EndView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey_three"
+    android:elevation="@dimen/shadow_elevation"
+    android:paddingStart="@dimen/commercial_margin"
+    android:paddingTop="@dimen/commercial_margin"
+    android:translationX="@dimen/shadow_elevation">
+
+    <FrameLayout
+        android:id="@+id/carousel_end_button_close"
+        android:layout_width="@dimen/carousel_button_height"
+        android:layout_height="@dimen/carousel_button_height"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+        android:background="@drawable/carousel_button_focus_selector"
+        android:clickable="true"
+        android:elevation="@dimen/shadow_elevation"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/end_button"
+        android:translationX="@dimen/shadow_elevation">
+
+        <ImageView
+            android:id="@+id/carousel_end_image_close"
+            android:layout_width="@dimen/carousel_cross_size"
+            android:layout_height="@dimen/carousel_cross_size"
+            android:layout_gravity="center"
+            android:duplicateParentState="true"
+            android:src="@drawable/button_close" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/off_text_margin"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/end_text1"
+            style="@style/Prompt_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/off_text2_margin"
+            android:text="@string/EVERYTHING_END" />
+
+        <TextView
+            android:id="@+id/end_text2"
+            style="@style/Carousel_Prompt_Text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/off_text3_margin"
+            android:text="@string/MOVIE_ENDED" />
+
+        <Button
+            android:id="@id/end_button"
+            android:layout_width="@dimen/off_button_width"
+            android:layout_height="@dimen/off_button_height"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:clipToPadding="true"
+            android:elevation="@dimen/shadow_elevation"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusUp="@id/carousel_end_button_close"
+            android:text="@string/OKAY"
+            android:textColor="@drawable/carousel_button_focus_selector_txt"
+            android:translationX="@dimen/shadow_elevation" />
+
+    </LinearLayout>
+
+
+</sdk.dive.tv.ui.views.EndView>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="sdk.dive.tv">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--<uses-permission android:name="android.permission.RECORD_AUDIO" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.tv.READ_CHANNELS" />
+    <uses-permission android:name="com.google.android.tv.permission.READ_CHANNELS" />
+    <uses-permission android:name="com.google.android.tv.mediadevices.permission.READ_STREAMS" />
+    <!-- Allows an application to read (but not write) all the TV listings. -->
+    <!--
+        <permission android:name="android.permission.READ_TV_LISTINGS"
+        android:protectionLevel="dangerous" />
+    -->
+    <!--
+    Required to update or read existing channel and program information in TvProvider.
+    <uses-permission android:name="com.android.providers.tv.permission.READ_EPG_DATA" />
+    -->
+    <!--
+    Required to update channel and program information in TvProvider.
+    <uses-permission android:name="com.android.providers.tv.permission.WRITE_EPG_DATA" />
+    -->
+    <!-- USE IF WE ARE PARTNERS, requires signatureOrSystem: -->
+    <uses-permission android:name="com.android.providers.tv.permission.ACCES_ALL_EPG_DATA" />
+    <!--
+    Required to sync EPG data after reboot. For details,
+    please see {@link JobInfo.Builder#setPersisted}
+    -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.GLOBAL_SEARCH"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.READ_TV_LISTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.MODIFY_PARENTAL_CONTROLS" />
+    <uses-permission android:name="com.android.providers.tv.permission.READ_EPG_DATA" />
+    <uses-permission android:name="com.android.providers.tv.permission.WRITE_EPG_DATA" />
+    <uses-permission android:name="com.android.providers.tv.permission.ACCESS_ALL_EPG_DATA" />
+    <uses-permission android:name="com.android.providers.tv.permission.ACCESS_WATCHED_PROGRAMS" />
+
+    <!-- Permissions/feature for USB tuner -->
+    <uses-permission android:name="android.permission.DVB_DEVICE" />
+
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false" />
+
+    <!-- Limit only for Android TV -->
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+    <uses-feature
+        android:name="android.software.live_tv"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+</manifest>

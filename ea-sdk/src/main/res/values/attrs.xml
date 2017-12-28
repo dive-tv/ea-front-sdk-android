@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MenuItem">
+        <attr name="focused_image" format="reference" />
+        <attr name="unfocused_image" format="reference" />
+        <attr name="selected_image" format="reference" />
+        <attr name="item_text" format="string" />
+        <attr name="peak_down" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="PeakView">
+        <attr name="is_bottom_peak" format="boolean" />
+    </declare-styleable>
+
+</resources>

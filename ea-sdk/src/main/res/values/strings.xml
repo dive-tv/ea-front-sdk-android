@@ -1,0 +1,220 @@
+<resources>
+    <string name="app_name">SdkAndroidTV</string>
+    <string name="title_activity_dive">Dive</string>
+    <string name="MENU_SETTINGS">Settings</string>
+    <string name="MENU_DEMO">Demo</string>
+    <string name="MENU_PROFILE">Profile</string>
+    <string name="MENU_CARDS">My cards</string>
+    <string name="MENU_SYNC">Dive in</string>
+
+    <!-- TV Grid -->
+    <string name="TVGRID_BROADCAST_TITLE1">Now on TV</string>
+    <string name="TVGRID_BROADCAST_TITLE2">What will you discover?</string>
+    <string name="NETWORK_ERROR_TITLE">INTERNET CONNECTION REQUIRED</string>
+    <string name="NETWORK_ERROR_TEXT">No connection detected. \nGo to settings and verify if your Internet is working.</string>
+    <string name="GENERIC_ERROR_TITLE">HOUSTON! WE\'VE A PROBLEM…</string>
+    <string name="GENERIC_ERROR_TEXT">We\’re having some issues with the app. \nWe\’re working on it to fix it, please try again or come back again in a few minutes.</string>
+    <string name="EXIT_TITLE">PLEASE, DON’T GO.</string>
+    <string name="EXIT_TEXT">You\'re about to leave Dive.\nAre you sure you want to exit?</string>
+    <string name="EXIT_BUTTON_CANCEL">NO, I DON\'T WANT TO</string>
+    <string name="EXIT_BUTTON_OK">YES, EXIT</string>
+    <string name="VERSION_DEPRECATED_TITLE">WARNING</string>
+    <string name="VERSION_DEPRECATED_TEXT">The version you\'ve installed is outdated. \nYou need to upgrade now to the latest version in order to continue enjoying Dive.</string>
+    <string name="GOT_IT">GOT IT</string>
+    <string name="VERSION_OUTDATED_TITLE">Warning</string>
+    <string name="VERSION_OUTDATED_TEXT">The version you\'ve installed is outdated.\nA new version of Dive is available for you.\nYou can update or continue with an old version of Dive.</string>
+    <string name="TVGRID_BROADCAST_NO_CONTENT">At the moment, there is nothing available to sync with Dive. Have you tried the demo?</string>
+    <string name="TVGRID_BROADCAST_NO_CONTENT_TRY_DEMO">Try demo</string>
+    <string name="TVGRID_UPCOMING_NO_CONTENT">No content available on our guide. Try again later or try our demo.</string>
+    <string name="TVGRID_UPCOMING_NO_CONTENT_TRY_DEMO">Try demo</string>
+    <string name="TVGRID_UPCOMING_TITLE">Upcoming…</string>
+    <string name="TVGRID_EMPTY_BROADCAST_TITLE1">This is awkward</string>
+    <string name="TVGRID_EMPTY_BROADCAST_TITLE2">What can I do?</string>
+    <string name="TVGRID_EMPTY_WATCH_OUR_DEMO">Watch\nour\ndemo</string>
+    <string name="TVGRID_EMPTY_UPCOMING_TXT1">There\'s no content right now.\nCheck later or enjoy %1$s.</string>
+    <string name="TVGRID_EMPTY_UPCOMING_TXT2">Dive on your phone</string>
+    <string name="TVGRID_CHANGE_CHANNEL_TITLE">CHANNEL CHANGE</string>
+    <string name="TVGRID_CHANGE_CHANNEL_TEXT">Please confirm that you\'ve changed the channel so that we can load the content of %1$s.</string>
+    <string name="TVGRID_CHANGE_CHANNEL_BTN">CONFIRM</string>
+
+    <string name="fragment_network_error_title">INTERNET CONNECTION REQUIRED</string>
+    <string name="fragment_network_error_subtitle">No connection detected. \nGo to settings and verify if your Internet is working.</string>
+    <string name="fragment_network_error_button_ok_title">GOT IT</string>
+    <string name="fragment_generic_error_title">INTERNET CONNECTION REQUIRED</string>
+    <string name="fragment_generic_error_subtitle">No connection detected. \nGo to settings and verify if your Internet is working.</string>
+    <string name="fragment_generic_error_button_ok_title">GOT IT</string>
+    <string name="fragment_temporarilly_error_title">WARNING</string>
+    <string name="fragment_temporarilly_error_subtitle">The version you\'ve installed is outdated. \nYou need to upgrade now to the latest version in order to continue enjoying Dive.</string>
+    <string name="fragment_temporarilly_error_button_ok_title">GOT IT</string>
+    <string name="ERROR_SCAN_CHANNELS_TITLE">RE-SCAN TV CHANNELS</string>
+    <string name="ERROR_SCAN_CHANNELS_TEXT">This channel is not set yet, please re-scan\nto add the new channels.\nWe need this to set the TV signal.</string>
+    <string name="ERROR_SCAN_CHANNELS_BTN_SCAN">OK, START SCAN</string>
+    <string name="SCAN_FIRST_TIME_TITLE">LET’S SET THE TV SIGNAL</string>
+    <string name="SCAN_FIRST_TIME_TEXT">We need to scan the channels to set the TV signal.\nYou’ll be able to re-scan the channels in your menu if you want to add more.</string>
+    <string name="SCAN_FIRST_TIME_BTN">OK, START SCAN</string>
+    <string name="SCAN_HELP_RESCAN_TITLE">RE-SCAN TV CHANNELS</string>
+    <string name="SCAN_HELP_RESCAN_TEXT">Re-scan to add new channels.\nWe need this to set the TV signal.</string>
+    <string name="SCAN_HELP_RESCAN_BTN">OK, START SCAN</string>
+    <string name="SCAN_HELP_TITLE_1">SETTINGS </string>
+    <string name="SCAN_HELP_TITLE_2">Set your Dive experience</string>
+    <string name="SCAN_HELP_SUGGESTION">Something wrong? Any suggestions?</string>
+    <string name="SCAN_HELP_PLEASE_CONTACT">For customer support please contact:</string>
+    <string name="SCAN_HELP_EMAIL">feedback@dive.tv</string>
+    <string name="SCAN_HELP_SUBJECT">Write TV in the subject line and we will contact you as soon as possible.</string>
+    <string name="SCAN_HELP_VERSION">DIVE v%1$s</string>
+    <string name="REGION_HELP_TITLE">SET YOUR REGION</string>
+    <string name="REGION_SET_TITLE">FIRST THINGS, FIRST…</string>
+    <string name="REGION_SET_TEXT">We need to know where you are to show you the TV contents available to sync with.</string>
+    <string name="REGION_SET_SPAIN">SPAIN</string>
+    <string name="REGION_SET_GERMANY">GERMANY</string>
+    <string name="REGION_SET_USA">USA</string>
+
+    <string name="SELECTOR_ALL_CATEGORIES">All categories</string>
+    <string name="SELECTOR_CAST_CHARACTER">Cast &amp; Character </string>
+    <string name="SELECTOR_FASHION_BEAUTY">Fashion &amp; Beauty</string>
+    <string name="SELECTOR_MUSIC">Music</string>
+    <string name="SELECTOR_PLACES_TRAVEL">Places &amp; Travel</string>
+    <string name="SELECTOR_CARS_MORE">Cars &amp; More</string>
+    <string name="SELECTOR_FUN_FACTS">Fun facts</string>
+    <string name="SELECTOR_OTHER_CATEGORIES">Other categories</string>
+
+    <string name="dive_in_button_text">DIVE IN ></string>
+    <string name="see_info_button_text">SEE INFO ></string>
+    <string name="TVGRID_TODAY">Today</string>
+    <string name="TVGRID_TOMORROW">Tomorrow</string>
+    <string name="song_tv_see_more">+ SEE MORE</string>
+    <string name="song_cell_save_for_later">Save for later</string>
+    <string name="song_cell_saved">Saved</string>
+    <string name="CURRENT_SCENE">Current Scene</string>
+
+    <string name="PIZZA_OR_POP_CORN">PIZZA OR POP CORN?</string>
+    <string name="WE_RECOMMEND">The show you’re watching is on advertising, we recommend:</string>
+    <string name="MAKE_POP_CORN">1. Make more Pop Corn. \n2. And browse the content while we’re on a break</string>
+    <string name="TVGRID_COMMERCIAL_TXT">Enjoy Dive on your phone</string>
+
+    <string name="LIGHTS_CAMERA">LIGHTS, CAMERA AND ACTION?</string>
+    <string name="WE_ARE_LOADING">We\'re loading the content you\'re watching on TV.</string>
+    <string name="EVERYTHING_END">EVERYTHING HAS AN END</string>
+    <string name="MOVIE_ENDED">The movie has ended</string>
+    <string name="MOVIE_OFF">The broadcast has been interrupted.</string>
+    <string name="OKAY">OKAY</string>
+
+    <string name="person_cell_as">as %1$s</string>
+
+    <string name="CAROUSEL_NEW_CARD_ADDED">1 new card has been added!</string>
+    <string name="CAROUSEL_NEW_CARDS_ADDED">%1$d new cards have been added!</string>
+
+    <!-- CardTypes -->
+    <string name="MOVIE">Movie</string>
+    <string name="SERIE">Serie</string>
+    <string name="PERSON">Person</string>
+    <string name="CHARACTER">Character</string>
+    <string name="VEHICLE">Vehicle</string>
+    <string name="FASHION">Fashion</string>
+    <string name="LOCATION">Location</string>
+    <string name="HISTORIC">Historic</string>
+    <string name="TRIVIA">Trivia</string>
+    <string name="QUOTE">Quote</string>
+    <string name="OST">OST</string>
+    <string name="HOME">Home</string>
+    <string name="TECHNOLOGY">Technology</string>
+    <string name="ART">Art</string>
+    <string name="SONG">Song</string>
+    <string name="LOOK">Look</string>
+    <string name="TRAILER">Trailer</string>
+    <string name="WEAPON">Weapon</string>
+    <string name="LEISURE_SPORT">Leisure Sport</string>
+    <string name="HEALTH_BEAUTY">Health &amp; Beauty</string>
+    <string name="FOOD_DRINK">Food &amp; Drink</string>
+    <string name="FAUNA_FLORA">Fauna &amp; Flora</string>
+    <string name="BUSINESS">Business</string>
+    <string name="REFERENCE">Reference</string>
+    <string name="VIDEOCLIP">Videoclip</string>
+    <string name="CHAPTER">Chapter</string>
+    <string name="ACTION_EMOTION">Action &amp; Emotion</string>
+    <string name="SEE_MORE">Explore More</string>
+    <string name="splash_error_title">HOUSTON! WE\'VE A PROBLEM…</string>
+    <string name="splash_error_subtitle">We\'re having some issues with the app.  We\'re working on it to fix it, please try again or come back again in a few minutes.</string>
+    <string name="splash_error_button">GOT IT</string>
+    <string name="tv_module_text_source_title">Source:</string>
+
+    <!-- Card Detail-->
+    <string name="tv_module_location_title">Location</string>
+
+    <!-- Pocket -->
+    <string name="POCKET_TITLE_1">MY CARDS </string>
+    <string name="POCKET_TITLE_2">The content you\'ve liked</string>
+    <string name="POCKET_NO_CARDS_TITLE">NO SAVED CARDS YET</string>
+    <string name="POCKET_NO_CARDS_TXT">Save every card you like by pressing on the heart icon or activate your account to see the cards saved from your Dive mobile version.</string>
+    <string name="POCKET_FAKE_CARD_TITLE">Ben Stiller</string>
+    <string name="POCKET_FAKE_CARD_SUBTITLE">as Walter Mitty</string>
+    <string name="POCKET_FAKE_CARD_TEXT">Walter Mitty is a fictional character in James Thurber\'s short story …</string>
+    <string name="POCKET_NEW_CARDS_TITLE">YOU\'VE GOT NEW CARDS</string>
+    <string name="POCKET_NEW_CARDS_SUBTITLE">¡ %1$s new cards have been added! Please refresh to add them to your collection.</string>
+    <string name="POCKET_OK_REFRESH">OK, REFRESH</string>
+    <string name="POCKET_LATER">NO, LATER</string>
+    <string name="POCKET__REFRESH">Refresh</string>
+
+    <!--  FRONT  -->
+    <string name="LITERAL_FROM">From</string>
+    <string name="CARD_MODULE_BOOK">Book</string>
+
+    <string name="ACTION">Action</string>
+    <string name="ADVENTURE">Adventure</string>
+    <string name="ANIMATION">Animation</string>
+    <string name="BIOGRAPHY">Biography</string>
+    <string name="COMEDY">Comedy</string>
+    <string name="CRIME">Crime</string>
+    <string name="DOCUMENTARY">Documentary</string>
+    <string name="DRAMA">Drama</string>
+    <string name="FAMILY">Family</string>
+    <string name="FANTASY">Fantasy</string>
+    <string name="FILM_NOIR">"Film-Noir"</string>
+    <string name="HISTORY">History</string>
+    <string name="KIDS">Kids</string>
+    <string name="MISTERY">Mystery</string>
+    <string name="MUSIC">Music</string>
+    <string name="MUSICAL">Musical</string>
+    <string name="NEWS">News</string>
+    <string name="ROMANCE">Romance</string>
+    <string name="SCI_FI">Sci-Fi</string>
+    <string name="SEASON">Season %1$s</string>
+    <string name="SEE_ALL_WEAR_LOOKS">See all &#62;</string>
+    <string name="SPORT">Sport</string>
+    <string name="TALK_SHOW">Talk-Show</string>
+    <string name="TERROR">Horror</string>
+    <string name="THRILLER">Thriller</string>
+    <string name="WAR">War</string>
+    <string name="WESTERN">Western</string>
+
+    <string name="AWARD">Award</string>
+    <string name="CARD_MODULE_TITLE_AWARDS">Awards</string>
+    <string name="NOMINATION">Nomination</string>
+    <string name="NOMINATIONS">Nominations</string>
+    <string name="CARD_MODULE_TITLE_APPEARS_IN">Appears in</string>
+    <string name="CARD_MODULE_TITLE_BASIC_DATA">Basic information</string>
+    <string name="CARD_MODULE_TITLE_BIOGRAPHY">Biography</string>
+    <string name="CARD_MODULE_PLAY">Plays</string>
+    <string name="CARD_MODULE_CAST">Cast</string>
+    <string name="CARD_MODULE_MAIN_CAST">Main cast</string>
+    <string name="CARD_MODULE_TITLE_MOVIE_TRIVIAS">Did you know…</string>
+    <string name="CARD_MODULE_FILMOGRAPHY">Filmography</string>
+    <string name="CARD_MODULE_TITLE_SOUNDTRACK">Soundtrack</string>
+    <string name="CARD_MODULE_TITLE_OVERVIEW">Synopsis</string>
+    <string name="CARD_MODULE_LOCATIONS_ON">Locations on screen</string>
+    <string name="CARD_MODULE_TITLE_RECOMMENDED">We recommend</string>
+    <string name="CARD_MODULE_SEASONS">Seasons</string>
+    <string name="season_number">S%1$s</string>
+    <string name="CARD_MODULE_TITLE_SHOP">Store</string>
+    <string name="CARD_MODULE_TITLE_SPECS">Specifications</string>
+    <string name="CARD_MODULE_TRAVEL">"Accommodation "</string>
+    <string name="CARD_MODULE_VEHICLES_ON">Vehicles on screen</string>
+
+    <string name="HOURS_SHORT">h</string>
+    <string name="MINUTES_SHORT">m</string>
+    <string name="CARD_MODULE_TITLE_GALLERY">Gallery</string>
+    <string name="CARD_DETAIL_DIVE_TEXT">DIVE IN to discover more about this movie scene by scene.</string>
+    <string name="dive_in">dive in</string>
+    <string name="CATALOG_NEXT">Coming soon</string>
+</resources>
+

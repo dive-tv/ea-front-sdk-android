@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_module_horizontal_item_container"
+    android:layout_width="@dimen/module_gallery_item_image_width"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_grey_three"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/simageitems_container"
+        android:layout_width="@dimen/module_gallery_item_image_width"
+        android:layout_height="@dimen/module_gallery_item_image_height"
+        android:layout_gravity="center"
+        android:background="@drawable/border_focus_selector"
+        android:duplicateParentState="true"
+        android:paddingEnd="@dimen/curiosity_module_padding_start"
+        android:paddingStart="@dimen/curiosity_module_padding_start">
+
+        <TextView
+            android:id="@+id/curiosity_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="7"
+            android:textColor="@drawable/category_selector_txt"
+            android:textSize="@dimen/text_10" />
+
+    </FrameLayout>
+
+</RelativeLayout>

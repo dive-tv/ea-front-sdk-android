@@ -1,0 +1,43 @@
+{
+  "sections": [
+    {
+      "title": "main",
+      "main": true,
+      "modules": [
+        {
+          "type": "sdk.dive.tv.ui.modules.Header"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Description"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Shop"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.TravelShop"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Specifications"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Map"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Gallery"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.AppearsIn"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.AppearsInSingle"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Curiosities"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Banner"
+        }
+      ]
+    }
+  ]
+}

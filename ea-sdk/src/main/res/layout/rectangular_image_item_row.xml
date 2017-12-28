@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rimageitems_container"
+    android:layout_width="@dimen/rimageitems_image_width"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/rimageitems_row_margin_right"
+    android:background="@color/darkGrey"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="@dimen/rimageitems_image_width"
+        android:layout_height="@dimen/rimageitems_image_height"
+        android:layout_marginBottom="@dimen/rimageitems_separator"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/rimageitems_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:scaleType="centerCrop" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rimageitems_data_height"
+        android:background="@color/black"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/rimageitems_data_padding"
+        android:paddingLeft="@dimen/rimageitems_data_padding"
+        android:paddingRight="@dimen/rimageitems_data_padding"
+        android:paddingStart="@dimen/rimageitems_data_padding">
+
+        <TextView
+            android:id="@+id/rimageitems_title"
+            style="@style/CardMovieGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/rimageitems_subtitle"
+            style="@style/MinicardTitleLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="1" />
+    </LinearLayout>
+
+</LinearLayout>

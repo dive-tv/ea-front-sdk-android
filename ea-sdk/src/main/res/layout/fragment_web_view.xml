@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/webview_header_height"
+        android:id="@+id/webview_header"
+        android:background="@color/dark_grey_two"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/webview_margin">
+
+        <FrameLayout
+            android:id="@+id/webview_button_close"
+            android:layout_width="@dimen/webview_button_size"
+            android:layout_height="@dimen/webview_button_size"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusDown="@+id/webview"
+            android:nextFocusLeft="@id/webview_button_close">
+
+            <ImageView
+                android:id="@+id/webview_image_close"
+                android:layout_width="@dimen/webview_cross_size"
+                android:layout_height="@dimen/webview_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/button_close" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/webview_button_size"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/webview_button_close"
+            android:id="@+id/webview_text"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/webview_header">
+
+        <WebView
+            android:id="@id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <ProgressBar
+            android:id="@+id/webview_loading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="@dimen/loading_progress_size"
+            android:layout_height="@dimen/loading_progress_size"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/splash_error_loading_margin_top"
+            android:indeterminate="true"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+</RelativeLayout>

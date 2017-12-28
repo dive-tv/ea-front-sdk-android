@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_module_banner_container"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/darkGrey2"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <ImageView
+        android:id="@+id/tv_module_banner_img"
+        android:layout_width="@dimen/module_banner_small_width"
+        android:layout_height="@dimen/module_banner_small_height"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/border_focus_selector"
+        android:duplicateParentState="true"
+        android:elevation="6dp"
+        android:scaleType="centerCrop" />
+</RelativeLayout>

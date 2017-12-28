@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rel_container"
+    android:layout_width="@dimen/cardetail_moduletext_width"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey_three"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/module_horizontal_list_title_padding"
+    android:paddingEnd="@dimen/module_horizontal_list_title_padding_end"
+    android:paddingStart="@dimen/module_horizontal_list_title_padding_end"
+    android:paddingTop="@dimen/module_horizontal_list_title_padding">
+
+    <include layout="@layout/tv_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/module_horizontal_list_title_padding"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_carousel_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/rv_carousel_btns_container"
+            android:clipToPadding="false"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:id="@+id/rv_carousel_btns_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/module_horizontal_list_title_padding"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/tv_module_text_btn_back"
+                android:layout_width="@dimen/carddetail_button_height"
+                android:layout_height="@dimen/carddetail_button_height"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/module_horizontal_list_item_separation"
+                android:background="@drawable/carousel_button_focus_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/carousel_image_up"
+                    android:layout_width="@dimen/carousel_cross_size"
+                    android:layout_height="@dimen/carousel_cross_size"
+                    android:layout_gravity="center"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/button_back" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/tv_module_text_btn_next"
+                android:layout_width="@dimen/carddetail_button_height"
+                android:layout_height="@dimen/carddetail_button_height"
+                android:layout_gravity="center"
+                android:background="@drawable/carousel_button_focus_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <ImageView
+                    android:id="@+id/carousel_image_down"
+                    android:layout_width="@dimen/carousel_cross_size"
+                    android:layout_height="@dimen/carousel_cross_size"
+                    android:layout_gravity="center"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/button_forward" />
+            </FrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

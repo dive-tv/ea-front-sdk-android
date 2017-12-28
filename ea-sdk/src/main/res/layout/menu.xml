@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdk.dive.tv.ui.views.MenuView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <sdk.dive.tv.ui.views.MenuItem
+            android:id="@+id/menu_item_help"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/menu_item_peak_height"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:focused_image="@drawable/ico_config"
+            app:item_text="@string/MENU_SETTINGS"
+            app:peak_down="true"
+            app:selected_image="@drawable/ico_config_relleno" />
+
+        <sdk.dive.tv.ui.views.MenuItem
+            android:id="@+id/menu_item_demo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_peak_height"
+            android:layout_below="@id/menu_item_help"
+            android:layout_marginTop="@dimen/menu_item_peakup_margin_top"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:focused_image="@drawable/ico_demo"
+            app:item_text="@string/MENU_DEMO"
+            app:selected_image="@drawable/ico_demo_relleno" />
+<!--
+
+        <sdk.dive.tv.ui.views.MenuItem
+            android:id="@+id/menu_item_profile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_peak_height"
+            android:layout_below="@id/menu_item_demo"
+            android:layout_marginTop="@dimen/menu_item_peaks_margin_top"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:focused_image="@drawable/ico_profile"
+            app:item_text="@string/MENU_PROFILE"
+            app:selected_image="@drawable/ico_profile_relleno" />
+-->
+
+        <sdk.dive.tv.ui.views.MenuItem
+            android:id="@+id/menu_item_mycards"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_peak_height"
+            android:layout_below="@id/menu_item_demo"
+            android:layout_marginTop="@dimen/menu_item_peaks_margin_top"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:focused_image="@drawable/ico_like"
+            app:item_text="@string/MENU_CARDS"
+            app:selected_image="@drawable/ico_like_relleno" />
+
+        <sdk.dive.tv.ui.views.MenuItem
+            android:id="@+id/menu_item_divein"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_peak_height"
+            android:layout_below="@id/menu_item_mycards"
+            android:layout_marginTop="@dimen/menu_item_peaks_margin_top"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:focused_image="@drawable/ico_dive"
+            app:item_text="@string/MENU_SYNC">
+
+            <requestFocus />
+        </sdk.dive.tv.ui.views.MenuItem>
+    </RelativeLayout>
+
+
+</sdk.dive.tv.ui.views.MenuView>

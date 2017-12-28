@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="top_percent" format="float" type="dimen">0.6</item>
+    <item name="menu_margin_bottom" format="float" type="dimen">0.558</item>
+    <item name="menu_start" format="float" type="dimen">0.05</item>
+    <item name="menu_end" format="float" type="dimen">0.1</item>
+    <item name="overlay_start" format="float" type="dimen">0.897</item>
+    <dimen name="tv_padding">9dp</dimen>
+    <dimen name="shadow_elevation">3dp</dimen>
+    <dimen name="loading_progress_size">32dp</dimen>
+
+    <!-- Channel Picker -->
+    <dimen name="channel_width">197dp</dimen>
+    <dimen name="channel_height">31.5dp</dimen>
+    <dimen name="channel_number_background">25dp</dimen>
+
+    <!-- Channel List -->
+    <dimen name="channel_list_height">409.5dp</dimen>
+    <dimen name="channel_list_padding">5dp</dimen>
+    <dimen name="channel_list_shadow_heigth">134.5dp</dimen>
+    <dimen name="channel_line_width">1dp</dimen>
+
+    <!-- Menu -->
+    <dimen name="menu_item_image_size">31.5dp</dimen>
+    <dimen name="menu_item_text_size">67dp</dimen>
+    <dimen name="menu_item_text_size_short">63.5dp</dimen>
+    <dimen name="menu_item_back_size">95dp</dimen>
+    <dimen name="menu_item_total_size">98.5dp</dimen>
+    <dimen name="menu_item_peak_width">3.5dp</dimen>
+    <dimen name="menu_item_peak_height">34.5dp</dimen>
+    <dimen name="menu_item_peaks_margin_top">-3.5dp</dimen>
+    <dimen name="menu_item_peakup_margin_top">-7dp</dimen>
+
+    <!-- TV Grid -->
+    <item name="tvgrid_constrain_percent" format="float" type="dimen">0.6</item>
+    <dimen name="text_13_5">13.5dp</dimen>
+    <dimen name="text_11">11dp</dimen>
+    <dimen name="text_10">10dp</dimen>
+    <dimen name="text_9">9dp</dimen>
+    <dimen name="text_6">6dp</dimen>
+    <dimen name="tvgrid_broadcast_container_width">585.5dp</dimen>
+    <dimen name="tvgrid_container_title_padding">15dp</dimen>
+    <dimen name="tvgrid_container_title_padding_small">13dp</dimen>
+    <dimen name="tvgrid_container_title_text_size">14dp</dimen>
+    <dimen name="tvgrid_container_title_text_line_height_extra">1dp</dimen>
+    <dimen name="tvgrid_container_no_content_broadcast_txt_width">230dp</dimen>
+    <dimen name="tvgrid_container_no_content_broadcast_img_width">206dp</dimen>
+    <dimen name="tvgrid_container_no_content_upcoming_txt_width">170.5dp</dimen>
+    <dimen name="tvgrid_container_no_content_txt_size">15dp</dimen>
+    <dimen name="tvgrid_container_no_content_margin_top">50dp</dimen>
+    <dimen name="tvgrid_container_no_content_margin_end">55dp</dimen>
+    <dimen name="tvgrid_container_no_content_upcoming_margin_top">70dp</dimen>
+    <dimen name="tvgrid_container_no_content_upcoming_margin_end">35dp</dimen>
+    <dimen name="tvgrid_container_no_content_btn_width">112dp</dimen>
+    <dimen name="tvgrid_container_no_content_btn_height">20dp</dimen>
+    <dimen name="tvgrid_container_no_content_btn_txt_size">10dp</dimen>
+    <dimen name="tvgrid_container_no_content_btn_margin_top">20dp</dimen>
+    <dimen name="tvgrid_recycler_items_separation">7.5dp</dimen>
+    <dimen name="tvgrid_recycler_items_image_height">133dp</dimen>
+    <dimen name="tvgrid_recycler_items_image_width">90dp</dimen>
+    <dimen name="tvgrid_recycler_items_image_margin_bot">7.5dp</dimen>
+    <dimen name="tvgrid_recycler_items_text_separation">5dp</dimen>
+    <dimen name="tvgrid_recycler_items_text_size">11dp</dimen>
+    <dimen name="ico_alert_margintop">29.5dp</dimen>
+    <dimen name="ico_alert_marginbottom">28.5dp</dimen>
+    <dimen name="ico_alert_marginstart">78.5dp</dimen>
+    <dimen name="fragment_network_error_margin_top">20dp</dimen>
+    <dimen name="fragment_network_error_margin_start">55dp</dimen>
+    <dimen name="fragment_network_error_text_margin_start">100dp</dimen>
+    <dimen name="fragment_network_error_text_margin_top">10dp</dimen>
+    <dimen name="fragment_pocket_new_cards_margin_top">10dp</dimen>
+    <dimen name="fragment_pocket_new_cards_margin_start">16dp</dimen>
+    <dimen name="fragment_pocket_new_cards_margin_bottom">30dp</dimen>
+    <dimen name="button_ok_width">142dp</dimen>
+    <dimen name="button_ok_height">22dp</dimen>
+    <dimen name="tvgrid_element_info_container_width">133dp</dimen>
+    <dimen name="tvgrid_element_info_container_height">122.5dp</dimen>
+    <dimen name="tvgrid_element_info_container_translateX">-133dp</dimen>
+    <dimen name="tvgrid_element_info_container_margin_start">-45dp</dimen>
+    <dimen name="tvgrid_element_info_container_margintop">6dp</dimen>
+    <dimen name="tvgrid_element_info_container_marginstart">-2dp</dimen>
+    <dimen name="tvgrid_element_info_container_padding_bottom">11dp</dimen>
+    <dimen name="tvgrid_element_info_container_padding_end">9dp</dimen>
+    <dimen name="tvgrid_element_info_container_padding_start">12dp</dimen>
+    <dimen name="tvgrid_element_info_container_padding_top">8dp</dimen>
+    <dimen name="tvgrid_element_info_divein_width">110dp</dimen>
+    <dimen name="tvgrid_element_info_divein_margin_bottom">11dp</dimen>
+    <dimen name="tvgrid_element_info_divein_margin_end">9dp</dimen>
+    <dimen name="tvgrid_element_info_divein_margin_start">12dp</dimen>
+    <dimen name="tvgrid_element_info_divein_height">17.5dp</dimen>
+    <dimen name="tvgrid_element_info_divein_txt_size">10dp</dimen>
+    <dimen name="tvgrid_channel_change_width">687.5dp</dimen>
+
+    <!-- Carousel -->
+
+    <dimen name="carousel_margin_leftright">16dp</dimen>
+    <dimen name="carousel_margin_bottom">12.5dp</dimen>
+    <dimen name="carousel_menu_margin">24dp</dimen>
+    <dimen name="carousel_menu_margin2">11dp</dimen>
+    <dimen name="carousel_list_mtop">43dp</dimen>
+    <dimen name="carousel_list_padding_start">16dp</dimen>
+    <dimen name="carousel_list_padding_end">150dp</dimen>
+    <dimen name="carousel_bottom_msg_height">25dp</dimen>
+    <dimen name="carousel_bottom_msg_text_size">15dp</dimen>
+    <dimen name="carousel_separator_width">1.5dp</dimen>
+    <dimen name="carousel_categories_width">90dp</dimen>
+    <dimen name="carousel_button_height">18dp</dimen>
+    <dimen name="carousel_menu_elements_padding">11dp</dimen>
+    <dimen name="carousel_cross_size">10dp</dimen>
+    <dimen name="carousel_time_width">60dp</dimen>
+    <dimen name="carousel_categories_dropdown_height">19dp</dimen>
+    <dimen name="carousel_categories_separator_width">75dp</dimen>
+    <dimen name="carousel_categories_separator_height">1dp</dimen>
+    <dimen name="carousel_categories_arrow">6.8dp</dimen>
+    <dimen name="carousel_categories_padding">7dp</dimen>
+    <dimen name="carousel_cell_height">162.5dp</dimen>
+    <dimen name="carousel_cell_width">96dp</dimen>
+    <dimen name="carousel_currentscene_width">71dp</dimen>
+    <item name="carousel_socketevents_guideline" format="float" type="dimen">0.284</item>
+
+    <!-- Commercial -->
+    <dimen name="commercial_text_width">203.5dp</dimen>
+    <dimen name="commercial_margin">15dp</dimen>
+    <dimen name="commercial_text_margin">51.5dp</dimen>
+    <dimen name="commercial_text_spacing">14.5dp</dimen>
+    <dimen name="commercial_text1_maxwidth">176dp</dimen>
+
+    <item name="commercial_image_guideline" format="float" type="dimen">0.169</item>
+    <dimen name="splash_error_title_margin_top">136.5dp</dimen>
+    <dimen name="splash_error_loading_margin_top">63dp</dimen>
+    <dimen name="commercial_image_width">86.4dp</dimen>
+    <dimen name="commercial_image_height">156.5dp</dimen>
+    <dimen name="commercial_image_margin_end">22.9dp</dimen>
+    <dimen name="commercial_image_container_txt_width">190dp</dimen>
+    <dimen name="commercial_image_container_txt_size">21dp</dimen>
+    <dimen name="commercial_image_container_margin_bot">15.5dp</dimen>
+    <dimen name="commercial_image_container_margin_end">20dp</dimen>
+
+    <!-- Off -->
+    <dimen name="off_text_margin">43.5dp</dimen>
+    <dimen name="off_text2_margin">10dp</dimen>
+    <dimen name="off_text3_margin">32dp</dimen>
+    <dimen name="off_button_width">142dp</dimen>
+    <dimen name="off_button_height">22dp</dimen>
+
+    <!-- Ready -->
+    <dimen name="ready_text_margin">78.5dp</dimen>
+    <dimen name="ready_text2_margin">10dp</dimen>
+
+    <dimen name="tvgrid_empty_watch_demo_margin_start">15dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_margin_end">25dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_margin_bottom">30dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_txt_margin">33dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_txt_margin_top">20dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_txt_margin_bot">15dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_txt_size">21dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_img_width">152.5dp</dimen>
+    <dimen name="tvgrid_empty_watch_demo_img_margin">42.5dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_txt_width">245dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_txt_size">17.5dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_txt_margin_start">30dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_txt_margin_bottom">17dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_btn_width">78dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_btn_separation">10dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_img_width">113dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_img_heigth">185dp</dimen>
+    <dimen name="tvgrid_empty_dive_phone_img_margin_end">75.5dp</dimen>
+    <dimen name="carousel_cell_title_height">20dp</dimen>
+
+    <!-- Carousel TV Cell -->
+    <dimen name="tv_cell_height">162.5dp</dimen>
+    <dimen name="tv_cell_width">96dp</dimen>
+    <dimen name="tv_cell_image_width">89.5dp</dimen>
+    <dimen name="tv_cell_image_height">133dp</dimen>
+    <dimen name="tv_cell_nophoto_size">40dp</dimen>
+    <dimen name="tv_cell_nophoto_margin_top">49.5dp</dimen>
+    <dimen name="tv_cell_category_width">89.5dp</dimen>
+    <dimen name="tv_cell_category_height">20dp</dimen>
+    <dimen name="tv_cell_category_margin_top">3.5dp</dimen>
+
+    <dimen name="tv_cell_button_width">142dp</dimen>
+    <dimen name="tv_cell_button_height">22dp</dimen>
+    <dimen name="tv_cell_info_margin_top">12.5dp</dimen>
+
+    <dimen name="tv_cell_like_margin_top">5dp</dimen>
+    <dimen name="tv_cell_like_text_size">10dp</dimen>
+    <dimen name="tv_cell_like_ico_width">10.4dp</dimen>
+    <dimen name="tv_cell_like_ico_height">9.8dp</dimen>
+    <dimen name="tv_cell_like_ico_margin_end">5dp</dimen>
+    <dimen name="tv_cell_info_width">161.5dp</dimen>
+    <dimen name="tv_cell_element_info_container_translateX">-161.5dp</dimen>
+    <dimen name="tv_cell_info_height">135dp</dimen>
+    <dimen name="tv_cell_info_title_size">11dp</dimen>
+    <dimen name="tv_cell_info_text_size">9dp</dimen>
+    <dimen name="tv_cell_info_title_text_separation">5dp</dimen>
+
+    <dimen name="tv_cell_banner_small_width">208dp</dimen>
+    <dimen name="tv_cell_banner_small_large">430dp</dimen>
+
+    <dimen name="song_tv_cell_image_width">25dp</dimen>
+    <dimen name="song_tv_cell_image_height">32.5dp</dimen>
+    <dimen name="song_tv_cell_image_margin_top">32dp</dimen>
+    <dimen name="song_tv_cell_title_margin_top">14dp</dimen>
+    <dimen name="song_tv_cell_title_padding">8dp</dimen>
+    <dimen name="song_tv_cell_title_size">10dp</dimen>
+
+    <dimen name="person_tv_cell_info_title_text_separation">3dp</dimen>
+    <dimen name="person_tv_cell_title_margin_top">9dp</dimen>
+    <dimen name="splash_error_title_text_size">14dp</dimen>
+    <dimen name="splash_error_subtitle_margins">257dp</dimen>
+    <dimen name="splash_error_subtitle_margin_top">10dp</dimen>
+    <dimen name="splash_error_buton_width">142dp</dimen>
+    <dimen name="splash_error_button_height">22dp</dimen>
+    <dimen name="splash_error_button_margin_top">35dp</dimen>
+
+    <dimen name="exit_fragment_icon_size">122dp</dimen>
+    <dimen name="exit_fragment_title_margin_bot">5dp</dimen>
+    <dimen name="exit_fragment_txt_margin_bot">15dp</dimen>
+    <dimen name="exit_fragment_btn_margin_bot">6dp</dimen>
+    <dimen name="exit_fragment_btn_text_size">10dp</dimen>
+
+    <!-- CardDetail -->
+    <dimen name="carddetail_exit_button_height">20dp</dimen>
+    <dimen name="carddetail_exit_button_width">45dp</dimen>
+    <dimen name="carddetail_exit_button_margin_top">11.5dp</dimen>
+    <dimen name="carddetail_exit_button_margin_bot">5dp</dimen>
+    <dimen name="carddetail_exit_button_margin_start">15dp</dimen>
+    <dimen name="carddetail_exit_button_text_size">10dp</dimen>
+    <dimen name="carddetail_recycler_height">168dp</dimen>
+    <dimen name="carddetail_button_height">20dp</dimen>
+    <dimen name="carddetail_menu_elements_padding">7dp</dimen>
+    <dimen name="scroll">150dp</dimen>
+    <dimen name="scroll_minus">-150dp</dimen>
+    <dimen name="card_detail_separator">10dp</dimen>
+    <dimen name="scroll_height">100dp</dimen>
+    <dimen name="cardetail_margin_top">12.5dp</dimen>
+
+    <dimen name="carddetail_module_container_margin_top">10dp</dimen>
+    <dimen name="carddetail_module_container_margin_sides">15dp</dimen>
+
+    <dimen name="cardetail_module_header_width">244.5dp</dimen>
+    <dimen name="cardetail_module_header_padding_top">8.5dp</dimen>
+    <dimen name="cardetail_module_header_info_height">141dp</dimen>
+    <dimen name="cardetail_module_header_title_size">12.5dp</dimen>
+    <dimen name="cardetail_module_header_like_margin_top">82.5dp</dimen>
+    <dimen name="cardetail_module_header_like_width">137.5dp</dimen>
+    <dimen name="cardetail_module_header_like_height">20dp</dimen>
+    <dimen name="cardetail_module_header_like_text_size">8.5dp</dimen>
+
+    <dimen name="cardetail_module_movie_header_director_size">10dp</dimen>
+    <dimen name="cardetail_module_movie_header_genre_size">8dp</dimen>
+    <dimen name="cardetail_module_movie_header_time_size">7.5dp</dimen>
+    <dimen name="cardetail_module_movie_header_time_icon_size">12dp</dimen>
+    <dimen name="cardetail_module_movie_header_time_separator">4.5dp</dimen>
+    <dimen name="cardetail_module_movie_header_separator">7.5dp</dimen>
+
+    <dimen name="cardetail_module_map_width">171.5dp</dimen>
+    <dimen name="cardetail_module_map_height">127.5dp</dimen>
+    <dimen name="cardetail_module_map_margin_top">10.5dp</dimen>
+
+    <dimen name="cardetail_module_gallery_height">118.5dp</dimen>
+    <dimen name="cardetail_module_gallery_margin_top">10.5dp</dimen>
+
+    <dimen name="cardetail_moduletext_width">200.5dp</dimen>
+    <dimen name="cardetail_moduletext_height">168dp</dimen>
+    <dimen name="cardetail_moduletext_text_size">10dp</dimen>
+    <dimen name="module_text_biography_title_margin_bottom">5dp</dimen>
+    <dimen name="cardetail_module_awards_paddingtop">5dp</dimen>
+    <dimen name="cardetail_moduletext_paddingtop">9dp</dimen>
+    <dimen name="cardetail_moduletext_paddingstart">10dp</dimen>
+    <dimen name="module_buttons_scroll_up_down">11dp</dimen>
+    <dimen name="module_source_margin_button">5dp</dimen>
+
+    <dimen name="module_horizontal_list_image_width">67.5dp</dimen>
+    <dimen name="module_horizontal_list_image_height">95dp</dimen>
+    <dimen name="module_horizontal_list_title_height">20dp</dimen>
+    <dimen name="module_horizontal_list_title_padding">10dp</dimen>
+    <dimen name="module_horizontal_list_title_padding_end">5dp</dimen>
+    <dimen name="module_horizontal_list_recycler_width">160dp</dimen>
+
+    <dimen name="module_horizontal_list_item_separation">5dp</dimen>
+    <dimen name="module_horizontal_list_item_width">67.5dp</dimen>
+    <dimen name="module_horizontal_list_item_image_height">95dp</dimen>
+    <dimen name="two_cols_text1_width">65dp</dimen>
+    <dimen name="two_cols_text1_separator">10dp</dimen>
+
+    <dimen name="module_gallery_item_image_height">118.5dp</dimen>
+    <dimen name="module_gallery_item_image_width">70dp</dimen>
+
+    <dimen name="module_soundtrack_item_icon_height">25dp</dimen>
+    <dimen name="module_soundtrack_item_icon_width">20dp</dimen>
+    <dimen name="module_soundtrack_item_icon_margin_top">15dp</dimen>
+    <dimen name="module_soundtrack_item_icon_margin_bot">7.5dp</dimen>
+    <dimen name="module_soundtrack_item_padding">4dp</dimen>
+
+    <dimen name="module_travel_shop_separator">2dp</dimen>
+    <dimen name="module_travel_shop_width">144.5dp</dimen>
+    <dimen name="module_travel_shop_image_height">72dp</dimen>
+    <dimen name="module_travel_shop_brand_height">12.5dp</dimen>
+    <dimen name="module_travel_shop_brand_width">37.5dp</dimen>
+    <dimen name="module_travel_shop_info_height">27.5dp</dimen>
+    <dimen name="module_travel_shop_btn_height">20dp</dimen>
+    <dimen name="module_travel_shop_info_padding">6dp</dimen>
+    <dimen name="module_travel_shop_info_padding_top">2dp</dimen>
+    <dimen name="module_travel_shop_info_star_size">6dp</dimen>
+    <dimen name="module_travel_shop_btn_width">52.5dp</dimen>
+
+    <dimen name="curiosity_module_padding_start">8dp</dimen>
+
+    <dimen name="module_banner_small_height">167.5dp</dimen>
+    <dimen name="module_banner_small_width">200dp</dimen>
+
+    <dimen name="module_banner_big_height">167.5dp</dimen>
+    <dimen name="module_banner_big_width">410dp</dimen>
+
+    <!-- Scan Channels -->
+    <dimen name="fragment_scan_first_height">210dp</dimen>
+    <dimen name="fragment_scan_first_margin_bot">30dp</dimen>
+    <dimen name="fragment_scan_first_title_margin_top">27.5dp</dimen>
+    <dimen name="fragment_scan_first_text_margin_top">10dp</dimen>
+    <dimen name="fragment_scan_first_text_margin_sides">200dp</dimen>
+    <dimen name="fragment_scan_first_btn_margin_top">30dp</dimen>
+
+    <dimen name="fragment_scan_help_close_margin_end">10dp</dimen>
+    <dimen name="fragment_scan_help_close_separator_height">27.5dp</dimen>
+    <dimen name="fragment_scan_help_close_separator_width">1.5dp</dimen>
+    <dimen name="fragment_scan_help_left_container_margin_top">13dp</dimen>
+    <dimen name="fragment_scan_help_left_container_margin_start">57dp</dimen>
+    <dimen name="fragment_scan_help_left_container_margin_end">30dp</dimen>
+    <dimen name="fragment_scan_help_left_container_title_size">14dp</dimen>
+    <dimen name="fragment_scan_help_left_container_title_margin_bot">20dp</dimen>
+    <dimen name="fragment_scan_help_left_container_suggestion_margin_bot">10dp</dimen>
+    <dimen name="fragment_scan_help_left_container_mail_margin_bot">15dp</dimen>
+    <dimen name="fragment_scan_help_left_container_mail_size">15dp</dimen>
+    <dimen name="fragment_scan_help_left_container_subject_width">250dp</dimen>
+    <dimen name="fragment_scan_help_left_container_subject_size">12.5dp</dimen>
+    <dimen name="fragment_scan_help_left_container_version_margin_top">7dp</dimen>
+    <dimen name="fragment_scan_help_left_container_version_size">9dp</dimen>
+    <dimen name="fragment_scan_help_scan_container_margin_top">6dp</dimen>
+    <dimen name="fragment_scan_help_scan_container_margin_side">25dp</dimen>
+    <dimen name="fragment_scan_help_scan_container_width">300dp</dimen>
+    <dimen name="fragment_scan_help_scan_container_height">150dp</dimen>
+    <dimen name="fragment_scan_help_scan_title_margin_top">20.5dp</dimen>
+    <dimen name="fragment_scan_help_regions_title_margin_top">17dp</dimen>
+    <dimen name="fragment_scan_help_regions_btn_width">150dp</dimen>
+    <dimen name="fragment_scan_help_regions_btn_height">22dp</dimen>
+    <dimen name="fragment_scan_help_regions_btn_margin_top">15dp</dimen>
+    <dimen name="fragment_scan_help_regions_btn_margin_bot">10dp</dimen>
+
+    <dimen name="fragment_pocket_title_height">27.5dp</dimen>
+    <dimen name="fragment_pocket_title_margin_top">7dp</dimen>
+    <dimen name="fragment_pocket_title_margin_bot">6dp</dimen>
+    <dimen name="fragment_pocket_no_cards_container_margin_top">2.5dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_margin_top">8.5dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_height">150dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_width">250dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_padding_top">14.5dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_padding_left">22dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_title_size">14dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_title_margin_bot">10dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_txt_size">15dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_line_anchor_size">16dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_line_height">1.5dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_line_width">176.5dp</dimen>
+    <dimen name="fragment_pocket_no_cards_explain_line_margin_top">117dp</dimen>
+    <dimen name="fragment_pocket_no_cards_example_margin_left">50dp</dimen>
+    <dimen name="fragment_pocket_grid_vertical_separator">7.5dp</dimen>
+    <dimen name="pocket_new_cards_buttons_margin_bottom">20dp</dimen>
+
+    <!-- Scan Channels -->
+    <dimen name="webview_button_size">20dp</dimen>
+    <dimen name="webview_cross_size">10dp</dimen>
+    <dimen name="webview_header_height">40dp</dimen>
+    <dimen name="webview_margin">6dp</dimen>
+
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Dimens for testing -->
+    <dimen name="stroke">1dp</dimen>
+
+    <!-- Module movieHeader -->
+    <dimen name="img_poster_width">120dp</dimen>
+    <dimen name="img_poster_height">175dp</dimen>
+
+    <!-- Module Generic -->
+    <dimen name="module_margin">20dp</dimen>
+    <dimen name="module_title">13dp</dimen>
+
+    <!-- List View Generic -->
+    <dimen name="separator_height">1dp</dimen>
+
+    <!-- Module Description -->
+    <dimen name="module_description_body">15dp</dimen>
+    <dimen name="module_description_source">11dp</dimen>
+
+    <!-- Module Related Movies -->
+    <dimen name="module_related_movies_row_photo_width">110dp</dimen>
+    <dimen name="module_related_movies_row_photo_height">160dp</dimen>
+    <dimen name="module_related_movies_row_title">15dp</dimen>
+    <dimen name="module_related_movies_row_subtitle">13dp</dimen>
+
+    <!-- Module Navigation -->
+    <dimen name="module_navigation_height">100dp</dimen>
+    <dimen name="module_navigation_text_size">20dp</dimen>
+
+    <!-- Carousel generic -->
+    <dimen name="carousel_separator_height">10dp</dimen>
+    <dimen name="carousel_list_top_padding">15dp</dimen>
+    <dimen name="carousel_list_bottom_padding">75dp</dimen>
+    <dimen name="carousel_list_side_padding">15dp</dimen>
+    <dimen name="carousel_list_backtoscene_padding">50dp</dimen>
+
+    <!-- Carousel header -->
+    <dimen name="carousel_section_header_height">40dp</dimen>
+    <dimen name="carousel_items_divider_height">10dp</dimen>
+
+    <!-- Carousel related -->
+    <dimen name="carousel_separator">5dp</dimen>
+    <dimen name="carousel_cell_height_plus_margin">190dp</dimen>
+    <dimen name="carousel_cell1_height">170dp</dimen>
+    <dimen name="carousel_cards1_height">170dp</dimen>
+    <dimen name="carousel_cards3_height">112dp</dimen>
+    <dimen name="carousel_cards_song_height">120dp</dimen>
+    <dimen name="carousel_cards_text_height">30dp</dimen>
+
+    <!-- Carousel Card Trivia -->
+    <dimen name="carousel_card_trivia_text_size">15dp</dimen>
+    <dimen name="carousel_card_trivia_text_more_size">11dp</dimen>
+    <dimen name="carousel_card_trivia_height">140dp</dimen>
+    <dimen name="carousel_card_song_subtitle_text_size">13dp</dimen>
+
+    <!-- Carousel Card Commercial -->
+    <dimen name="carousel_card_commercial_height">300dp</dimen>
+    <dimen name="carousel_card_commercial_width">250dp</dimen>
+
+    <!-- Carousel Card Loading -->
+    <dimen name="carousel_card_loading_height">300dp</dimen>
+    <dimen name="carousel_card_loading_width">250dp</dimen>
+    <dimen name="carousel_card_loading_text_margin_top">25dp</dimen>
+    <dimen name="carousel_card_loading_text_width">130dp</dimen>
+
+    <!-- New Modules -->
+
+    <dimen name="module_padding">15dp</dimen>
+    <dimen name="module_padding_recyclerview">10dp</dimen>
+    <dimen name="module_title_margin">17dp</dimen>
+
+    <dimen name="text_13">13dp</dimen>
+    <dimen name="text_15">15dp</dimen>
+    <dimen name="line_mbottom">15dp</dimen>
+    <dimen name="disclaimer_mbottom">21dp</dimen>
+
+    <!-- Overview -->
+    <dimen name="text_text_mbottom">14dp</dimen>
+    <dimen name="text_link_mbottom">24dp</dimen>
+
+
+    <!-- Biography -->
+    <dimen name="bio_text_mbottom">20dp</dimen>
+    <dimen name="bio_dots_mbottom">28dp</dimen>
+
+
+    <!-- Movie Header-->
+    <dimen name="mheader_image_mbottom">26dp</dimen>
+    <dimen name="mheader_image_height">350dp</dimen>
+    <dimen name="mheader_height">376dp</dimen>
+    <dimen name="mheader_clock_mright">9dp</dimen>
+    <dimen name="mheader_clock_mbottom">56dp</dimen>
+    <dimen name="mheader_title_mbottom">11dp</dimen>
+    <dimen name="mheader_title_mtop">68dp</dimen>
+    <dimen name="mheader_director_mbottom">23dp</dimen>
+    <dimen name="mheader_elevation">6dp</dimen>
+    <dimen name="mheader_dive_in">210dp</dimen>
+
+
+    <!-- Movie Header Small-->
+    <dimen name="mheaders_padding_rl">15dp</dimen>
+    <dimen name="mheaders_padding_tb">20dp</dimen>
+    <dimen name="mheaders_title_mbottom">14dp</dimen>
+    <dimen name="mheaders_director_mbottom">25dp</dimen>
+
+
+    <!-- Generic -->
+    <dimen name="poster_width">120dp</dimen>
+    <dimen name="poster_height">175dp</dimen>
+
+    <dimen name="icon_width">24dp</dimen>
+    <dimen name="icon_height">24dp</dimen>
+
+    <dimen name="title_padbottom">10dp</dimen>
+    <dimen name="seeall_padbottom">10dp</dimen>
+
+    <!-- Header-->
+    <dimen name="header_image_mtop">16dp</dimen>
+    <dimen name="header_image_maxheight">320dp</dimen>
+    <dimen name="header_title_height">60dp</dimen>
+
+    <!-- Swipe Gallery-->
+    <dimen name="sgallery_source_heigth">50dp</dimen>
+    <dimen name="fimage_source_padding">35dp</dimen>
+    <dimen name="sgallery_footer_height">50dp</dimen>
+    <dimen name="sgallery_gallery_padding">15dp</dimen>
+    <dimen name="sgallery_source_padding">15dp</dimen>
+    <dimen name="sgallery_disclaimer_padding">20dp</dimen>
+
+    <!-- Info List-->
+    <dimen name="ilist_title_mbottom">17dp</dimen>
+    <dimen name="ilist_item_height">50dp</dimen>
+
+    <!-- Full curiosity-->
+    <dimen name="fcuriosity_container_padtop">27dp</dimen>
+    <dimen name="fcuriosity_container_padbottom">32dp</dimen>
+    <dimen name="fcuriosity_container_padside">22dp</dimen>
+    <dimen name="fcuriosity_title_mbottom">20dp</dimen>
+
+    <!-- Module SquareImageItems -->
+    <dimen name="simageitems_image_shop_height">124dp</dimen>
+    <dimen name="simageitems_image_height">144dp</dimen>
+    <dimen name="simageitems_image_nophoto">40dp</dimen>
+    <dimen name="simageitems_data_height">50dp</dimen>
+    <dimen name="simageitems_data_padding_left">10dp</dimen>
+    <dimen name="simageitems_data_padding_right">10dp</dimen>
+    <dimen name="simageitems_row_margin_right">10dp</dimen>
+
+    <!-- Module RectangularImageItems -->
+    <dimen name="rimageitems_image_height">160dp</dimen>
+    <dimen name="rimageitems_image_width">110dp</dimen>
+    <dimen name="rimageitems_separator">11dp</dimen>
+    <dimen name="rimageitems_season_data_height">40dp</dimen>
+    <dimen name="rimageitems_season_data_textsize">15dp</dimen>
+    <dimen name="rimageitems_season_data_separator">5dp</dimen>
+    <dimen name="rimageitems_data_height">60dp</dimen>
+    <dimen name="rimageitems_data_padding">10dp</dimen>
+    <dimen name="rimageitems_row_margin_right">10dp</dimen>
+
+    <!-- Module SingleModule -->
+    <dimen name="smodule_image_size">90dp</dimen>
+    <dimen name="smodule_title_mtop">11dp</dimen>
+
+    <!-- Module Video -->
+    <dimen name="video_thumbnail_height">200dp</dimen>
+
+    <!-- Module Shop -->
+    <dimen name="shop_button_height">40dp</dimen>
+    <dimen name="shop_button_width">45dp</dimen>
+
+    <!-- Module Curiosity -->
+    <dimen name="curiosity_padding">15dp</dimen>
+    <!-- Module Soundtrack -->
+    <dimen name="soundtrack_padding">15dp</dimen>
+
+    <!-- Module Cast -->
+    <dimen name="cast_padding_left_right">14dp</dimen>
+    <dimen name="cast_namebox_height">40dp</dimen>
+    <dimen name="cast_name_mbottom">10dp</dimen>
+
+    <!-- Two Cols Module -->
+    <dimen name="twocols_row_margin">5dp</dimen>
+    <dimen name="twocols_text1_width">137dp</dimen>
+    <dimen name="twocols_text1_paddleft">15dp</dimen>
+    <dimen name="twocols_text1_padcenter">5dp</dimen>
+
+    <!-- Image Text List Row -->
+    <dimen name="imagetextlist_image_size">90dp</dimen>
+
+    <!-- Rectangular Image Text List Row -->
+    <dimen name="rimagetextlist_image_height">90dp</dimen>
+    <dimen name="rimagetextlist_image_width">63dp</dimen>
+
+
+    <!-- Cast Image Text List Row -->
+    <dimen name="castlist_text_margin">15dp</dimen>
+    <dimen name="castlist_margin_bottom">1dp</dimen>
+
+    <!-- Curiosity List Row -->
+    <dimen name="curiositylist_text_padding">15dp</dimen>
+    <dimen name="curiositylist_row_heigth">90dp</dimen>
+
+    <!-- Shop activity -->
+    <dimen name="shopactivity_thumbnails_width">95dp</dimen>
+    <dimen name="shopactivity_frame_size">85dp</dimen>
+    <dimen name="shopactivity_thumb_size">65dp</dimen>
+    <dimen name="shopactivity_thumb_size_no_sel">54dp</dimen>
+    <dimen name="shopactivity_thumb_padding">10dp</dimen>
+    <dimen name="shopactivity_button_height">50dp</dimen>
+    <dimen name="shopactivity_image_size">123dp</dimen>
+    <dimen name="shopactivity_shopnow_size">40dp</dimen>
+    <dimen name="shopactivity_triangle_mtop">20dp</dimen>
+    <dimen name="shopactivity_products_margin">15dp</dimen>
+
+
+    <!-- Awards activity -->
+    <dimen name="awards_row_height">50dp</dimen>
+
+    <!-- Awards View activity -->
+    <dimen name="awardsview_title_height">50dp</dimen>
+    <dimen name="awardsview_row_height">60dp</dimen>
+    <dimen name="awardsview_awards_mbottom">10dp</dimen>
+    <dimen name="awardsview_row_padding">15dp</dimen>
+
+    <!-- Chapters View activity -->
+    <dimen name="chaptersview_row_height">50dp</dimen>
+
+    <!-- Module Map -->
+    <dimen name="map_image_height">250dp</dimen>
+
+    <!-- Module Carry -->
+    <dimen name="carry_module_height">50dp</dimen>
+
+    <!-- Module music Shops -->
+    <dimen name="musicshops_row_height">50dp</dimen>
+    <dimen name="musicshops_image_height">30dp</dimen>
+    <dimen name="musicshops_image_width">105dp</dimen>
+
+    <!-- Module Travel Shop -->
+    <dimen name="travelshop_image_height">144dp</dimen>
+    <dimen name="travelshop_row_width">220dp</dimen>
+    <dimen name="travelshop_addresbox_height">60dp</dimen>
+    <dimen name="travelshop_pricebox_height">40dp</dimen>
+    <dimen name="travelshop_logo_margin">5dp</dimen>
+    <dimen name="travelshop_booknow_width">105dp</dimen>
+    <dimen name="travelshop_rating_height">12dp</dimen>
+    <dimen name="travelshop_rating_width">60dp</dimen>
+
+    <!-- Module Travel View Shop -->
+
+    <dimen name="travelshopview_image_size">120dp</dimen>
+    <dimen name="travelshopview_margin_bottomright">9dp</dimen>
+
+    <!-- Module DiveIn-->
+    <dimen name="moddivein_container_padtop">27dp</dimen>
+    <dimen name="moddivein_container_padbottom">32dp</dimen>
+    <dimen name="moddivein_container_padside">15dp</dimen>
+    <dimen name="moddivein_title_mbottom">20dp</dimen>
+
+    <!--Menu Carousel -->
+    <dimen name="menu_carousel_item_height">20dp</dimen>
+    <dimen name="menu_carousel_margin_botom_item">26dp</dimen>
+    <dimen name="carddetail_from_menu_carousel_padding">75dp</dimen>
+
+    <!-- Menu Options Carousel -->
+    <dimen name="menu_option_carousel_header_height">44dp</dimen>
+    <dimen name="cell_padding">10dp</dimen>
+    <dimen name="header_back_icon_padding">15dp</dimen>
+
+
+    <!--Generic Cell -->
+    <dimen name="genericcell_height">150dp</dimen>
+    <dimen name="genericcell_image_width">124dp</dimen>
+    <dimen name="genericcell_buyit_marginbottom">13dp</dimen>
+    <dimen name="genericcell_text_padding">15dp</dimen>
+    <dimen name="genericcell_icon_margin_left">5dp</dimen>
+
+    <!--Song Cell -->
+    <dimen name="songcell_height">90dp</dimen>
+    <dimen name="songcell_icon_size">40dp</dimen>
+    <dimen name="songcell_border">1.3dp</dimen>
+
+    <!--Trivia Cell -->
+    <dimen name="triviacell_height">90dp</dimen>
+    <dimen name="triviacell_border">1.3dp</dimen>
+    <dimen name="triviacell_tivia_margintop">5dp</dimen>
+
+    <!--Feedback Cell -->
+    <dimen name="feedbackcell_line_height">1dp</dimen>
+    <dimen name="feedbackcell_maintext_size">21dp</dimen>
+    <dimen name="feedbackcell_cell_padding_lr">5dp</dimen>
+    <dimen name="feedbackcell_cell_padding_topbot">30dp</dimen>
+    <dimen name="feedbackcell_cell_text_padding_topbot">30dp</dimen>
+    <dimen name="feedbackcell_cell_height">184dp</dimen>
+    <dimen name="feedbackcell_suggestion_margintop">15dp</dimen>
+
+    <!--Feedback First Cell -->
+    <dimen name="feedbackfirstcell_height">100dp</dimen>
+    <dimen name="feedbackfirstcell_padding_top">10dp</dimen>
+    <dimen name="feedbackfirstcell_padding_bot">15dp</dimen>
+
+    <!--Commercial Cell -->
+    <dimen name="commercialcell_share_icon_margin_top">30dp</dimen>
+    <dimen name="commercialcell_title_margin">30dp</dimen>
+    <dimen name="commercialcell_share_btn_width">160dp</dimen>
+    <dimen name="commercialcell_share_btn_height">40dp</dimen>
+    <dimen name="commercialcell_padding_sides">45dp</dimen>
+    <dimen name="commercialcell_subtitle_margin">100dp</dimen>
+
+    <!--Cell Header -->
+    <dimen name="cellheader_height">84dp</dimen>
+    <dimen name="cellheader_image_size">64dp</dimen>
+    <dimen name="cellheader_text_padding">14dp</dimen>
+
+    <!--Cell List -->
+    <dimen name="celllist_title_pad_bottom">14dp</dimen>
+    <dimen name="celllist_button_height">30dp</dimen>
+    <dimen name="celllist_button_mtop">20dp</dimen>
+    <dimen name="celllist_button_mbottom">20dp</dimen>
+
+    <!--Cell List Row-->
+    <dimen name="celllistrow_height">104dp</dimen>
+    <dimen name="celllistrow_margin_bottom">5dp</dimen>
+    <dimen name="celllistrow_image_width">124dp</dimen>
+    <dimen name="celllistrow_text_mtop">15dp</dimen>
+    <dimen name="celllistrow_text_mleft">15dp</dimen>
+    <dimen name="celllistrow_buyittext_mBottom">13dp</dimen>
+
+    <dimen name="module_backtohome_btn_height">40dp</dimen>
+    <dimen name="module_backtohome_btn_margin">15dp</dimen>
+    <dimen name="module_backtohome_btn_margin_top">40dp</dimen>
+
+
+</resources>

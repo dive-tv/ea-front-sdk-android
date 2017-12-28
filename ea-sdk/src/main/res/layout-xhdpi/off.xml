@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdk.dive.tv.ui.views.OffView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/commercial_margin"
+    android:paddingTop="@dimen/commercial_margin"
+    android:background="@color/dark_grey_three"
+    android:elevation="@dimen/shadow_elevation"
+    android:translationX="@dimen/shadow_elevation">
+
+    <FrameLayout
+        android:id="@+id/carousel_off_button_close"
+        android:layout_width="@dimen/carousel_button_height"
+        android:layout_height="@dimen/carousel_button_height"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+        android:background="@drawable/carousel_button_focus_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:nextFocusDown="@+id/off_button"
+        android:elevation="@dimen/shadow_elevation"
+        android:translationX="@dimen/shadow_elevation"
+        >
+
+        <ImageView
+            android:id="@+id/carousel_off_image_close"
+            android:layout_width="@dimen/carousel_cross_size"
+            android:layout_height="@dimen/carousel_cross_size"
+            android:layout_gravity="center"
+            android:duplicateParentState="true"
+            android:src="@drawable/button_close" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/off_text_margin"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/off_text1"
+            android:layout_marginBottom="@dimen/off_text2_margin"
+            style="@style/Prompt_Title"
+            android:text="@string/EVERYTHING_END"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/off_text2"
+            android:layout_marginBottom="@dimen/off_text3_margin"
+            style="@style/Carousel_Prompt_Text3"
+            android:text="@string/MOVIE_OFF"/>
+        <Button
+            android:layout_width="@dimen/off_button_width"
+            android:layout_height="@dimen/off_button_height"
+            android:id="@id/off_button"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:text="@string/OKAY"
+            android:focusable="true"
+            android:clickable="true"
+            android:nextFocusUp="@id/carousel_off_button_close"
+            android:textColor="@drawable/carousel_button_focus_selector_txt"
+            android:clipToPadding="true"
+            android:elevation="@dimen/shadow_elevation"
+            android:translationX="@dimen/shadow_elevation"
+            />
+
+    </LinearLayout>
+
+
+
+</sdk.dive.tv.ui.views.OffView>

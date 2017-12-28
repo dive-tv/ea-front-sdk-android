@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/flay_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/paleGrey2"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgv_mheader_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mheader_image_height"
+        android:background="@color/black"
+        android:scaleType="centerCrop" />
+
+    <FrameLayout
+        android:id="@+id/imgv_mheader_background_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mheader_image_height"
+        android:alpha="0.7"
+        android:background="@android:color/black"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/imgv_mheader_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/dive_in_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/offYellow"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_divein"
+                style="@style/MinicardTitle"
+                android:layout_width="@dimen/mheader_dive_in"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:paddingBottom="20dp"
+                android:paddingTop="30dp"
+                android:text="@string/CARD_DETAIL_DIVE_TEXT"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:paddingStart="@dimen/module_padding"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mheader_height"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/mheader_title_mtop">
+
+            <TextView
+                android:id="@+id/txtv_mheader_title"
+                style="@style/CardMovieTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2" />
+
+            <TextView
+                android:id="@+id/txtv_mheader_year"
+                style="@style/CardMovieYearCarousel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/mheaders_title_mbottom" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/mheader_title_mbottom"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:minWidth="@dimen/poster_width"
+                    android:paddingBottom="4dp">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/lay_mheader_poster_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        card_view:cardCornerRadius="0dp"
+                        card_view:cardPreventCornerOverlap="false"
+                        card_view:elevation="4dp"
+                        android:layout_marginEnd="@dimen/module_padding">
+
+                        <LinearLayout
+                            android:id="@+id/lay_mheader_poster"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgv_mheader_poster"
+                                style="@style/Poster"
+                                android:layout_weight="1"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop" />
+
+                            <TextView
+                                android:id="@+id/txtv_mheader_divein"
+                                style="@style/ModuleButton"
+                                android:layout_weight="0"
+                                android:text="@string/dive_in"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/txtv_mheader_next"
+                                style="@style/ModuleButtonInactive"
+                                android:layout_weight="0"
+                                android:text="@string/CATALOG_NEXT"
+                                android:textAllCaps="true"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_toLeftOf="@id/lay_mheader_poster_container"
+                        android:layout_toStartOf="@id/lay_mheader_poster_container"
+                        android:orientation="vertical"
+                        android:paddingRight="@dimen/module_margin">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtv_mheader_director"
+                                style="@style/MinicardTitleLink"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/mheader_director_mbottom" />
+
+                            <TextView
+                                android:id="@+id/txtv_mheader_genres"
+                                style="@style/CardMovieGenre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lay_mheader_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="@dimen/mheader_clock_mbottom"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/Icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/mheader_clock_mright"
+                                android:src="@drawable/ico_oclock" />
+
+                            <TextView
+                                android:id="@+id/txtv_mheader_time"
+                                style="@style/CardMovieTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

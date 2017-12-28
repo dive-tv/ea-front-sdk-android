@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cview_container"
+    android:layout_width="@dimen/simageitems_image_height"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_grey_three"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="6dp"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/simageitems_container"
+        android:layout_width="@dimen/module_horizontal_list_image_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/dark_grey_three"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="@dimen/module_horizontal_list_image_width"
+            android:layout_height="@dimen/module_horizontal_list_image_height"
+            android:layout_marginBottom="@dimen/stroke"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/dark_grey_three">
+
+            <ImageView
+                android:id="@+id/castlocation_image"
+                android:layout_width="@dimen/module_horizontal_list_image_width"
+                android:layout_height="@dimen/module_horizontal_list_image_height"
+                android:layout_gravity="center"
+                android:background="@color/dark_grey_three"
+                android:scaleType="centerCrop" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llay_container3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/module_horizontal_list_title_height"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/module_horizontal_list_title_padding"
+            android:paddingLeft="@dimen/module_horizontal_list_title_padding"
+            android:paddingRight="@dimen/module_horizontal_list_title_padding"
+            android:paddingStart="@dimen/module_horizontal_list_title_padding">
+
+            <TextView
+                android:id="@+id/tv_cast_row_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_10"
+                android:textColor="@color/pale_grey"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

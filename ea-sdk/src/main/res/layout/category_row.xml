@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/carousel_categories_width"
+    android:layout_height="@dimen/carousel_button_height"
+    android:duplicateParentState="true">
+
+    <TextView
+        android:id="@android:id/text1"
+        style="@style/Categories_Inactive"
+        android:layout_width="@dimen/carousel_currentscene_width"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:paddingStart="@dimen/carousel_categories_padding"
+        android:textColor="@drawable/carousel_button_focus_selector_txt"
+        android:duplicateParentState="true"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
+    <FrameLayout
+        android:layout_width="@dimen/carousel_button_height"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_alignParentEnd="true">
+
+        <ImageView
+            android:layout_width="@dimen/carousel_categories_arrow"
+            android:layout_height="@dimen/carousel_categories_arrow"
+            android:layout_gravity="center"
+            android:src="@drawable/ico_down_black" />
+
+    </FrameLayout>
+
+</RelativeLayout>
+

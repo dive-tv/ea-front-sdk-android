@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdk.dive.tv.ui.views.CarouselTVCellLinear xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/banner_celltv_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_focus_selector"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <ImageView
+        android:id="@+id/banner_celltv_banner_img"
+        android:layout_width="@dimen/tv_cell_banner_small_width"
+        android:layout_height="@dimen/tv_cell_height"
+        android:layout_centerHorizontal="true"
+        android:duplicateParentState="true"
+        android:elevation="6dp"
+        android:scaleType="centerCrop" />
+</sdk.dive.tv.ui.views.CarouselTVCellLinear>

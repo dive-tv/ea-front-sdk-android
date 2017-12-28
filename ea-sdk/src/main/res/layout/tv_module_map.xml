@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_container"
+    android:layout_width="@dimen/cardetail_moduletext_width"
+    android:layout_height="match_parent"
+    android:background="@color/darkGrey2"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/carddetail_module_container_margin_top"
+    android:paddingEnd="@dimen/carddetail_module_container_margin_sides"
+    android:paddingStart="@dimen/carddetail_module_container_margin_sides"
+    android:paddingTop="@dimen/carddetail_module_container_margin_top">
+
+    <include layout="@layout/tv_title" />
+
+    <ImageView
+        android:id="@+id/tv_module_maps_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cardetail_module_map_height"
+        android:layout_marginTop="@dimen/cardetail_module_map_margin_top"
+        android:background="@drawable/border_focus_selector"
+        android:duplicateParentState="true"
+        android:scaleType="centerCrop" />
+</LinearLayout>

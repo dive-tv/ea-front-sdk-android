@@ -1,0 +1,28 @@
+{
+  "sections": [
+    {
+      "title": "main",
+      "main": true,
+      "modules": [
+        {
+          "type": "sdk.dive.tv.ui.modules.Header"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.FullCuriosity"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Gallery"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Shop"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.TravelShop"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Banner"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/carousel_container"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    tools:context="sdk.dive.tv.ui.fragments.Carousel">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/carousel_card_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:background="@android:color/transparent"
+        android:clipToPadding="false"
+        android:paddingEnd="@dimen/carousel_list_padding_end"
+        android:paddingStart="@dimen/carousel_list_padding_start" />
+
+    <TextView
+        android:id="@+id/carousel_bottom_msg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/carousel_bottom_msg_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/pale_grey_two"
+        android:elevation="50dp"
+        android:gravity="center"
+        android:textColor="@color/dark_grey_three"
+        android:textSize="@dimen/carousel_bottom_msg_text_size"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/carousel_loading_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_grey_two_translucent"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="@dimen/loading_progress_size"
+            android:layout_height="@dimen/loading_progress_size"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/socket_events_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_grey_two_translucent"
+        android:paddingEnd="0dp"
+        android:paddingStart="@dimen/carousel_margin_leftright"
+        android:visibility="gone">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/socket_events_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/carousel_socketevents_guideline" />
+
+        <FrameLayout
+            android:id="@+id/socket_events_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/socket_events_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</RelativeLayout>

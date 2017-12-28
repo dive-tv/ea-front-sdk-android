@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@style/Theme.Leanback" />
+
+    <style name="Channel_Source_Number">
+        <item name="android:textSize">9dp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:lineSpacingExtra">1.5dp</item>
+    </style>
+
+    <style name="Channel_Source_Name">
+        <item name="android:textSize">9dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">1.5dp</item>
+    </style>
+
+    <style name="Channel_Source_02">
+        <item name="android:textSize">9dp</item>
+        <item name="android:textColor">@color/pale_grey_two</item>
+        <item name="android:lineSpacingExtra">1.5dp</item>
+    </style>
+
+    <style name="Categories_Focused">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">1.5dp</item>
+    </style>
+
+    <style name="Categories_Inactive">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textColor">@color/warm_grey</item>
+        <item name="android:lineSpacingExtra">1.5dp</item>
+    </style>
+
+    <style name="Commercial_Title">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">1.5sp</item>
+    </style>
+
+    <style name="Carousel_Prompt_Text1">
+        <item name="android:textSize">12.5dp</item>
+        <item name="android:textColor">@color/pale_grey_two</item>
+
+    </style>
+
+    <style name="Carousel_Prompt_Text2">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/pale_grey_two</item>
+    </style>
+
+    <style name="Carousel_Prompt_Text3">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Prompt_Title">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/off_yellow</item>
+        <item name="android:lineSpacingExtra">1.5sp</item>
+    </style>
+    <style name="MinicardTitleLight">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/pale_grey_two</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+    </style>
+    <style name="MinicardTitleLink">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/seafoamBlue</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+    </style>
+    <style name="CardMovieTime">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/paleGrey2</item>
+    </style>
+    <style name="MinicardTitle">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+    </style>
+    <style name="CardMovieTitle">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+    <style name="CardMovieYearCarousel">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+    <style name="Poster">
+        <item name="android:layout_width">@dimen/poster_width</item>
+        <item name="android:layout_height">@dimen/poster_height</item>
+    </style>
+    <style name="ModuleButton">
+        <item name="android:background">@color/offYellow</item>
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">@color/darkGrey2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="ModuleButtonInactive">
+        <item name="android:background">@color/paleGrey</item>
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">@color/darkGrey2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="CardMovieGenre">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/warmGrey</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+    <style name="Icon">
+        <item name="android:layout_width">@dimen/icon_width</item>
+        <item name="android:layout_height">@dimen/icon_height</item>
+    </style>
+    <style name="CardMovieTitleCarousel">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+
+</resources>

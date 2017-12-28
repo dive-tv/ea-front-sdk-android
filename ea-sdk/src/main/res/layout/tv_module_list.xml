@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_container"
+    android:layout_width="@dimen/cardetail_moduletext_width"
+    android:layout_height="@dimen/cardetail_moduletext_height"
+    android:background="@drawable/border_focus_selector_transparent"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/cardetail_moduletext_paddingstart"
+    android:paddingStart="@dimen/cardetail_moduletext_paddingstart"
+    android:paddingTop="@dimen/cardetail_moduletext_paddingtop">
+
+    <TextView
+        android:id="@+id/txtv_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/module_text_biography_title_margin_bottom"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_10" />
+
+    <ScrollView
+        android:id="@+id/tv_module_scroll_list_desc"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/scroll_height"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_below="@id/txtv_tv_title"
+        android:fillViewport="true">
+
+        <include layout="@layout/tv_static_list" />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/tv_module_list_nav_cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/tv_module_list_btn_up"
+            android:layout_width="@dimen/carddetail_button_height"
+            android:layout_height="@dimen/carddetail_button_height"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/carddetail_menu_elements_padding"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/carousel_image_up"
+                android:layout_width="@dimen/carousel_cross_size"
+                android:layout_height="@dimen/carousel_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/button_up" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/tv_module_list_btn_down"
+            android:layout_width="@dimen/carddetail_button_height"
+            android:layout_height="@dimen/carddetail_button_height"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/carddetail_menu_elements_padding"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/carousel_image_down"
+                android:layout_width="@dimen/carousel_cross_size"
+                android:layout_height="@dimen/carousel_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/button_down" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

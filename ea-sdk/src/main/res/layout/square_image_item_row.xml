@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cview_container"
+    android:layout_width="@dimen/simageitems_image_height"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="6dp"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/simageitems_container"
+        android:layout_width="@dimen/simageitems_image_height"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/simageitems_row_margin_right"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="@dimen/simageitems_image_height"
+            android:layout_height="@dimen/simageitems_image_height"
+            android:layout_marginBottom="@dimen/stroke"
+            android:background="@color/black">
+
+            <ImageView
+                android:id="@+id/simageitems_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:scaleType="centerCrop" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/simageitems_info"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/simageitems_data_height"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/simageitems_data_padding_right"
+            android:paddingLeft="@dimen/simageitems_data_padding_left"
+            android:paddingRight="@dimen/simageitems_data_padding_right"
+            android:paddingStart="@dimen/simageitems_data_padding_left">
+
+            <TextView
+                android:id="@+id/simageitems_title"
+                style="@style/MinicardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1" />
+
+            <TextView
+                android:id="@+id/simageitems_subtitle"
+                style="@style/CardMovieGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

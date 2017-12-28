@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdk.dive.tv.ui.views.ReadyView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/commercial_margin"
+    android:paddingTop="@dimen/commercial_margin"
+    android:background="@color/dark_grey_three"
+    android:elevation="@dimen/shadow_elevation"
+    android:translationX="@dimen/shadow_elevation">
+
+    <FrameLayout
+        android:id="@+id/carousel_ready_button_close"
+        android:layout_width="@dimen/carousel_button_height"
+        android:layout_height="@dimen/carousel_button_height"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+        android:background="@drawable/carousel_button_focus_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/carousel_ready_image_close"
+            android:layout_width="@dimen/carousel_cross_size"
+            android:layout_height="@dimen/carousel_cross_size"
+            android:layout_gravity="center"
+            android:duplicateParentState="true"
+            android:src="@drawable/button_close" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/ready_text_margin"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ready_text1"
+            android:layout_marginBottom="@dimen/ready_text2_margin"
+            android:text="@string/LIGHTS_CAMERA"
+            style="@style/Prompt_Title"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ready_text2"
+            android:text="@string/WE_ARE_LOADING"
+            style="@style/Carousel_Prompt_Text3"/>
+    </LinearLayout>
+
+
+</sdk.dive.tv.ui.views.ReadyView>

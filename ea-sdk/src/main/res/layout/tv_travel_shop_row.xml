@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/travelshop_container"
+    android:layout_width="@dimen/module_travel_shop_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_focus_selector_transparent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/module_travel_shop_image_height"
+        android:layout_marginBottom="@dimen/module_travel_shop_separator"
+        android:background="@color/dark_grey_two">
+
+        <ImageView
+            android:id="@+id/imgv_travelshop_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/imgv_travelshop_brand"
+            android:layout_width="@dimen/module_travel_shop_brand_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="@dimen/travelshop_logo_margin"
+            android:layout_marginTop="@dimen/travelshop_logo_margin"
+            android:background="@color/white"
+            android:scaleType="fitCenter" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/travelshop_infobox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/module_travel_shop_info_height"
+        android:layout_marginBottom="@dimen/module_travel_shop_separator"
+        android:background="@color/dark_grey_two"
+        android:paddingBottom="@dimen/module_travel_shop_info_padding_top"
+        android:paddingEnd="@dimen/module_travel_shop_info_padding"
+        android:paddingStart="@dimen/module_travel_shop_info_padding"
+        android:paddingTop="@dimen/module_travel_shop_info_padding_top">
+
+        <TextView
+            android:id="@+id/txtv_travelshop_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/llay_travelshop_stars"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/pale_grey"
+            android:textSize="@dimen/text_10" />
+
+        <LinearLayout
+            android:id="@id/llay_travelshop_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/module_travel_shop_info_star_size"
+            android:layout_marginTop="@dimen/module_travel_shop_info_star_size"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imgv_travelshop_star1"
+                android:layout_width="@dimen/module_travel_shop_info_star_size"
+                android:layout_height="@dimen/module_travel_shop_info_star_size"
+                android:src="@drawable/ico_star" />
+
+            <ImageView
+                android:id="@+id/imgv_travelshop_star2"
+                android:layout_width="@dimen/module_travel_shop_info_star_size"
+                android:layout_height="@dimen/module_travel_shop_info_star_size"
+                android:src="@drawable/ico_star" />
+
+            <ImageView
+                android:id="@+id/imgv_travelshop_star3"
+                android:layout_width="@dimen/module_travel_shop_info_star_size"
+                android:layout_height="@dimen/module_travel_shop_info_star_size"
+                android:src="@drawable/ico_star" />
+
+            <ImageView
+                android:id="@+id/imgv_travelshop_star4"
+                android:layout_width="@dimen/module_travel_shop_info_star_size"
+                android:layout_height="@dimen/module_travel_shop_info_star_size"
+                android:src="@drawable/ico_star" />
+
+            <ImageView
+                android:id="@+id/imgv_travelshop_star5"
+                android:layout_width="@dimen/module_travel_shop_info_star_size"
+                android:layout_height="@dimen/module_travel_shop_info_star_size"
+                android:src="@drawable/ico_star" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtv_travelshop_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtv_travelshop_title"
+            android:layout_toStartOf="@id/llay_travelshop_stars"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/warm_grey"
+            android:textSize="@dimen/text_9" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/travelshop_pricebox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/module_travel_shop_btn_height"
+        android:layout_gravity="center"
+        android:background="@color/dark_grey_two"
+        android:paddingEnd="0dp"
+        android:paddingStart="@dimen/module_travel_shop_info_padding">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/txtv_travelshop_button"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtv_travelshop_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/module_travel_shop_separator"
+                android:text="@string/LITERAL_FROM"
+                android:textColor="@color/warm_grey"
+                android:textSize="@dimen/text_9" />
+
+            <TextView
+                android:id="@+id/txtv_travelshop_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pale_grey"
+                android:textSize="@dimen/text_10" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/txtv_travelshop_button"
+            android:layout_width="@dimen/module_travel_shop_btn_width"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/offYellow"
+            android:gravity="center"
+            android:letterSpacing="0.1"
+            android:text="@string/CARD_MODULE_BOOK"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_grey_two"
+            android:textSize="@dimen/text_6" />
+
+    </RelativeLayout>
+</LinearLayout>

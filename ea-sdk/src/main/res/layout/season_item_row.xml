@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rimageitems_container"
+    android:layout_width="@dimen/rimageitems_image_width"
+    android:layout_height="wrap_content"
+    android:background="@color/darkGrey"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="@dimen/rimageitems_image_width"
+        android:layout_height="@dimen/rimageitems_image_height"
+        android:layout_marginBottom="1dp"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/season_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:scaleType="centerCrop" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rimageitems_season_data_height"
+        android:background="@color/black"
+        android:gravity="start"
+        android:orientation="horizontal"
+        android:padding="@dimen/rimageitems_data_padding">
+
+        <TextView
+            android:id="@+id/season_season"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/rimageitems_season_data_separator"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rimageitems_season_data_textsize" />
+
+        <TextView
+            android:id="@+id/season_year"
+            style="@style/CardMovieGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llay_container"
+    android:layout_width="@dimen/cardetail_moduletext_width"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_grey_three"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtv_vlist_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lineSpacingExtra="1dp"
+        android:maxLines="2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_10" />
+
+    <TextView
+        android:id="@+id/txtv_vlist_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/warm_grey"
+        android:textSize="@dimen/text_9" />
+
+</LinearLayout>

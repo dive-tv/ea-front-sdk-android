@@ -1,0 +1,542 @@
+[
+  {
+    "module_name": "HorizontalListModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "GroupedModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Look",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Home",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Fashion",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "SquareImageItems",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "InterpretedBy",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Highlights",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "WearLooks",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "PlacesShown",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "MoreLooks",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Vehicles",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "CompleteTheDeco",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "SongBelongTo",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "CompleteTheLook",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "RectangularImageItems",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "AppearsInLocation",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Filmography",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Seasons",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Shop",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "TravelShop",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "AppearsIn",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Recommended",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Curiosities",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Cast",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "MovieSoundtrack",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Trivia",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "FullCuriosity",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Reference",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "SingleModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "InterpretedBySingle",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "BelongToSingle",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "SongBelongToSingle",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "SoundsIn",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "AppearsInSingle",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Map",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "VideoModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Trailer",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Video",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Gallery",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Header",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Carry",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "VerticalListModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Awards",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "MusicShop",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Soundtrack",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "TwoColsModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Specifications",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "BasicInfo",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "MovieHeader",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "light"
+      }
+    ]
+  },
+  {
+    "module_name": "MovieHeaderSmall",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "TextModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Overview",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Biography",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "Description",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "TextNavigation",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "BiographyNavigation",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "OverviewNavigation",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "DescriptionNavigation",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "SingleModule",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  }
+]

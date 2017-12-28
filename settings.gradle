@@ -1,0 +1,2 @@
+include ':ea-sdk', ':sdk-client'
+project(':sdk-client').projectDir = new File('../ea-client-sdk-android/sdk-client')

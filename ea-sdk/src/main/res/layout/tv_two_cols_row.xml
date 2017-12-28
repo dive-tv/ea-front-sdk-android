@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llay_container"
+    android:layout_width="@dimen/cardetail_moduletext_width"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_grey_three"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/two_cols_text1_separator">
+
+    <TextView
+        android:id="@+id/twocols_text1"
+        android:layout_width="@dimen/two_cols_text1_width"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/two_cols_text1_separator"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_9" />
+
+    <TextView
+        android:id="@+id/twocols_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:paddingEnd="@dimen/twocols_text1_paddleft"
+        android:paddingStart="0dp"
+        android:textColor="@color/warm_grey"
+        android:textSize="@dimen/text_9" />
+</LinearLayout>

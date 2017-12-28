@@ -1,0 +1,20 @@
+[
+  {
+    "module_name": "Recommended",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  },
+  {
+    "module_name": "BackToHome",
+    "styles": [
+      {
+        "property": "MainStyle",
+        "value": "dark"
+      }
+    ]
+  }
+]

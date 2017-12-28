@@ -1,0 +1,46 @@
+{
+  "sections": [
+    {
+      "title": "main",
+      "main": true,
+      "modules": [
+        {
+          "type": "sdk.dive.tv.ui.modules.MovieHeader"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.MovieHeaderSmall"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Overview"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Shop"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.TravelShop"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Seasons"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.BasicInfo"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Gallery"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Awards"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Cast"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Recommended"
+        },
+        {
+          "type": "sdk.dive.tv.ui.modules.Banner"
+        }
+      ]
+    }
+  ]
+}

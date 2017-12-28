@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdk.dive.tv.ui.views.CarouselTVCellLinear xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/generic_celltv_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tv_cell_height"
+        android:animateLayoutChanges="false"
+        android:background="@android:color/transparent">
+
+        <RelativeLayout
+            android:id="@+id/generic_celltv_info_container"
+            android:layout_width="@dimen/tv_cell_info_width"
+            android:layout_height="@dimen/tv_cell_info_height"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/tvgrid_element_info_container_marginstart"
+            android:layout_toEndOf="@+id/generic_tv_cell_container"
+            android:background="@color/dark_grey_three"
+            android:translationX="@dimen/tv_cell_element_info_container_translateX"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/generic_celltv_info_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/tvgrid_element_info_divein_margin_end"
+                android:layout_marginStart="@dimen/tvgrid_element_info_divein_margin_start"
+                android:layout_marginTop="@dimen/tvgrid_element_info_divein_margin_bottom"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/pale_grey"
+                android:textSize="@dimen/tv_cell_info_title_size" />
+
+            <TextView
+                android:id="@+id/generic_celltv_info_text"
+                android:layout_width="@dimen/tv_cell_button_width"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/generic_celltv_info_title"
+                android:layout_marginEnd="@dimen/tvgrid_element_info_divein_margin_end"
+                android:layout_marginStart="@dimen/tvgrid_element_info_divein_margin_start"
+                android:layout_marginTop="@dimen/tv_cell_info_title_text_separation"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textSize="@dimen/tv_cell_info_text_size" />
+
+<!--
+            <sdk.dive.tv.ui.views.CarouselTVCellLinear
+                android:id="@+id/generic_cell_info_liked"
+                android:layout_width="@dimen/tv_cell_button_width"
+                android:layout_height="@dimen/tv_cell_button_height"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/tvgrid_element_info_divein_margin_bottom"
+                android:layout_marginEnd="@dimen/tvgrid_element_info_divein_margin_end"
+                android:layout_marginStart="@dimen/tvgrid_element_info_divein_margin_start"
+                android:layout_marginTop="@dimen/tv_cell_like_margin_top"
+                android:background="@drawable/carousel_button_seemore_focus_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/generic_cell_info_liked_icon"
+                    android:layout_width="@dimen/tv_cell_like_ico_width"
+                    android:layout_height="@dimen/tv_cell_like_ico_height"
+                    android:layout_marginEnd="@dimen/tv_cell_like_ico_margin_end"
+                    android:layout_marginStart="0dp"
+                    android:duplicateParentState="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ico_cell_like"
+                    android:tint="@drawable/carousel_button_focus_selector_txt" />
+
+                <TextView
+                    android:id="@+id/generic_cell_info_liked_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:text="@string/song_cell_save_for_later"
+                    android:textAllCaps="true"
+                    android:textColor="@drawable/carousel_button_focus_selector_txt"
+                    android:textSize="@dimen/tv_cell_like_text_size" />
+            </sdk.dive.tv.ui.views.CarouselTVCellLinear>
+-->
+
+            <sdk.dive.tv.ui.views.CarouselTVCellButton
+                android:id="@+id/generic_cell_info_seemore"
+                android:layout_width="@dimen/tv_cell_button_width"
+                android:layout_height="@dimen/tv_cell_button_height"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/tvgrid_element_info_divein_margin_end"
+                android:layout_marginStart="@dimen/tvgrid_element_info_divein_margin_start"
+                android:layout_marginBottom="@dimen/tvgrid_element_info_divein_margin_bottom"
+                android:background="@drawable/carousel_button_seemore_focus_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/song_tv_see_more"
+                android:textColor="@drawable/carousel_button_focus_selector_txt"
+                android:textSize="@dimen/text_10" />
+
+            <FrameLayout
+                android:id="@+id/generic_cell_info_border"
+                android:layout_width="@dimen/tv_cell_info_width"
+                android:layout_height="@dimen/tv_cell_info_height"
+                android:background="@drawable/focus_border_warm_grey" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@id/generic_tv_cell_container"
+            android:layout_width="@dimen/tv_cell_width"
+            android:layout_height="@dimen/tv_cell_height"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/dark_grey"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/generic_tv_cell_type"
+                android:layout_width="@dimen/tv_cell_category_width"
+                android:layout_height="@dimen/tv_cell_category_height"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/tv_cell_category_margin_top"
+                android:background="@drawable/focus_border_warm_grey"
+                android:gravity="center"
+                android:textColor="@color/warm_grey"
+                android:textSize="@dimen/song_tv_cell_title_size" />
+
+            <ImageView
+                android:id="@+id/generic_tv_cell_image"
+                android:layout_width="@dimen/tv_cell_image_width"
+                android:layout_height="@dimen/tv_cell_image_height"
+                android:layout_above="@+id/generic_tv_cell_type"
+                android:scaleType="centerCrop"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/generic_tv_cell_noimage"
+                android:layout_width="@dimen/tv_cell_nophoto_size"
+                android:layout_height="@dimen/tv_cell_nophoto_size"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/tv_cell_nophoto_margin_top"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ico_cell_nophoto"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/generic_tv_cell_image_border"
+                android:layout_width="@dimen/tv_cell_image_width"
+                android:layout_height="@dimen/tv_cell_image_height"
+                android:layout_above="@id/generic_tv_cell_type"
+                android:background="@drawable/focus_border_warm_grey" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</sdk.dive.tv.ui.views.CarouselTVCellLinear>

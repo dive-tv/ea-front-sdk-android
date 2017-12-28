@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_module_horizontal_item_container"
+    android:layout_width="@dimen/module_gallery_item_image_width"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/tv_module_horizontal_item_image"
+        android:layout_width="@dimen/module_gallery_item_image_width"
+        android:layout_height="@dimen/module_horizontal_list_item_image_height"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/tv_module_horizontal_item_image_border"
+        android:layout_width="@dimen/module_gallery_item_image_width"
+        android:layout_height="@dimen/module_horizontal_list_item_image_height"
+        android:duplicateParentState="true"
+        android:background="@drawable/border_focus_selector"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/tv_module_horizontal_item_noimage"
+            android:layout_width="@dimen/tv_cell_nophoto_size"
+            android:layout_height="@dimen/tv_cell_nophoto_size"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ico_cell_nophoto"
+            android:duplicateParentState="true"
+            android:tint="@drawable/noimage_selector"
+            android:visibility="visible" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_module_horizontal_item_title"
+        android:layout_width="@dimen/module_gallery_item_image_width"
+        android:layout_height="@dimen/tv_cell_category_height"
+        android:layout_below="@id/tv_module_horizontal_item_image_border"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/tv_cell_category_margin_top"
+        android:background="@drawable/border_focus_selector"
+        android:ellipsize="end"
+        android:duplicateParentState="true"
+        android:gravity="center"
+        android:lines="1"
+        android:textColor="@drawable/category_selector_txt"
+        android:textSize="@dimen/song_tv_cell_title_size" />
+</RelativeLayout>
