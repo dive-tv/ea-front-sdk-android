@@ -128,7 +128,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
 //    private CarouselThread mCarouselThread = null;
 
-    private FrameLayout mCloseLayout = null;
     //    private FrameLayout mMinimizeLayout = null;
     private FrameLayout mPreviousLayout = null;
     private FrameLayout mNextLayout = null;
@@ -494,12 +493,10 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             case GO_TO_PLAYING_MOVIE:
                 if (isPaused) {
                     if (mCommercialView.isAttachedToWindow()) {
-                        mCloseLayout.requestFocus();
                         deleteCommercialScene();
                     }
                     isPaused = false;
                 } else if (isWaitingMovie) {
-                    mCloseLayout.requestFocus();
                     deleteWaitingScene();
                     isWaitingMovie = false;
                 }

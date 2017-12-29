@@ -62,10 +62,11 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     private FrameLayout mProductLayout;
     private Fragment carouselFragment = null;
     private boolean isCarousel = false;
-    private FragmentManager mManager = null;
+    public FragmentManager mManager = null;
     private DiveSdk dive = null;
     private boolean isApplicationClosing = false;
     private FragmentError networkError = null;
+    private OnDiveInteractionListener mMainListener;
 
     private enum LayoutType {BOTTOM, OVERLAY, ERROR, PRODUCTS}
 
@@ -88,9 +89,13 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
      *
      * @return A new instance of fragment Privacy.
      */
-    public static DiveActivity newInstance() {
+    public static DiveActivity newInstance(OnDiveInteractionListener listener) {
         DiveActivity fragment = new DiveActivity();
         return fragment;
+    }
+
+    public void setListener(OnDiveInteractionListener listener){
+        mMainListener = listener;
     }
 
     /**
@@ -109,48 +114,37 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         instance = this;
         setContentView(R.layout.dive_activity);
         mManager = getSupportFragmentManager();
-        Intent i = getIntent();
-        if (i.getStringExtra(Utils.API_KEY)!=null) {
-            API_KEY = i.getStringExtra(Utils.API_KEY);
-        }
-        if (i.getStringExtra(Utils.MOVIE_ID) != null) {
-            MOVIE_ID = i.getStringExtra(Utils.MOVIE_ID);
-        }
-        if (i.getIntExtra(Utils.MOVIE_TIMESTAMP, 0) > 0) {
-            MOVIE_TIME = i.getIntExtra(Utils.MOVIE_TIMESTAMP, 0);
-        }
-        if (i.getStringExtra(Utils.CHANNEL_ID) != null) {
-            CHANNEL_ID = i.getStringExtra(Utils.CHANNEL_ID);
-        }
         mBottomContainerLayout = (FrameLayout) findViewById(R.id.fragment_bottom_container);
         mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
         mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
         mBottomError = (FrameLayout) findViewById(R.id.fragment_bottom_errors);
         mProductLayout = (FrameLayout) findViewById(R.id.product_container);
-        settings = new SharedPreferencesHelper(getApplicationContext());
-        deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-
-        settings.storeDeviceId(deviceId);
 
         mListener = this;
+    }
 
-        dive = new DiveSdk();
-        String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        dive.initialize(deviceId, API_KEY, getApplicationContext());
-        if (MOVIE_ID != null && MOVIE_TIME > -1) {
-            carouselFragment = dive.VODStart(MOVIE_ID, MOVIE_TIME);
-        } else if (CHANNEL_ID != null) {
-            carouselFragment = dive.tvStart(CHANNEL_ID);
-        }
+    public void addDive(int fragmentId, String apiKey, String deviceId, String movieId, int movieTime){
+
+        carouselFragment = dive.VODStart(movieId, movieTime);
 
         isCarousel = true;
 
         mManager.beginTransaction()
-                .replace(R.id.fragment_container, carouselFragment, Utils.FragmentNames.DIVE.name())
+                .replace(fragmentId, carouselFragment, Utils.FragmentNames.DIVE.name())
                 .addToBackStack(Utils.FragmentNames.DIVE.name())
                 .commit();
+    }
 
+    public void addDive(int fragmentId, String apiKey, String deviceId, String channelId){
 
+        carouselFragment = dive.tvStart(channelId);
+
+        isCarousel = true;
+
+        mManager.beginTransaction()
+                .replace(fragmentId, carouselFragment, Utils.FragmentNames.DIVE.name())
+                .addToBackStack(Utils.FragmentNames.DIVE.name())
+                .commit();
     }
 
 
@@ -161,7 +155,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         if (lastFragment != null) {
             if (lastFragment instanceof Carousel) {
                 isApplicationClosing = true;
-                finish();
+                mMainListener.onDiveClose();
             } else if (lastFragment instanceof FragmentError) {
                 if (mBottomError==null)
                     mBottomError = (FrameLayout) findViewById(R.id.fragment_bottom_errors);
@@ -362,7 +356,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
                 enableBottomLayout(true);
             }
         }
-//        onBackPressed();
     }
 
     private void enableBottomLayout(boolean enable) {
@@ -493,10 +486,8 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         lastFocusedView = view;
     }
 
-/*
-    private void openProduct(OpenWeb web) {
-//        if (SdkClient.getInstance().isNetworkOnline()) {
-        enableLayout(LayoutType.PRODUCTS);
+   /* private void openProduct(OpenWeb web) {
+//        enableLayout(LayoutType.PRODUCTS);
         WebView webView = new WebView();
 
         Bundle args = new Bundle();
@@ -508,11 +499,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
                 .replace(R.id.product_container, webView, Utils.FragmentNames.PRODUCT.name())
                 .addToBackStack(Utils.FragmentNames.PRODUCT.name())
                 .commit();
-//        } else {
-//            showError(NETWORK_ERROR);
-//        }
-    }
-*/
+    }*/
 
 
     @Override
@@ -526,7 +513,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
                 .addToBackStack(Utils.FragmentNames.CAROUSEL.name())
                 .commit();
 
-//        enableBottomLayout(true);
     }
 
     @Override
@@ -558,6 +544,12 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
             }
         }
         onBackPressed();
+    }
+
+    public interface OnDiveInteractionListener {
+        void onDiveClose();
+
+        void onShowProducts();
     }
 
 }
