@@ -54,7 +54,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     private String MOVIE_ID;
     private int MOVIE_TIME;
     private String CHANNEL_ID;
-    private DiveActivity instance = null;
+    private static DiveActivity instance = null;
     private FrameLayout mBottomContainerLayout;
     private FrameLayout mBottomLayout;
     private FrameLayout mBottomOverlay;
