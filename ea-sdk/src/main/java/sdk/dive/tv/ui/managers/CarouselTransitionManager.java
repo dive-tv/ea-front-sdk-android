@@ -13,9 +13,11 @@ import android.transition.TransitionSet;
 import android.transition.TransitionValues;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.HardwareLayerAnimatorListenerAdapter;
+import sdk.dive.tv.ui.activities.DiveActivity;
 import sdk.dive.tv.ui.views.CommercialView;
 import sdk.dive.tv.ui.views.EndView;
 import sdk.dive.tv.ui.views.OffView;
@@ -42,6 +44,9 @@ public class CarouselTransitionManager extends TransitionManager {
     private Context ctx;
     private Animator mEnterAnimator;
     private Animator mExitAnimator;
+    private final DiveActivity mMainActivity;
+
+    private final FrameLayout mEmptyView;
 
     private Scene mEmptyScene;
     private Scene mCommercialScene;
@@ -63,6 +68,7 @@ public class CarouselTransitionManager extends TransitionManager {
     public CarouselTransitionManager(Context ctx, ViewGroup parentContainer, RecyclerView carouselList, ViewGroup carouselContainer, CommercialView commercialView, ReadyView readyView, EndView endView, OffView offView) {
 
         this.ctx = ctx;
+        mMainActivity = (DiveActivity) ctx;
 
         mCommercialView = commercialView;
         mReadyView = readyView;
@@ -72,6 +78,8 @@ public class CarouselTransitionManager extends TransitionManager {
 
         mSceneContainer = carouselContainer;
         mParentSceneContainer = parentContainer;
+        mEmptyView = (FrameLayout) mMainActivity.getLayoutInflater().inflate(
+                R.layout.empty_carousel_banner, carouselContainer, false); //TODO: change empty info banner
 
 
     }
@@ -136,6 +144,28 @@ public class CarouselTransitionManager extends TransitionManager {
                 R.animator.channel_banner_enter);
         mExitAnimator = AnimatorInflater.loadAnimator(ctx,
                 R.animator.channel_banner_exit);
+        mEmptyScene = new Scene(mSceneContainer, mEmptyView);
+        mEmptyScene.setEnterAction(new Runnable() {
+            @Override
+            public void run() {
+                FrameLayout.LayoutParams emptySceneLayoutParams =
+                        (FrameLayout.LayoutParams) mEmptyView.getLayoutParams();
+                ViewGroup.MarginLayoutParams lp =
+                        (ViewGroup.MarginLayoutParams) mCurrentSceneView.getLayoutParams();
+                emptySceneLayoutParams.topMargin = mCurrentSceneView.getTop();
+                emptySceneLayoutParams.setMarginStart(lp.getMarginStart());
+                emptySceneLayoutParams.height = mCurrentSceneView.getHeight();
+                emptySceneLayoutParams.width = mCurrentSceneView.getWidth();
+                mEmptyView.setLayoutParams(emptySceneLayoutParams);
+                setCurrentScene(mEmptyScene, mEmptyView);
+            }
+        });
+        mEmptyScene.setExitAction(new Runnable() {
+            @Override
+            public void run() {
+                removeAllViewsFromOverlay();
+            }
+        });
 
         mCommercialScene = buildScene(mSceneContainer, mCommercialView);
         mEndScene = buildScene(mSceneContainer, mEndView);
