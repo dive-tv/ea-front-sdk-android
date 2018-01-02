@@ -34,6 +34,7 @@ import sdk.client.dive.tv.socket.SocketListener;
 import sdk.client.dive.tv.socket.model.StreamError;
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.activities.DiveActivity;
 import sdk.dive.tv.ui.adapters.CarouselCardsAdapter;
 import sdk.dive.tv.ui.cells.CarouselTvCell;
 import sdk.dive.tv.ui.cells.SeeMoreTvCell;
@@ -222,8 +223,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
             @Override
             public void onMovieEndEventReceived() {
-                destroyCarousel();
-                onCallEndMovie();
+                DiveActivity.getInstance().getListener().onDiveClose();
             }
 
             @Override
@@ -506,8 +506,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 onRowsToDraw(new ArrayList<CarouselTvCell>());
                 break;
             case GO_TO_END_MOVIE:
-                destroyCarousel();
-                onCallEndMovie();
+                DiveActivity.getInstance().getListener().onDiveClose();
                 break;
             case GO_TO_OFF_MOVIE:
                 destroyCarousel();

@@ -98,12 +98,16 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         mMainListener = listener;
     }
 
+    public OnDiveInteractionListener getListener(){
+        return mMainListener;
+    }
+
     /**
      * Gets instance.
      *
      * @return the instance
      */
-    public DiveActivity getInstance() {
+    public static DiveActivity getInstance() {
         return instance;
     }
 
@@ -548,8 +552,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
 
     public interface OnDiveInteractionListener {
         void onDiveClose();
-
-        void onShowProducts();
     }
 
 }
