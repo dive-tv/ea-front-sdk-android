@@ -2,11 +2,11 @@ package sdk.dive.tv.ui.managers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.touchvie.sdk.model.Card;
@@ -15,13 +15,16 @@ import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.activities.DiveActivity;
 import sdk.dive.tv.ui.builders.ConfigSection;
 import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.data.ModuleStyleData;
-import sdk.dive.tv.ui.fragments.CardDetail;
 import sdk.dive.tv.ui.fragments.DiveTVSection;
 import sdk.dive.tv.ui.fragments.Section;
+import sdk.dive.tv.ui.fragments.WebView;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
+
+import static sdk.dive.tv.ui.activities.DiveActivity.LayoutType.PRODUCTS;
 
 /**
  * Created by Tagsonomy S.L. on 12/07/2017.
@@ -93,14 +96,33 @@ public class DiveTVTvCardDetailManager extends CardDetailManager implements TvCa
     }
 
     @Override
-    public void onCallCardDetail(String cardId, String versionId, Card.TypeEnum cardType, FragmentManager manager) {
-        sdk.dive.tv.ui.fragments.CardDetail cardDetail  = sdk.dive.tv.ui.fragments.CardDetail.newInstance(cardId, versionId, cardType, null, isCarousel, manager);
+    public void onCallCardDetail(String cardId, String versionId, Card.TypeEnum cardType) {
+        sdk.dive.tv.ui.fragments.CardDetail cardDetail  = sdk.dive.tv.ui.fragments.CardDetail.newInstance(cardId, versionId, cardType, null, isCarousel, mFragmentManager);
 
         mFragmentManager.beginTransaction()
                 .replace(R.id.fragment_bottom_overlay, cardDetail, Utils.FragmentNames.CARD_DETAIL.name())
                 .addToBackStack(Utils.FragmentNames.CARD_DETAIL.name())
                 .commit();
     }
+
+    @Override
+    public void onShowProduct(String url) {
+
+        DiveActivity dive = DiveActivity.getInstance();
+        dive.enableLayout(PRODUCTS);
+        WebView webView = new WebView();
+
+        Bundle args = new Bundle();
+        args.putString(sdk.dive.tv.ui.Utils.URL, url);
+
+        webView.setArguments(args);
+
+        mFragmentManager.beginTransaction()
+                .replace(R.id.product_container, webView, Utils.FragmentNames.PRODUCT.name())
+                .addToBackStack(Utils.FragmentNames.PRODUCT.name())
+                .commit();
+    }
+
 
     @Override
     public int describeContents() {

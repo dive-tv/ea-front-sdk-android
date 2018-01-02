@@ -10,6 +10,7 @@ public class CardTextData implements Serializable{
 
     String text;
     String cardId;
+    String cardVersion;
     String cardType;
     boolean hasContent;
 
@@ -27,6 +28,14 @@ public class CardTextData implements Serializable{
 
     public void setCardId(String cardId) {
         this.cardId = cardId;
+    }
+
+    public String getCardVersion() {
+        return cardVersion;
+    }
+
+    public void setCardVersion(String cardVersion) {
+        this.cardVersion = cardVersion;
     }
 
     public String getCardType() {

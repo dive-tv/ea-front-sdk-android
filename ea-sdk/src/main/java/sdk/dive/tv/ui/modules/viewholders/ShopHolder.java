@@ -56,6 +56,7 @@ public class ShopHolder extends HorizontalListHolder {
             row.setText(price);
             row.setCardId(product.getProductId());
             row.setCardType(product.getCategory().getValue());
+            row.setUrl(product.getUrl());
             rows.add(row);
         }
 

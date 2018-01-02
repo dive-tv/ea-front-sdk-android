@@ -10,6 +10,7 @@ public class TextRowData implements Serializable {
 
     protected String text;
     protected String cardId;
+    protected String cardVersion;
     protected String cardType;
     protected boolean hasContent = true;
 
@@ -27,6 +28,14 @@ public class TextRowData implements Serializable {
 
     public void setCardId(String cardId) {
         this.cardId = cardId;
+    }
+
+    public String getCardVersion() {
+        return cardVersion;
+    }
+
+    public void setCardVersion(String cardVersion) {
+        this.cardVersion = cardVersion;
     }
 
     public String getCardType() {

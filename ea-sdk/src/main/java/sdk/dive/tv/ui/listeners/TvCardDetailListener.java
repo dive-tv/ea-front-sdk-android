@@ -56,7 +56,9 @@ public interface TvCardDetailListener extends CardDetailListener {
 
     HashMap<String, ModuleStyleData> getModuleStyles(String moduleName);
 
-    void onCallCardDetail(String cardId, String versionId, Card.TypeEnum cardType, FragmentManager manager);
+    void onCallCardDetail(String cardId, String versionId, Card.TypeEnum cardType);
+
+    void onShowProduct(String url);
 
     @Override
     public void writeToParcel(Parcel parcel, int i);

@@ -12,7 +12,9 @@ public class HorizontalItemData implements Serializable {
 
     private String text;
     private String cardId;
+    private String cardVersion;
     private String cardType;
+    private String url;
     private ImageData image;
     private boolean hasContent;
 
@@ -30,6 +32,22 @@ public class HorizontalItemData implements Serializable {
 
     public void setCardId(String cardId) {
         this.cardId = cardId;
+    }
+
+    public String getCardVersion() {
+        return cardVersion;
+    }
+
+    public void setCardVersion(String cardVersion) {
+        this.cardVersion = cardVersion;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getCardType() {

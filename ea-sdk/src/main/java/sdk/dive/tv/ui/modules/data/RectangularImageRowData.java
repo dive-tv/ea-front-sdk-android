@@ -10,9 +10,10 @@ import java.util.ArrayList;
 public class RectangularImageRowData implements Serializable {
 
     private String image;
-    private ArrayList<sdk.dive.tv.ui.modules.data.CardTextData> title;
-    private ArrayList<sdk.dive.tv.ui.modules.data.CardTextData> subtitle;
+    private ArrayList<CardTextData> title;
+    private ArrayList<CardTextData> subtitle;
     private String cardId;
+    private String cardVersion;
     private String type;
     private boolean hasContent;
 
@@ -24,15 +25,15 @@ public class RectangularImageRowData implements Serializable {
         this.image = image;
     }
 
-    public ArrayList<sdk.dive.tv.ui.modules.data.CardTextData> getTitle() {
+    public ArrayList<CardTextData> getTitle() {
         return title;
     }
 
-    public void setTitle(ArrayList<sdk.dive.tv.ui.modules.data.CardTextData> title) {
+    public void setTitle(ArrayList<CardTextData> title) {
         this.title = title;
     }
 
-    public ArrayList<sdk.dive.tv.ui.modules.data.CardTextData> getSubtitle() {
+    public ArrayList<CardTextData> getSubtitle() {
         return subtitle;
     }
 
@@ -46,6 +47,14 @@ public class RectangularImageRowData implements Serializable {
 
     public void setCardId(String cardId) {
         this.cardId = cardId;
+    }
+
+    public String getCardVersion() {
+        return cardVersion;
+    }
+
+    public void setCardVersion(String cardVersion) {
+        this.cardVersion = cardVersion;
     }
 
     public String getType() {

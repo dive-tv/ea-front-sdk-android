@@ -4,57 +4,46 @@ package sdk.dive.tv.ui.activities;
  * Created by Emilio on 26/12/2017.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.provider.Settings;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.touchvie.sdk.model.Card;
 
-import java.util.HashMap;
-
 import sdk.client.dive.tv.utils.SharedPreferencesHelper;
 import sdk.dive.tv.R;
+import sdk.dive.tv.eventbus.EventBusManager;
+import sdk.dive.tv.eventbus.EventBusIds;
+import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.eventbus.OpenWeb;
 import sdk.dive.tv.ui.DiveSdk;
 import sdk.dive.tv.ui.Utils;
-import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.fragments.CardDetail;
 import sdk.dive.tv.ui.fragments.Carousel;
-import sdk.dive.tv.ui.fragments.DiveFragment;
 import sdk.dive.tv.ui.fragments.FragmentError;
-import sdk.dive.tv.ui.fragments.Section;
 import sdk.dive.tv.ui.fragments.SeeMoreRelations;
 import sdk.dive.tv.ui.fragments.WebView;
 import sdk.dive.tv.ui.interfaces.ComponentsInterface;
-import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 
 import static android.view.View.GONE;
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 import static sdk.dive.tv.ui.Utils.CAROUSEL_CARD;
-import static sdk.dive.tv.ui.Utils.ERROR_TYPE;
-import static sdk.dive.tv.ui.Utils.NETWORK_ERROR;
 
 /**
  * Created by Emilio on 26/12/2017.
  */
 
-public class DiveActivity extends FragmentActivity implements ComponentsInterface, Carousel.OnCarouselInteractionListener, CardDetail.OnCardDetailInteractionListener, SeeMoreRelations.OnSeeMoreRelationsListener {
+public class DiveActivity extends FragmentActivity implements ComponentsInterface, Carousel.OnCarouselInteractionListener, CardDetail.OnCardDetailInteractionListener, SeeMoreRelations.OnSeeMoreRelationsListener, WebView.OnWebViewInteractionListener {
     private String API_KEY;
     private String MOVIE_ID;
     private int MOVIE_TIME;
     private String CHANNEL_ID;
-    private DiveActivity instance = null;
+    private static DiveActivity instance = null;
     private FrameLayout mBottomContainerLayout;
     private FrameLayout mBottomLayout;
     private FrameLayout mBottomOverlay;
@@ -68,7 +57,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     private FragmentError networkError = null;
     private OnDiveInteractionListener mMainListener;
 
-    private enum LayoutType {BOTTOM, OVERLAY, ERROR, PRODUCTS}
+    public enum LayoutType {BOTTOM, OVERLAY, ERROR, PRODUCTS}
 
     private View lastFocusedView;
     private SharedPreferencesHelper settings;
@@ -103,7 +92,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
      *
      * @return the instance
      */
-    public DiveActivity getInstance() {
+    public static DiveActivity getInstance() {
         return instance;
     }
 
@@ -185,6 +174,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
                     if (fragment instanceof Carousel) {
                         ((Carousel) fragment).getFocus();
                     } else if (fragment instanceof CardDetail) {
+                        enableBottomLayout(false);
                         ((CardDetail) fragment).getFocus();
                     }
                 }
@@ -486,21 +476,11 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         lastFocusedView = view;
     }
 
-   /* private void openProduct(OpenWeb web) {
-//        enableLayout(LayoutType.PRODUCTS);
-        WebView webView = new WebView();
 
-        Bundle args = new Bundle();
-        args.putString(sdk.dive.tv.ui.Utils.URL, web.getUrl());
-
-        webView.setArguments(args);
-
-        mManager.beginTransaction()
-                .replace(R.id.product_container, webView, Utils.FragmentNames.PRODUCT.name())
-                .addToBackStack(Utils.FragmentNames.PRODUCT.name())
-                .commit();
-    }*/
-
+    @Override
+    public void onWebViewClose() {
+        onBackPressed();
+    }
 
     @Override
     public void addCarousel(String apiKey, String movieId, String channelId, boolean isMovie, int movieTime, String previousScreen, String movieName) {
@@ -546,10 +526,67 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         onBackPressed();
     }
 
+    public void enableLayout(LayoutType type) {
+        if (mProductLayout==null){
+            mProductLayout = (FrameLayout) findViewById(R.id.product_container);
+        }
+        if (mBottomError==null){
+            mBottomError = (FrameLayout) findViewById(R.id.fragment_bottom_errors);
+        }
+        if (mBottomOverlay==null){
+            mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
+        }
+        if (mBottomLayout==null){
+            mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
+        }
+        switch (type) {
+            case BOTTOM:
+                //CardDetail
+                mBottomError.setVisibility(GONE);
+                mBottomOverlay.setVisibility(GONE);
+                mProductLayout.setVisibility(GONE);
+                mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+            case OVERLAY:
+                mBottomError.setVisibility(GONE);
+                mBottomOverlay.setVisibility(View.VISIBLE);
+                mProductLayout.setVisibility(GONE);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //CardDetail
+                mBottomOverlay.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+            case ERROR:
+                mBottomError.setVisibility(View.VISIBLE);
+                mProductLayout.setVisibility(GONE);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //CardDetail
+                mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+
+                mBottomError.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+            case PRODUCTS:
+                mProductLayout.setVisibility(View.VISIBLE);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //CardDetail
+                mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+
+                mBottomError.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+
+                mProductLayout.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+        }
+    }
+
+
     public interface OnDiveInteractionListener {
         void onDiveClose();
 
-        void onShowProducts();
+//        void onShowProducts();
     }
 
 }

@@ -255,7 +255,7 @@ public class CardDetail extends Fragment implements Serializable {
     public void getFocus() {
         if (!isAdded())
             return;
-
+        mContainer.requestFocus();
     }
 
     public interface OnCardDetailInteractionListener extends Serializable {

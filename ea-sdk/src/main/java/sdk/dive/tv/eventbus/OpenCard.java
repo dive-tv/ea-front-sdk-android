@@ -8,6 +8,7 @@ public class OpenCard {
      * The Id.
      */
     private final String id;
+    private final String version;
     private final String cardId;
     private final String type;
     private String title;
@@ -23,9 +24,10 @@ public class OpenCard {
      *
      * @param id the id
      */
-    public OpenCard(String id, String cardId, String type) {
+    public OpenCard(String id, String cardId, String version, String type) {
         this.id = id;
         this.cardId=cardId;
+        this.version = version;
         this.type = type;
         this.sceneNr = -1;
     }
@@ -41,6 +43,10 @@ public class OpenCard {
 
     public String getCardId() {
         return cardId;
+    }
+
+    public String getCardVersion() {
+        return version;
     }
 
     public String getType() {

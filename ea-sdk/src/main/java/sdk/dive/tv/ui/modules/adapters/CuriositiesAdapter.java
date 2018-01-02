@@ -10,11 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import sdk.dive.tv.R;
+import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.EventBusManager;
-import sdk.dive.tv.eventbus.FrontEventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
@@ -56,7 +55,7 @@ public class CuriositiesAdapter extends TVScrollAdapter {
             @Override
             public void onClick(View view) {
                // tvCardDetailListener.onCallCardDetail(row.getCardId(), TypeOfCard.getTypeOfCard(row.getCardType()));
-            OpenCard openCard = new OpenCard(FrontEventBusIds.OPEN_CARD.getName(), row.getCardId(), row.getCardType());
+            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getCardId(), row.getCardVersion(), row.getCardType());
             EventBusManager.getInstance().post(openCard);
             }
         });

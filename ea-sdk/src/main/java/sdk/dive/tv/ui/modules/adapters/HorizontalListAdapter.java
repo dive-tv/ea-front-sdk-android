@@ -11,13 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
 
 import sdk.dive.tv.R;
-import sdk.dive.tv.eventbus.EventBusManager;
-import sdk.dive.tv.eventbus.FrontEventBusIds;
-import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.data.HorizontalItemData;
@@ -86,13 +84,16 @@ public class HorizontalListAdapter extends TVScrollAdapter {
             ((HorizontalItemHolder) holder).image.setVisibility(View.GONE);
         }
 
+
         ((HorizontalItemHolder) holder).container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (row != null && row.isHasContent()) {
-                    OpenCard openCard = new OpenCard(FrontEventBusIds.OPEN_CARD.getName(),row.getCardId(), row.getCardType());
-                    EventBusManager.getInstance().post(openCard);
-                    //tvCardDetailListener.onCallCardDetail(row.getCardId(), TypeOfCard.getTypeOfCard(row.getCardType()));
+//                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(),row.getCardId(), row.getCardVersion(), row.getCardType());
+//                    EventBusManager.getInstance().post(openCard);
+                    tvCardDetailListener.onCallCardDetail(row.getCardId(), row.getCardVersion(), Card.TypeEnum.fromValue(row.getCardType()));
+                } else if (row.getUrl()!=null){
+                    tvCardDetailListener.onShowProduct(row.getUrl());
                 }
             }
         });
