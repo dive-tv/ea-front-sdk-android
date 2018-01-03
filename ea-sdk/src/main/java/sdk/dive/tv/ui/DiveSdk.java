@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.touchvie.sdk.model.ChannelStatus;
+import com.touchvie.sdk.model.MovieStatus;
 
 import java.util.List;
 
@@ -44,11 +45,15 @@ public class DiveSdk {
         launchService();
     }
 
+    public boolean VODIsAvailable(List<String> movieId, ClientCallback<List<MovieStatus>> callback){
+        sdk.getReadyMovies(movieId, callback);
+        return false;
+    }
+
     public Fragment VODStart(String movieId, int timestamp) {
         Fragment dive = DiveFragment.newInstance(apiKey, movieId, timestamp);
         return dive;
     }
-
     public boolean channelIsAvailable(List<String> channelId, ClientCallback<List<ChannelStatus>> callback){
         sdk.getReadyChannels(channelId, callback);
         return false;
