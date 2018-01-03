@@ -59,8 +59,8 @@ public class DiveSdk {
         return false;
     }
 
-    public void vodPause(int timestamp){
-        sdk.vodStreamPauseMessage(timestamp);
+    public void vodPause(){
+        sdk.vodStreamPauseMessage();
     }
 
     public void vodResume(int timestamp){
