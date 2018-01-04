@@ -20,11 +20,10 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
-import sdk.dive.tv.eventbus.FrontEventBusIds;
+import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.modules.data.RectangularImageRowData;
@@ -120,7 +119,7 @@ public class RectangularImageItemsAdapter extends RecyclerView.Adapter<RecyclerV
             @Override
             public void onClick(View view) {
                 if (rowItem.isHasContent()) {
-                    OpenCard openCard = new OpenCard(FrontEventBusIds.OPEN_CARD.getName(), rowItem.getCardId(), rowItem.getType());
+                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), rowItem.getCardId(), rowItem.getType());
                     EventBusManager.getInstance().post(openCard);
                 }
             }
@@ -215,7 +214,7 @@ public class RectangularImageItemsAdapter extends RecyclerView.Adapter<RecyclerV
         }
 
         public void onClick(View tv) {
-            OpenCard openCard = new OpenCard(FrontEventBusIds.OPEN_CARD.getName(), clicked, cardType);
+            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), clicked, cardType);
             EventBusManager.getInstance().post(openCard);
         }
 

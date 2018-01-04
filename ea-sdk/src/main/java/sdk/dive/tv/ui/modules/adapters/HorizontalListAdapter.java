@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
-import sdk.dive.tv.eventbus.FrontEventBusIds;
+import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
@@ -90,7 +90,7 @@ public class HorizontalListAdapter extends TVScrollAdapter {
             @Override
             public void onClick(View v) {
                 if (row != null && row.isHasContent()) {
-                    OpenCard openCard = new OpenCard(FrontEventBusIds.OPEN_CARD.getName(),row.getCardId(), row.getCardType());
+                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(),row.getCardId(), row.getCardType());
                     EventBusManager.getInstance().post(openCard);
                     //tvCardDetailListener.onCallCardDetail(row.getCardId(), TypeOfCard.getTypeOfCard(row.getCardType()));
                 }

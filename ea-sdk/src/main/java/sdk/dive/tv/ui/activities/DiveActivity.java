@@ -4,46 +4,31 @@ package sdk.dive.tv.ui.activities;
  * Created by Emilio on 26/12/2017.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.provider.Settings;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.touchvie.sdk.model.Card;
 
-import java.util.HashMap;
-
 import sdk.client.dive.tv.utils.SharedPreferencesHelper;
 import sdk.dive.tv.R;
-import sdk.dive.tv.eventbus.OpenWeb;
 import sdk.dive.tv.ui.DiveSdk;
 import sdk.dive.tv.ui.Utils;
-import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.fragments.CardDetail;
 import sdk.dive.tv.ui.fragments.Carousel;
-import sdk.dive.tv.ui.fragments.DiveFragment;
 import sdk.dive.tv.ui.fragments.FragmentError;
-import sdk.dive.tv.ui.fragments.Section;
 import sdk.dive.tv.ui.fragments.SeeMoreRelations;
 import sdk.dive.tv.ui.fragments.WebView;
 import sdk.dive.tv.ui.interfaces.ComponentsInterface;
-import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 
 import static android.view.View.GONE;
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 import static sdk.dive.tv.ui.Utils.CAROUSEL_CARD;
-import static sdk.dive.tv.ui.Utils.ERROR_TYPE;
-import static sdk.dive.tv.ui.Utils.NETWORK_ERROR;
 
 /**
  * Created by Emilio on 26/12/2017.
@@ -94,11 +79,11 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         return fragment;
     }
 
-    public void setListener(OnDiveInteractionListener listener){
+    public void setListener(OnDiveInteractionListener listener) {
         mMainListener = listener;
     }
 
-    public OnDiveInteractionListener getListener(){
+    public OnDiveInteractionListener getListener() {
         return mMainListener;
     }
 
@@ -127,7 +112,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         mListener = this;
     }
 
-    public void addDive(int fragmentId, String apiKey, String deviceId, String movieId, int movieTime){
+    public void addDive(int fragmentId, String apiKey, String deviceId, String movieId, int movieTime) {
 
         carouselFragment = dive.VODStart(movieId, movieTime);
 
@@ -139,7 +124,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
                 .commit();
     }
 
-    public void addDive(int fragmentId, String apiKey, String deviceId, String channelId){
+    public void addDive(int fragmentId, String apiKey, String deviceId, String channelId) {
 
         carouselFragment = dive.tvStart(channelId);
 
@@ -161,7 +146,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
                 isApplicationClosing = true;
                 mMainListener.onDiveClose();
             } else if (lastFragment instanceof FragmentError) {
-                if (mBottomError==null)
+                if (mBottomError == null)
                     mBottomError = (FrameLayout) findViewById(R.id.fragment_bottom_errors);
                 mBottomError.setVisibility(GONE);
                 Fragment fragment = checkNextFragment();
@@ -221,7 +206,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     @Override
     public void removeCarousel() {
     }
-
 
 
     @Override
@@ -346,7 +330,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
 
-
     @Override
     public void onCloseCardDetail(String cardId, boolean isLiked) {
         Fragment fragment = checkNextFragment();
@@ -363,13 +346,13 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
     private void enableBottomLayout(boolean enable) {
-        if (mProductLayout==null){
+        if (mProductLayout == null) {
             mProductLayout = (FrameLayout) findViewById(R.id.product_container);
         }
-        if (mBottomOverlay==null){
+        if (mBottomOverlay == null) {
             mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
         }
-        if (mBottomLayout==null){
+        if (mBottomLayout == null) {
             mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
         }
         if (enable) {
@@ -521,7 +504,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
 
     @Override
     public void addCardDetail(String cardId, String versionId, Card.TypeEnum typeOfCard) {
-        if (mBottomOverlay==null){
+        if (mBottomOverlay == null) {
             mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
         }
 

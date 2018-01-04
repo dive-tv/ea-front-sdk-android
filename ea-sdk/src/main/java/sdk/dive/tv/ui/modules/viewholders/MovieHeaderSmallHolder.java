@@ -3,7 +3,6 @@ package sdk.dive.tv.ui.modules.viewholders;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -19,15 +18,12 @@ import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.CardContainer;
 import com.touchvie.sdk.model.Catalog;
 import com.touchvie.sdk.model.CatalogData;
-import com.touchvie.sdk.model.ImageData;
 import com.touchvie.sdk.model.RelationModule;
 import com.touchvie.sdk.model.Single;
 
-import java.util.ArrayList;
-
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
-import sdk.dive.tv.eventbus.FrontEventBusIds;
+import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.listeners.SectionListener;
@@ -184,7 +180,7 @@ public class MovieHeaderSmallHolder extends TvModuleHolder {
         }
 
         public void onClick(View tv) {
-            OpenCard openCard = new OpenCard(FrontEventBusIds.OPEN_CARD.getName(), id, type);
+            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), id, type);
             EventBusManager.getInstance().post(openCard);
         }
 

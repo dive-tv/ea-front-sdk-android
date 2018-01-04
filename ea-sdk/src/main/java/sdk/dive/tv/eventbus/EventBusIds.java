@@ -4,7 +4,7 @@ package sdk.dive.tv.eventbus;
  * Created by Tagsonomy S.L. on 24/10/2016.
  */
 
-public enum FrontEventBusIds {
+public enum EventBusIds {
 
     OPEN_CARD("open_card"),
     SHARE("share"),
@@ -21,7 +21,7 @@ public enum FrontEventBusIds {
 
     private final String name;
 
-    private FrontEventBusIds(String s) {
+    private EventBusIds(String s) {
         name = s;
     }
 

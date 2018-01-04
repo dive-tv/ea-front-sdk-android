@@ -19,7 +19,7 @@ import java.util.Currency;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
-import sdk.dive.tv.eventbus.FrontEventBusIds;
+import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenWeb;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
@@ -211,7 +211,7 @@ public class TravelShopAdapter extends TVScrollTravelShopAdapter {
             ((TravelShopItemHolder) holder).container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    EventBusManager.getInstance().post(new OpenWeb(FrontEventBusIds.OPEN_WEB.getName(), productData.getUrl()));
+                    EventBusManager.getInstance().post(new OpenWeb(EventBusIds.OPEN_WEB.getName(), productData.getUrl()));
                 }
             });
             ((TravelShopItemHolder) holder).bookNow.setVisibility(View.VISIBLE);
