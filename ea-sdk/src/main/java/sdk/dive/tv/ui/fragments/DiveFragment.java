@@ -84,7 +84,7 @@ public class DiveFragment extends Fragment {
         Fragment fragment = new DiveFragment();
         Bundle extras = new Bundle();
         extras.putString(API_KEY, apiKey);
-        extras.putString(MOVIE_ID, channelId);
+        extras.putString(CHANNEL_ID, channelId);
         fragment.setArguments(extras);
         return fragment;
     }

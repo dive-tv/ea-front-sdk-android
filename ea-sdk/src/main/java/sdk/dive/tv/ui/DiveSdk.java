@@ -54,6 +54,8 @@ public class DiveSdk {
         Fragment dive = DiveFragment.newInstance(apiKey, movieId, timestamp);
         return dive;
     }
+
+
     public boolean channelIsAvailable(List<String> channelId, ClientCallback<List<ChannelStatus>> callback){
         sdk.getReadyChannels(channelId, callback);
         return false;
