@@ -676,6 +676,9 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     @Override
     public void onStop() {
         super.onStop();
+        if (SdkClient.getInstance() != null) {
+            SdkClient.getInstance().streamDisconnect();
+        }
     }
 
     private ArrayList<CarouselTvCell> applyFilters(ArrayList<CarouselTvCell> cellsToFilter) {
