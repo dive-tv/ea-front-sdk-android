@@ -21,6 +21,7 @@ import sdk.dive.tv.ui.DiveSdk;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.fragments.CardDetail;
 import sdk.dive.tv.ui.fragments.Carousel;
+import sdk.dive.tv.ui.fragments.DiveFragment;
 import sdk.dive.tv.ui.fragments.FragmentError;
 import sdk.dive.tv.ui.fragments.SeeMoreRelations;
 import sdk.dive.tv.ui.fragments.WebView;
@@ -346,29 +347,8 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
     private void enableBottomLayout(boolean enable) {
-        if (mProductLayout == null) {
-            mProductLayout = (FrameLayout) findViewById(R.id.product_container);
-        }
-        if (mBottomOverlay == null) {
-            mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
-        }
-        if (mBottomLayout == null) {
-            mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
-        }
-        if (enable) {
-            //CardDetail
-            mBottomOverlay.setVisibility(GONE);
-            mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
-            //Carousel & TvGrid
-            mBottomLayout.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-        } else {
-            mBottomOverlay.setVisibility(View.VISIBLE);
-            //Carousel & TvGrid
-            mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
-            //CardDetail
-            mBottomOverlay.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-
-        }
+        if (DiveFragment.getInstance()!=null)
+            DiveFragment.getInstance().enableBottomLayout(enable);
     }
 
     private Fragment checkNextFragmentIsCarousel() {
@@ -448,7 +428,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     @Override
     public void onShowMoreRelations(Card card) {
         enableBottomLayout(false);
-        mBottomOverlay.setVisibility(View.VISIBLE);
 
         SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance();
 
@@ -494,6 +473,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         carouselFragment = Carousel.newInstance(apiKey, movieId, channelId, isMovie, movieTime, previousScreen, movieName, deviceId, this);
         isCarousel = true;
+        enableBottomLayout(true);
 
         mManager.beginTransaction()
                 .replace(R.id.fragment_bottom, carouselFragment, Utils.FragmentNames.CAROUSEL.name())
