@@ -49,6 +49,8 @@ public class DiveFragment extends Fragment {
 
     private SharedPreferencesHelper settings;
 
+    private static DiveFragment instance;
+
     private boolean isApplicationClosing = false;
 
     private enum LayoutType {BOTTOM, OVERLAY, ERROR, PRODUCTS}
@@ -89,9 +91,14 @@ public class DiveFragment extends Fragment {
         return fragment;
     }
 
+    public static DiveFragment getInstance(){
+        return instance;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
     }
 
     @Override
@@ -162,6 +169,23 @@ public class DiveFragment extends Fragment {
         }
     }
 
+    public void enableBottomLayout(boolean enable) {
+
+        if (enable) {
+            //CardDetail
+            mBottomOverlay.setVisibility(GONE);
+            mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+            //Carousel & TvGrid
+            mBottomLayout.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+        } else {
+            mBottomOverlay.setVisibility(View.VISIBLE);
+            //Carousel & TvGrid
+            mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+            //CardDetail
+            mBottomOverlay.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -192,6 +216,7 @@ public class DiveFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        instance = this;
     }
 
 }
