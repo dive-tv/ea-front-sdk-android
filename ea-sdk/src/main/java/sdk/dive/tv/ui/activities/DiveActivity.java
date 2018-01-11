@@ -26,6 +26,7 @@ import sdk.dive.tv.ui.fragments.FragmentError;
 import sdk.dive.tv.ui.fragments.SeeMoreRelations;
 import sdk.dive.tv.ui.fragments.WebView;
 import sdk.dive.tv.ui.interfaces.ComponentsInterface;
+import sdk.dive.tv.ui.interfaces.DiveInterface;
 
 import static android.view.View.GONE;
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
@@ -35,7 +36,7 @@ import static sdk.dive.tv.ui.Utils.CAROUSEL_CARD;
  * Created by Emilio on 26/12/2017.
  */
 
-public class DiveActivity extends FragmentActivity implements ComponentsInterface, Carousel.OnCarouselInteractionListener, CardDetail.OnCardDetailInteractionListener, SeeMoreRelations.OnSeeMoreRelationsListener {
+public class DiveActivity extends FragmentActivity implements ComponentsInterface, Carousel.OnCarouselInteractionListener, CardDetail.OnCardDetailInteractionListener, SeeMoreRelations.OnSeeMoreRelationsListener, DiveInterface {
     private String API_KEY;
     private String MOVIE_ID;
     private int MOVIE_TIME;
@@ -112,31 +113,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
 
         mListener = this;
     }
-
-    public void addDive(int fragmentId, String apiKey, String deviceId, String movieId, int movieTime) {
-
-        carouselFragment = dive.VODStart(movieId, movieTime);
-
-        isCarousel = true;
-
-        mManager.beginTransaction()
-                .replace(fragmentId, carouselFragment, Utils.FragmentNames.DIVE.name())
-                .addToBackStack(Utils.FragmentNames.DIVE.name())
-                .commit();
-    }
-
-    public void addDive(int fragmentId, String apiKey, String deviceId, String channelId) {
-
-        carouselFragment = dive.tvStart(channelId);
-
-        isCarousel = true;
-
-        mManager.beginTransaction()
-                .replace(fragmentId, carouselFragment, Utils.FragmentNames.DIVE.name())
-                .addToBackStack(Utils.FragmentNames.DIVE.name())
-                .commit();
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -413,10 +389,14 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         }
     }*/
 
+    @Override
+    public void minimizeDive() {
+        mMainListener.onDiveMinimize();
+    }
 
     @Override
     public void onCarouselClose() {
-
+        mMainListener.onDiveClose();
     }
 
     //OnCarouselInteractionListener
@@ -428,6 +408,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     @Override
     public void onShowMoreRelations(Card card) {
         enableBottomLayout(false);
+        mBottomOverlay.setVisibility(View.VISIBLE);
 
         SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance();
 
@@ -451,22 +432,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     public void setCurrentCarouselView(View view) {
         lastFocusedView = view;
     }
-
-   /* private void openProduct(OpenWeb web) {
-//        enableLayout(LayoutType.PRODUCTS);
-        WebView webView = new WebView();
-
-        Bundle args = new Bundle();
-        args.putString(sdk.dive.tv.ui.Utils.URL, web.getUrl());
-
-        webView.setArguments(args);
-
-        mManager.beginTransaction()
-                .replace(R.id.product_container, webView, Utils.FragmentNames.PRODUCT.name())
-                .addToBackStack(Utils.FragmentNames.PRODUCT.name())
-                .commit();
-    }*/
-
 
     @Override
     public void addCarousel(String apiKey, String movieId, String channelId, boolean isMovie, int movieTime, String previousScreen, String movieName) {
@@ -513,8 +478,66 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         onBackPressed();
     }
 
+    public void enableLayout(LayoutType type) {
+        if (mProductLayout==null){
+            mProductLayout = (FrameLayout) findViewById(R.id.product_container);
+        }
+        if (mBottomError==null){
+            mBottomError = (FrameLayout) findViewById(R.id.fragment_bottom_errors);
+        }
+        if (mBottomOverlay==null){
+            mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
+        }
+        if (mBottomLayout==null){
+            mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
+        }
+        switch (type) {
+            case BOTTOM:
+                //CardDetail
+                mBottomError.setVisibility(GONE);
+                mBottomOverlay.setVisibility(GONE);
+                mProductLayout.setVisibility(GONE);
+                mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+            case OVERLAY:
+                mBottomError.setVisibility(GONE);
+                mBottomOverlay.setVisibility(View.VISIBLE);
+                mProductLayout.setVisibility(GONE);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //CardDetail
+                mBottomOverlay.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+            case ERROR:
+                mBottomError.setVisibility(View.VISIBLE);
+                mProductLayout.setVisibility(GONE);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //CardDetail
+                mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+
+                mBottomError.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+            case PRODUCTS:
+                mProductLayout.setVisibility(View.VISIBLE);
+                //Carousel & TvGrid
+                mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+                //CardDetail
+                mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
+
+                mBottomError.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+
+                mProductLayout.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                break;
+        }
+    }
+
+
     public interface OnDiveInteractionListener {
         void onDiveClose();
+        void onDiveMinimize();
     }
 
 }

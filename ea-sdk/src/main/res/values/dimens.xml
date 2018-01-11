@@ -95,7 +95,7 @@
 
     <dimen name="carousel_margin_leftright">16dp</dimen>
     <dimen name="carousel_margin_bottom">12.5dp</dimen>
-    <dimen name="carousel_menu_margin">24dp</dimen>
+    <dimen name="carousel_menu_margin">6dp</dimen>
     <dimen name="carousel_menu_margin2">11dp</dimen>
     <dimen name="carousel_list_mtop">43dp</dimen>
     <dimen name="carousel_list_padding_start">16dp</dimen>

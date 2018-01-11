@@ -15,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +38,7 @@ import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.activities.DiveActivity;
 import sdk.dive.tv.ui.adapters.CarouselCardsAdapter;
+import sdk.dive.tv.ui.adapters.CategoriesAdapter;
 import sdk.dive.tv.ui.cells.CarouselTvCell;
 import sdk.dive.tv.ui.cells.SeeMoreTvCell;
 import sdk.dive.tv.ui.interfaces.CarouselInterface;
@@ -91,10 +94,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
     protected Handler mUIHandler = null;
 
-    private Handler mWrapperHandler = null;
-
-    private Handler carouselHandler = null;
-
     boolean resume = false;
 
     private boolean isWaitingMovie = false;
@@ -111,8 +110,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     protected DiveCarouselLogic carouselLogic;
     protected String movieName;
 
-    private int userSceneNr;
-    private int currentSceneNr;
     private boolean newScene;
     private boolean isCommercialPending = false;
     private boolean isCommercialAdded = false;
@@ -124,28 +121,9 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
     private SparseArray<ArrayList<CarouselTvCell>> allCarouselItems = null;
     private ArrayList<CarouselTvCell> carouselItems = null;
-
-//    private SceneNavigation lastSceneNavigation;
-
-//    private CarouselThread mCarouselThread = null;
-
-    //    private FrameLayout mMinimizeLayout = null;
-    private FrameLayout mPreviousLayout = null;
-    private FrameLayout mNextLayout = null;
-    private FrameLayout mCurrentLayout = null;
-    private FrameLayout mTimeLayout = null;
-    private TextView mCurrentScene = null;
-
-//    private ImageView mCloseImage = null;
-//    private ImageView mPreviousImage = null;
-//    private ImageView mNextImage = null;
+    private ArrayList<CarouselTvCell> carouselSceneItems = null;
 
     private TextView mTimeText = null;
-
-    private CarouselSpinner mCategories = null;
-
-    private FrameLayout mSeparator1 = null;
-    private FrameLayout mSeparator2 = null;
 
     private RecyclerView mCarouselList = null;
     private LinearLayoutManager carouselLayoutManager;
@@ -160,6 +138,18 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     private TextView mCarouselBottomMsg;
     private ViewGroup mainPromptContainer;
     private FrameLayout mLoadingLayer;
+    private FrameLayout mCloseLayout = null;
+    private FrameLayout mMinimizeLayout = null;
+
+    private ImageView mCloseImage = null;
+
+    private Handler carouselHandler = null;
+
+    private CarouselSpinner mCategories = null;
+
+    private FrameLayout mSeparator1 = null;
+    private FrameLayout mSeparator2 = null;
+
     private ArrayList<String> categories;
     private View lastClickedView = null;
 
@@ -224,6 +214,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             @Override
             public void onMovieEndEventReceived() {
                 DiveActivity.getInstance().getListener().onDiveClose();
+//                onCallEndMovie();
             }
 
             @Override
@@ -294,6 +285,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         allCarouselItems = new SparseArray<>();
         carouselItems = new ArrayList<>();
+        carouselSceneItems = new ArrayList<>();
 //        lastSceneNavigation = new SceneNavigation();
 
         categories = new ArrayList<>();
@@ -321,6 +313,96 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         mLoadingLayer = (FrameLayout) view.findViewById(R.id.carousel_loading_layer);
         mLoadingLayer.setVisibility(View.VISIBLE);
+
+        mCloseLayout = (FrameLayout) view.findViewById(R.id.carousel_button_close);
+        mCloseLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onCarouselClose();
+            }
+        });
+
+        mMinimizeLayout = (FrameLayout) view.findViewById(R.id.carousel_button_minimize);
+        mMinimizeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener instanceof DiveInterface)
+                    ((DiveInterface) mListener).minimizeDive();
+            }
+        });
+
+        mCloseImage = (ImageView) view.findViewById(R.id.carousel_image_close);
+
+        final String[] arraySpinner = new String[]{
+                getString(R.string.SELECTOR_ALL_CATEGORIES),
+                getString(R.string.SELECTOR_CAST_CHARACTER),
+                getString(R.string.SELECTOR_FASHION_BEAUTY),
+                getString(R.string.SELECTOR_MUSIC),
+                getString(R.string.SELECTOR_PLACES_TRAVEL),
+                getString(R.string.SELECTOR_CARS_MORE),
+                getString(R.string.SELECTOR_FUN_FACTS),
+                getString(R.string.SELECTOR_OTHER_CATEGORIES)
+        };
+        mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
+
+        CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, arraySpinner);
+        adapter.setDropDownViewResource(R.layout.category_dropdown_row);
+
+        mCategories.setAdapter(adapter);
+        mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //TODO call FilterCardsBy Category
+                categories.clear();
+                String selected = arraySpinner[position];
+                isFiltered = true;
+                if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
+                    isFiltered = false;
+                    categories.clear();
+                    filterCardsByCategory();
+                    return;
+                } else if (selected.equals(getString(R.string.SELECTOR_CAST_CHARACTER))) {
+                    categories.add(Card.TypeEnum.CHARACTER.getValue());
+                    categories.add(Card.TypeEnum.PERSON.getValue());
+                } else if (selected.equals(getString(R.string.SELECTOR_FASHION_BEAUTY))) {
+                    isFiltered = false;
+                    categories.add(Card.TypeEnum.CHARACTER.getValue());
+                    categories.add(Card.TypeEnum.PERSON.getValue());
+                    categories.add(Card.TypeEnum.FASHION.getValue());
+                    categories.add(Card.TypeEnum.LOOK.getValue());
+                } else if (selected.equals(getString(R.string.SELECTOR_MUSIC))) {
+                    categories.add(Card.TypeEnum.SONG.getValue());
+                    categories.add(Card.TypeEnum.OST.getValue());
+                } else if (selected.equals(getString(R.string.SELECTOR_PLACES_TRAVEL))) {
+                    categories.add(Card.TypeEnum.LOCATION.getValue());
+                } else if (selected.equals(getString(R.string.SELECTOR_CARS_MORE))) {
+                    categories.add(Card.TypeEnum.VEHICLE.getValue());
+                } else if (selected.equals(getString(R.string.SELECTOR_FUN_FACTS))) {
+                    categories.add(Card.TypeEnum.TRIVIA.getValue());
+                    categories.add(Card.TypeEnum.REFERENCE.getValue());
+                    categories.add(Card.TypeEnum.QUOTE.getValue());
+                } else if (selected.equals(getString(R.string.SELECTOR_OTHER_CATEGORIES))) {
+//                    categories.add(Card.TypeEnum.ACTION_EMOTION.getValue());
+                    categories.add(Card.TypeEnum.ART.getValue());
+                    categories.add(Card.TypeEnum.BUSINESS.getValue());
+                    categories.add(Card.TypeEnum.FAUNA_FLORA.getValue());
+                    categories.add(Card.TypeEnum.FOOD_DRINK.getValue());
+                    categories.add(Card.TypeEnum.HEALTH_BEAUTY.getValue());
+                    categories.add(Card.TypeEnum.HISTORIC.getValue());
+                    categories.add(Card.TypeEnum.HOME.getValue());
+                    categories.add(Card.TypeEnum.LEISURE_SPORT.getValue());
+                    categories.add(Card.TypeEnum.TECHNOLOGY.getValue());
+                    categories.add(Card.TypeEnum.WEAPON.getValue());
+                }
+                if (categories != null && categories.size() > 0)
+                    filterCardsByCategory();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         mCarouselList = (RecyclerView) view.findViewById(R.id.carousel_card_list);
 
@@ -356,18 +438,14 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     }
 
 
-/*
     private void filterCardsByCategory() {
         if (!isAdded())
-            return;
-
-        if (allCarouselItems.get(userSceneNr) == null || allCarouselItems.get(userSceneNr).size() == 0)
             return;
 
         mAdapter.notifyItemRangeRemoved(0, carouselItems.size());
         carouselItems.clear();
 
-        ArrayList<CarouselTvCell> sceneItems = applyFilters(allCarouselItems.get(userSceneNr));
+        ArrayList<CarouselTvCell> sceneItems = applyFilters(carouselSceneItems);
 
         carouselItems.addAll(sceneItems);
         mAdapter = null;
@@ -383,7 +461,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
 
     }
-*/
 
     private void showNewCardsMsg(int number) {
         if (!isAdded())
@@ -429,36 +506,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
     }
 
-    /*private void hideNotReadyButtons() {
-        if (!isAdded())
-            return;
-
-        mPreviousLayout.setVisibility(GONE);
-        mNextLayout.setVisibility(GONE);
-        mCurrentLayout.setVisibility(GONE);
-        mTimeLayout.setVisibility(GONE);
-        mCategories.setVisibility(GONE);
-        mSeparator1.setVisibility(View.INVISIBLE);
-        mSeparator2.setVisibility(GONE);
-        mLoadingLayer.setVisibility(View.VISIBLE);
-    }*/
-
-   /* protected void showReadyButtons() {
-        if (!isAdded())
-            return;
-
-        if (currentSceneNr > 0) {
-            mPreviousLayout.setVisibility(View.VISIBLE);
-        }
-
-        mTimeLayout.setVisibility(View.VISIBLE);
-        mTimeText.setVisibility(View.VISIBLE);
-        mCategories.setVisibility(View.VISIBLE);
-        mSeparator1.setVisibility(View.VISIBLE);
-        mSeparator2.setVisibility(View.VISIBLE);
-        mLoadingLayer.setVisibility(View.GONE);
-    }*/
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -467,7 +514,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         if (SdkClient.getInstance() != null) {
             SdkClient.getInstance().streamDisconnect();
         }
-        //  destroyCarousel();
     }
 
     @Override
@@ -507,9 +553,9 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 break;
             case GO_TO_END_MOVIE:
                 DiveActivity.getInstance().getListener().onDiveClose();
+//                onCallEndMovie();
                 break;
             case GO_TO_OFF_MOVIE:
-                destroyCarousel();
                 onCallOffMovie();
                 break;
             case MOVIE_SCENE_NR_RECEIVED:
@@ -689,7 +735,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             CarouselTvCell card = cellsToFilter.get(i);
 
             for (String categoryName : categories) {
-                if (card != null && categoryName.equals(card.getCard().getType())) {
+                if (card != null && categoryName.equals(card.getCard().getType().getValue())) {
                     if (!isFiltered) {
                         if (card instanceof SeeMoreTvCell) {
                             filteredCells.add(card);
@@ -730,16 +776,18 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 sceneHasCommercials = false;
 
             ArrayList<CarouselTvCell> filteredCarouselCells = new ArrayList<>();
-            for (int i = 0; i < carouselCells.size(); i++) {
+            /*for (int i = 0; i < carouselCells.size(); i++) {
                 CarouselTvCell tempCell = carouselCells.get(i);
                 filteredCarouselCells.add(tempCell);
-            }
+            }*/
+            filteredCarouselCells.addAll(carouselCells);
 
             boolean firstCardsInScene = true;
 
             if (newScene) {
                 int sceneSize = carouselItems.size();
                 carouselItems.clear();
+                carouselSceneItems.clear();
                 mAdapter.notifyItemRangeRemoved(0, sceneSize);
                 newScene = false;
             }
@@ -755,6 +803,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
 
             carouselItems.addAll(0, applyFilters(filteredCarouselCells));
+            carouselSceneItems.addAll(0, applyFilters(filteredCarouselCells));
             final int size = applyFilters(filteredCarouselCells).size();
             int pos = carouselLayoutManager.findFirstVisibleItemPosition();
             ((Activity) getContext()).runOnUiThread(new Runnable() {
@@ -807,6 +856,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         } else if (newScene) {
             int sceneSize = carouselItems.size();
             carouselItems.clear();
+            carouselSceneItems.clear();
             mAdapter.notifyItemRangeRemoved(0, sceneSize);
             newScene = false;
         }
@@ -850,11 +900,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         if (!isAdded())
             return;
         mPromptManager.hideOverlays(CarouselPromptManager.FLAG_HIDE_OVERLAYS_DEFAULT);
-    }
-
-    private void destroyCarousel() {
-        if (!isAdded())
-            return;
     }
 
     private void onCarouselError() {

@@ -8,6 +8,7 @@ import sdk.dive.tv.ui.Utils;
 
 public interface DiveInterface {
 
-    boolean isDisabled(Utils.FragmentNames fragment);
+    void minimizeDive();
+
 
 }

@@ -6,12 +6,94 @@
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
     tools:context="sdk.dive.tv.ui.fragments.Carousel">
+
+    <LinearLayout
+        android:id="@+id/carousel_menu_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/carousel_menu_margin"
+        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="0dp"
+        android:paddingStart="@dimen/carousel_margin_leftright">
+
+        <FrameLayout
+            android:id="@+id/carousel_button_close"
+            android:layout_width="@dimen/carousel_button_height"
+            android:layout_height="@dimen/carousel_button_height"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusDown="@+id/carousel_card_list"
+            android:nextFocusLeft="@id/carousel_button_close">
+
+            <ImageView
+                android:id="@+id/carousel_image_close"
+                android:layout_width="@dimen/carousel_cross_size"
+                android:layout_height="@dimen/carousel_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/button_close" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/carousel_button_minimize"
+            android:layout_width="@dimen/carousel_button_height"
+            android:layout_height="@dimen/carousel_button_height"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusDown="@+id/carousel_card_list"
+            android:nextFocusLeft="@id/carousel_button_close">
+
+            <ImageView
+                android:id="@+id/carousel_image_minimize"
+                android:layout_width="@dimen/carousel_cross_size"
+                android:layout_height="@dimen/carousel_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/ico_minimize" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/carousel_separator1"
+            android:layout_width="@dimen/carousel_separator_width"
+            android:layout_height="@dimen/carousel_separator_height"
+            android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+            android:background="@color/warm_grey" />
+
+        <sdk.dive.tv.ui.views.CarouselSpinner
+            android:id="@+id/carousel_categories_selector"
+            android:layout_width="@dimen/carousel_categories_width"
+            android:layout_height="@dimen/carousel_button_height"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:drawSelectorOnTop="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusDown="@id/carousel_card_list"
+            android:nextFocusRight="@id/carousel_card_list"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/carousel_card_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:layout_below="@id/carousel_menu_buttons"
         android:background="@android:color/transparent"
+        android:nextFocusUp="@id/carousel_button_close"
         android:clipToPadding="false"
         android:paddingEnd="@dimen/carousel_list_padding_end"
         android:paddingStart="@dimen/carousel_list_padding_start" />
