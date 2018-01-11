@@ -739,7 +739,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                     if (!isFiltered) {
                         if (card instanceof SeeMoreTvCell) {
                             filteredCells.add(card);
-                        } else if ((categoryName.equals(CHARACTER) || categoryName.equals(PERSON))) {
+                        } else if ((categoryName.equals(CHARACTER.toLowerCase()) || categoryName.equals(PERSON.toLowerCase()))) {
                             if (card.getCard().getRelations().size() > 0 && i < (cellsToFilter.size() - 1)) {
                                 CarouselTvCell nextCard = cellsToFilter.get(i + 1);
                                 if (nextCard != null &&

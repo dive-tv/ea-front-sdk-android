@@ -7,13 +7,44 @@
     android:clickable="true"
     tools:context="sdk.dive.tv.ui.fragments.Carousel">
 
+    <FrameLayout
+        android:id="@+id/fragment_see_more_button_close"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/carousel_button_height"
+        android:layout_marginBottom="@dimen/carousel_menu_margin2"
+        android:layout_marginStart="@dimen/carousel_margin_leftright"
+        android:layout_marginTop="@dimen/carousel_menu_margin2"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nextFocusLeft="@id/fragment_see_more_button_close"
+        android:nextFocusRight="@id/fragment_see_more_button_close">
+
+        <FrameLayout
+            android:layout_width="@dimen/carousel_button_height"
+            android:layout_height="@dimen/carousel_button_height"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:duplicateParentState="true">
+
+            <ImageView
+                android:id="@+id/fragment_see_more_image_close"
+                android:layout_width="@dimen/carousel_cross_size"
+                android:layout_height="@dimen/carousel_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/button_close" />
+        </FrameLayout>
+    </FrameLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_see_more_card_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:layout_below="@id/fragment_see_more_button_close"
         android:background="@android:color/transparent"
         android:clipToPadding="false"
+        android:nextFocusUp="@id/fragment_see_more_button_close"
         android:paddingEnd="150dp"
         android:paddingStart="16dp" />
 

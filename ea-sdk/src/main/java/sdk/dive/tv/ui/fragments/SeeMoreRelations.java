@@ -92,13 +92,13 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_see_more_relations, container, false);
 
-      /*  mCloseLayout = (FrameLayout) view.findViewById(R.id.fragment_see_more_button_close);
+        mCloseLayout = (FrameLayout) view.findViewById(R.id.fragment_see_more_button_close);
         mCloseLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onSeeMoreRelationsClose();
             }
-        });*/
+        });
 
         mCarouselList = (RecyclerView) view.findViewById(R.id.fragment_see_more_card_list);
         LinearLayoutManager carouselLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
