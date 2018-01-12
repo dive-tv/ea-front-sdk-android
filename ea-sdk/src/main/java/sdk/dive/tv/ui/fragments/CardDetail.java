@@ -9,7 +9,9 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.RelationModule;
@@ -27,6 +29,7 @@ import sdk.client.dive.tv.rest.callbacks.ClientCallback;
 import sdk.client.dive.tv.rest.enums.RestAPIError;
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.builders.DiveTvCardDetailJson;
+import sdk.dive.tv.ui.interfaces.DiveInterface;
 import sdk.dive.tv.ui.listeners.CardDetailListener;
 import sdk.dive.tv.ui.managers.DiveTVTvCardDetailManager;
 
@@ -58,6 +61,9 @@ public class CardDetail extends Fragment implements Serializable {
     private static FragmentManager mManager = null;
     private DiveTvCardDetailJson cardDetail;
     private CardDetail instance;
+    private LinearLayout mButtons;
+    private FrameLayout mExitButton;
+    private FrameLayout mMinimizeButton;
 
     private LinearLayout mContainer, mUpperContainer;
     private OnCardDetailInteractionListener mListener;
@@ -109,6 +115,30 @@ public class CardDetail extends Fragment implements Serializable {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_card_detail, container, false);
 
+        mButtons = (LinearLayout) view.findViewById(R.id.carddetail_exit_btn);
+
+        mButtons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onCloseCardDetail(cardId, (cardDetail != null && cardDetail.isCardLiked()));
+            }
+        });
+        mExitButton = (FrameLayout) view.findViewById(R.id.carddetail_button_close);
+        mExitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onCloseCardDetail(cardId, (cardDetail != null && cardDetail.isCardLiked()));
+            }
+        });
+        mMinimizeButton = ( FrameLayout) view.findViewById(R.id.carddetail_button_minimize);
+        mMinimizeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener instanceof DiveInterface)
+                    ((DiveInterface)mListener).minimizeDive();
+            }
+        });
+
         mContainer = (LinearLayout) view.findViewById(R.id.card_detail_container);
         mUpperContainer = (LinearLayout) view.findViewById(R.id.card_detail_upper_container);
 
@@ -139,6 +169,12 @@ public class CardDetail extends Fragment implements Serializable {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof OnCardDetailInteractionListener) {
+            mListener = (OnCardDetailInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnCardDetailInteractionListener");
+        }
     }
 
     @Override
@@ -255,7 +291,7 @@ public class CardDetail extends Fragment implements Serializable {
     public void getFocus() {
         if (!isAdded())
             return;
-
+        mButtons.requestFocus();
     }
 
     public interface OnCardDetailInteractionListener extends Serializable {

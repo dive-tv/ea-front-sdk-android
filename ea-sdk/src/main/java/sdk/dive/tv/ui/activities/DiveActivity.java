@@ -320,6 +320,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
                 enableBottomLayout(true);
             }
         }
+        onBackPressed();
     }
 
     private void enableBottomLayout(boolean enable) {

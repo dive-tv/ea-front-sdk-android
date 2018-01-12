@@ -1,23 +1,87 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_carddetail_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
     tools:context="sdk.dive.tv.ui.fragments.CardDetail">
 
+    <LinearLayout
+        android:id="@+id/carddetail_exit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/carddetail_exit_button_margin_top"
+        android:layout_marginBottom="@dimen/carddetail_exit_button_margin_bot"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingEnd="0dp"
+        android:paddingStart="@dimen/carddetail_exit_button_margin_start"
+        android:nextFocusLeft="@+id/carddetail_button_close"
+        android:nextFocusRight="@+id/carddetail_button_minimize">
+
+        <FrameLayout
+            android:id="@id/carddetail_button_close"
+            android:layout_width="@dimen/carousel_button_height"
+            android:layout_height="@dimen/carousel_button_height"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:duplicateParentState="true"
+            android:nextFocusDown="@+id/card_detail_container"
+            android:nextFocusRight="@+id/card_detail_container"
+            android:nextFocusLeft="@id/carddetail_button_close">
+
+            <ImageView
+                android:id="@+id/carddetail_image_close"
+                android:layout_width="@dimen/carousel_cross_size"
+                android:layout_height="@dimen/carousel_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/button_close" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@id/carddetail_button_minimize"
+            android:layout_width="@dimen/carousel_button_height"
+            android:layout_height="@dimen/carousel_button_height"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/carousel_menu_elements_padding"
+            android:background="@drawable/carousel_button_focus_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusDown="@+id/card_detail_container"
+            android:nextFocusLeft="@id/carddetail_exit_btn"
+            android:nextFocusRight="@+id/carddetail_button_minimize">
+
+            <ImageView
+                android:id="@+id/carousel_image_minimize"
+                android:layout_width="@dimen/carousel_cross_size"
+                android:layout_height="@dimen/carousel_cross_size"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@drawable/ico_minimize" />
+        </FrameLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/card_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:layout_below="@id/carddetail_exit_btn"
+        android:nextFocusUp="@id/carddetail_exit_btn"
         android:orientation="horizontal" />
 
     <LinearLayout
         android:id="@+id/card_detail_upper_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/carousel_menu_margin"
+        android:layout_below="@id/carddetail_exit_btn"
         android:orientation="horizontal"
         android:visibility="gone" />
 

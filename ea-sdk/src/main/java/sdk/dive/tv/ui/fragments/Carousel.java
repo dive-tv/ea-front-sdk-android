@@ -743,7 +743,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                             if (card.getCard().getRelations().size() > 0 && i < (cellsToFilter.size() - 1)) {
                                 CarouselTvCell nextCard = cellsToFilter.get(i + 1);
                                 if (nextCard != null &&
-                                        (FASHION.equals(nextCard.getCard().getType()) || LOOK.equals(nextCard.getCard().getType()) ||
+                                        (FASHION.equals(nextCard.getCard().getType().getValue().toUpperCase()) || LOOK.equals(nextCard.getCard().getType().getValue().toUpperCase()) ||
                                                 nextCard instanceof SeeMoreTvCell)) {
                                     filteredCells.add(card);
                                 }
