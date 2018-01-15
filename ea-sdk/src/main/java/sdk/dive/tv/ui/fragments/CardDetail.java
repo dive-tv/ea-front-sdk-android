@@ -116,7 +116,7 @@ public class CardDetail extends Fragment implements Serializable {
         mButtons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onCloseCardDetail(cardId, (cardDetail != null && cardDetail.isCardLiked()));
+                mListener.onCloseCardDetail(cardId, false);
             }
         });
         mExitButton = (FrameLayout) view.findViewById(R.id.carddetail_button_close);
