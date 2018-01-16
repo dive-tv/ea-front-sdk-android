@@ -156,7 +156,10 @@ public abstract class BaseCardDetailBuilder<T extends BaseCardDetailBuilder<T>> 
                 composeCardDetail();
             }
         };
-        SdkClient.getInstance().getCardVersion(cardID, versionId, "es-ES", callback);
+        if (versionId!=null)
+            SdkClient.getInstance().getCardVersion(cardID, versionId, "es-ES", callback);
+        else
+            SdkClient.getInstance().getCard(cardID, "es-ES", callback);
     }
 
     /**
@@ -203,7 +206,10 @@ public abstract class BaseCardDetailBuilder<T extends BaseCardDetailBuilder<T>> 
                 composeCardDetail();
             }
         };
-        SdkClient.getInstance().getCardVersion(cardID, versionId, "es-ES", callback);
+        if (versionId!=null)
+            SdkClient.getInstance().getCardVersion(cardID, versionId, "es-ES", callback);
+        else
+            SdkClient.getInstance().getCard(cardID, "es-ES", callback);
     }
 
 

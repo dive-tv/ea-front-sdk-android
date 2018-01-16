@@ -90,9 +90,10 @@ public class HorizontalListAdapter extends TVScrollAdapter {
             @Override
             public void onClick(View v) {
                 if (row != null && row.isHasContent()) {
-                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(),row.getCardId(), row.getCardType());
-                    EventBusManager.getInstance().post(openCard);
-                    //tvCardDetailListener.onCallCardDetail(row.getCardId(), TypeOfCard.getTypeOfCard(row.getCardType()));
+//                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(),row.getCardId(), row.getCardVersion(), row.getCardType());
+//                    EventBusManager.getInstance().post(openCard);
+                    if (!(row.getCardType().equals(Card.TypeEnum.MOVIE.getValue())) && !(row.getCardType().equals(Card.TypeEnum.SERIE.getValue())) &&!(row.getCardType().equals(Card.TypeEnum.CHAPTER.getValue())))
+                        tvCardDetailListener.onCallCardDetail(row.getCardId(), row.getCardVersion(), Card.TypeEnum.fromValue(row.getCardType()));
                 }
             }
         });

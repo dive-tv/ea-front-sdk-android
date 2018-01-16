@@ -543,7 +543,7 @@ public class Utils {
             }
         }
 
-        return contentTypeRelations.get(contentType);
+        return contentTypeRelations.get(contentType.toUpperCase());
     }
 
     public static List<RelationModule> getRels(Card card, boolean onlyRelationsToShowInCarousel) {

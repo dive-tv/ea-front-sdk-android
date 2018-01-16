@@ -158,7 +158,10 @@ public class CardDetail extends Fragment implements Serializable {
                 }
             }
         };
-        SdkClient.getInstance().getCard(cardId, "es-ES", callback);
+        if (versionId!=null)
+            SdkClient.getInstance().getCardVersion(cardId, versionId, "es-ES", callback);
+        else
+            SdkClient.getInstance().getCard(cardId, "es-ES", callback);
         return view;
     }
 
