@@ -12,6 +12,7 @@ public class HorizontalItemData implements Serializable {
 
     private String text;
     private String cardId;
+    private String cardVersion;
     private String cardType;
     private ImageData image;
     private boolean hasContent;
@@ -30,6 +31,14 @@ public class HorizontalItemData implements Serializable {
 
     public void setCardId(String cardId) {
         this.cardId = cardId;
+    }
+
+    public String getCardVersion() {
+        return cardVersion;
+    }
+
+    public void setCardVersion(String cardVersion) {
+        this.cardVersion = cardVersion;
     }
 
     public String getCardType() {
