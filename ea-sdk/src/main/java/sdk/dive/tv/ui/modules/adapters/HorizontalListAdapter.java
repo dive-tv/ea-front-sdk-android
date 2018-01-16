@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
 

@@ -93,8 +93,8 @@ public class DiveTVTvCardDetailManager extends CardDetailManager implements TvCa
     }
 
     @Override
-    public void onCallCardDetail(String cardId, String versionId, Card.TypeEnum cardType, FragmentManager manager) {
-        sdk.dive.tv.ui.fragments.CardDetail cardDetail  = sdk.dive.tv.ui.fragments.CardDetail.newInstance(cardId, versionId, cardType, null, isCarousel, manager);
+    public void onCallCardDetail(String cardId, String versionId, Card.TypeEnum cardType) {
+        sdk.dive.tv.ui.fragments.CardDetail cardDetail  = sdk.dive.tv.ui.fragments.CardDetail.newInstance(cardId, versionId, cardType, null, isCarousel, mFragmentManager);
 
         mFragmentManager.beginTransaction()
                 .replace(R.id.fragment_bottom_overlay, cardDetail, Utils.FragmentNames.CARD_DETAIL.name())
