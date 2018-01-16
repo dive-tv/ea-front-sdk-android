@@ -317,7 +317,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
             } else if (fragment instanceof CardDetail) {
                 //cardsLiked.put(cardId, String.valueOf(isLiked));
             } else if (fragment instanceof SeeMoreRelations) {
-                enableBottomLayout(true);
+                enableBottomLayout(false);
             }
         }
         onBackPressed();
