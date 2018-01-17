@@ -14,6 +14,7 @@ public class SquareImageRowData implements Serializable {
     private String title;
     private String subtitle;
     private String cardId;
+    private String cardVersion;
     private String cardType;
     private boolean hasContent;
 
@@ -47,6 +48,14 @@ public class SquareImageRowData implements Serializable {
 
     public void setCardId(String cardId) {
         this.cardId = cardId;
+    }
+
+    public String getCardVersion() {
+        return cardVersion;
+    }
+
+    public void setCardVersion(String cardVersion) {
+        this.cardVersion = cardVersion;
     }
 
     public String getCardType() {

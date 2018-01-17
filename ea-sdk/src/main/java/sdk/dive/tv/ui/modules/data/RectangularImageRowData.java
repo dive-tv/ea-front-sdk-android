@@ -13,6 +13,7 @@ public class RectangularImageRowData implements Serializable {
     private ArrayList<sdk.dive.tv.ui.modules.data.CardTextData> title;
     private ArrayList<sdk.dive.tv.ui.modules.data.CardTextData> subtitle;
     private String cardId;
+    private String cardVersion;
     private String type;
     private boolean hasContent;
 
@@ -46,6 +47,14 @@ public class RectangularImageRowData implements Serializable {
 
     public void setCardId(String cardId) {
         this.cardId = cardId;
+    }
+
+    public String getCardVersion() {
+        return cardVersion;
+    }
+
+    public void setCardVersion(String cardVersion) {
+        this.cardVersion = cardVersion;
     }
 
     public String getType() {

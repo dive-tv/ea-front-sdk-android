@@ -48,6 +48,7 @@ public class MovieHeaderSmallHolder extends TvModuleHolder {
     protected TextView mDirector;
     protected TextView mGenres;
     protected LinearLayout mContainer;
+    private TvCardDetailListener tvCardDetailListener;
 
     /**
      * Default constructor
@@ -70,6 +71,7 @@ public class MovieHeaderSmallHolder extends TvModuleHolder {
     public void configure(final Card cardData, Picasso picasso, Context context, final TvCardDetailListener tvCardDetailListener, SectionListener sectionListener) {
 
         MovieHeaderHolder.TypeOfHeader headerType = MovieHeaderHolder.TypeOfHeader.MOVIE;
+        this.tvCardDetailListener = tvCardDetailListener;
 
         CardContainer cont = null;
         if (Utils.getContainer(cardData.getInfo().toArray(new CardContainer[cardData.getInfo().size()]), MOVIE.getValue()) != null) {
@@ -124,7 +126,7 @@ public class MovieHeaderSmallHolder extends TvModuleHolder {
                         SpannableString spannableString = new SpannableString(directorNames);
 
                         for (Card relData : ((Single) relation).getData()) {
-                            spannableString.setSpan(new sdk.dive.tv.ui.modules.viewholders.MovieHeaderSmallHolder.ClickableDirector(relData.getCardId(), relData.getType().getValue()), spannableString.toString().indexOf(relData.getTitle()),
+                            spannableString.setSpan(new sdk.dive.tv.ui.modules.viewholders.MovieHeaderSmallHolder.ClickableDirector(relData.getCardId(), relData.getVersion(), relData.getType().getValue()), spannableString.toString().indexOf(relData.getTitle()),
                                     spannableString.toString().indexOf(relData.getTitle()) + relData.getTitle().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         }
 
@@ -171,17 +173,20 @@ public class MovieHeaderSmallHolder extends TvModuleHolder {
 
     private class ClickableDirector extends ClickableSpan {
         String id;
+        String version;
         String type;
 
-        ClickableDirector(String id, String type) {
+        ClickableDirector(String id, String version, String type) {
             super();
             this.id = id;
+            this.version = version;
             this.type = type;
         }
 
         public void onClick(View tv) {
-            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), id, type);
-            EventBusManager.getInstance().post(openCard);
+//            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), id, type);
+//            EventBusManager.getInstance().post(openCard);
+            tvCardDetailListener.onCallCardDetail(id, version, Card.TypeEnum.fromValue(type));
         }
 
         public void updateDrawState(TextPaint ds) {// override updateDrawState

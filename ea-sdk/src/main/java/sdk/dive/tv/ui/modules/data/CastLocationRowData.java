@@ -16,6 +16,7 @@ public class CastLocationRowData implements Serializable {
     private String realItem;
     private String fictionalItem;
     private String realItemCardId;
+    private String realItemCardVersion;
     private boolean realItemHasContent;
     private String fictionalItemCardId;
     private String fictionalItemType;
@@ -53,6 +54,14 @@ public class CastLocationRowData implements Serializable {
 
     public void setRealItemCardId(String realItemCardId) {
         this.realItemCardId = realItemCardId;
+    }
+
+    public String getRealItemCardVersion() {
+        return realItemCardVersion;
+    }
+
+    public void setRealItemCardVersion(String realItemCardVersion) {
+        this.realItemCardVersion = realItemCardVersion;
     }
 
     public boolean isRealItemHasContent() {

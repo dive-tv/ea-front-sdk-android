@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
 
@@ -103,8 +104,9 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
             @Override
             public void onClick(View view) {
                 if (row.hasContent()) {
-                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getCardId(), row.getCardType());
-                    EventBusManager.getInstance().post(openCard);
+//                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getCardId(), row.getCardType());
+//                    EventBusManager.getInstance().post(openCard);
+                    tvCardDetailListener.onCallCardDetail(row.getCardId(), row.getCardVersion(), Card.TypeEnum.fromValue(row.getCardType()));
                 }
             }
         });

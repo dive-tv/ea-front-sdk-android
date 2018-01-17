@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ import sdk.dive.tv.eventbus.EventBusManager;
 import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.data.RectangularImageRowData;
 import sdk.dive.tv.ui.other.CustomTypefaceSpan;
 
@@ -44,12 +46,14 @@ public class RectangularImageItemsAdapter extends RecyclerView.Adapter<RecyclerV
     private Context context;
     private String parentId;
     private String parentType;
+    private final TvCardDetailListener tvCardDetailListener;
 
-    public RectangularImageItemsAdapter(Context context, ArrayList<RectangularImageRowData> rows, String cardId) {
+    public RectangularImageItemsAdapter(Context context, ArrayList<RectangularImageRowData> rows, String cardId, TvCardDetailListener tvCardDetailListener) {
         super();
         this.rows = rows;
         this.context = context;
         this.parentId = cardId;
+        this.tvCardDetailListener = tvCardDetailListener;
         mPicasso = Picasso.with(context);
         latoRegular = Utils.getFont(context, Utils.TypeFaces.LATO_REGULAR);
         latoSemibold = Utils.getFont(context, Utils.TypeFaces.LATO_SEMIBOLD);
@@ -100,7 +104,7 @@ public class RectangularImageItemsAdapter extends RecyclerView.Adapter<RecyclerV
                         ((RectangularImageItemsItemHolder) holder).subtitle.setTextColor(context.getResources().getColor(R.color.warmGrey));
                         continue;
                     }
-                    spannableString.setSpan(new sdk.dive.tv.ui.modules.adapters.RectangularImageItemsAdapter.ClickableElement(rowItem.getSubtitle().get(i).getCardId(), rowItem.getSubtitle().get(i).getCardType()), spannableString.toString().indexOf(rowItem.getSubtitle().get(i).getText()),
+                    spannableString.setSpan(new sdk.dive.tv.ui.modules.adapters.RectangularImageItemsAdapter.ClickableElement(rowItem.getSubtitle().get(i).getCardId(), rowItem.getSubtitle().get(i).getCardVersion(), rowItem.getSubtitle().get(i).getCardType()), spannableString.toString().indexOf(rowItem.getSubtitle().get(i).getText()),
                             spannableString.toString().indexOf(rowItem.getSubtitle().get(i).getText()) + rowItem.getSubtitle().get(i).getText().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     spannableString.setSpan(new ForegroundColorSpan(Utils.getColor(context, R.color.seafoamBlue)), spannableString.toString().indexOf(rowItem.getSubtitle().get(i).getText()),
                             spannableString.toString().indexOf(rowItem.getSubtitle().get(i).getText()) + rowItem.getSubtitle().get(i).getText().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -119,8 +123,9 @@ public class RectangularImageItemsAdapter extends RecyclerView.Adapter<RecyclerV
             @Override
             public void onClick(View view) {
                 if (rowItem.isHasContent()) {
-                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), rowItem.getCardId(), rowItem.getType());
-                    EventBusManager.getInstance().post(openCard);
+//                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), rowItem.getCardId(), rowItem.getType());
+//                    EventBusManager.getInstance().post(openCard);
+                    tvCardDetailListener.onCallCardDetail(rowItem.getCardId(), rowItem.getCardVersion(), Card.TypeEnum.fromValue(rowItem.getType()));
                 }
             }
         });
@@ -205,17 +210,20 @@ public class RectangularImageItemsAdapter extends RecyclerView.Adapter<RecyclerV
 
     private class ClickableElement extends ClickableSpan {
         String clicked;
+        String version;
         String cardType;
 
-        public ClickableElement(String string, String type) {
+        public ClickableElement(String string, String version, String type) {
             super();
             clicked = string;
+            version = version;
             cardType = type;
         }
 
         public void onClick(View tv) {
-            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), clicked, cardType);
-            EventBusManager.getInstance().post(openCard);
+//            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), clicked, cardType);
+//            EventBusManager.getInstance().post(openCard);
+            tvCardDetailListener.onCallCardDetail(clicked, version, Card.TypeEnum.fromValue(cardType));
         }
 
         public void updateDrawState(TextPaint ds) {// override updateDrawState

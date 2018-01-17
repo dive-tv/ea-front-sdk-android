@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
 
@@ -94,8 +95,10 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onClick(View view) {
                 if (row.isRealItemHasContent()) {
-                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getRealItemCardId(), row.getRealItemType());
-                    EventBusManager.getInstance().post(openCard);
+//                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getRealItemCardId(), row.getRealItemType());
+//                    EventBusManager.getInstance().post(openCard);
+                    tvCardDetailListener.onCallCardDetail(row.getRealItemCardId(), row.getRealItemCardVersion(), Card.TypeEnum.fromValue(row.getRealItemType()));
+
                 }
             }
         });
@@ -104,8 +107,9 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onClick(View view) {
                 if (row.isRealItemHasContent()) {
-                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getRealItemCardId(), row.getRealItemType());
-                    EventBusManager.getInstance().post(openCard);
+//                    OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getRealItemCardId(), row.getRealItemType());
+//                    EventBusManager.getInstance().post(openCard);
+                    tvCardDetailListener.onCallCardDetail(row.getRealItemCardId(), row.getRealItemCardVersion(), Card.TypeEnum.fromValue(row.getRealItemType()));
                 }
             }
         });

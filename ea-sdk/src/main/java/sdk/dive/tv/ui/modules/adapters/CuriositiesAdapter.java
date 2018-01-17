@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.touchvie.sdk.model.Card;
+
 import java.util.ArrayList;
 
 import sdk.dive.tv.R;
@@ -54,9 +56,9 @@ public class CuriositiesAdapter extends TVScrollAdapter {
         ((CuriositiesItemHolder) holder).container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // tvCardDetailListener.onCallCardDetail(row.getCardId(), TypeOfCard.getTypeOfCard(row.getCardType()));
-            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getCardId(), row.getCardType());
-            EventBusManager.getInstance().post(openCard);
+                tvCardDetailListener.onCallCardDetail(row.getCardId(), row.getCardVersion(), Card.TypeEnum.fromValue(row.getCardType()));
+//            OpenCard openCard = new OpenCard(EventBusIds.OPEN_CARD.getName(), row.getCardId(), row.getCardType());
+//            EventBusManager.getInstance().post(openCard);
             }
         });
     }

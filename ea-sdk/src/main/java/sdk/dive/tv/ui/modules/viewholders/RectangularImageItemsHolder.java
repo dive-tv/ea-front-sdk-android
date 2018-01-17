@@ -31,7 +31,7 @@ public abstract class RectangularImageItemsHolder extends HorizontalListHolder {
 
         super.configure(cardData, picasso, context, tvCardDetailListener, sectionListener);
         data = new ArrayList<>();
-        adapter = new RectangularImageItemsAdapter(context, data, cardData.getCardId());
+        adapter = new RectangularImageItemsAdapter(context, data, cardData.getCardId(), tvCardDetailListener);
         super.setAdapter(adapter, data.size());
     }
 
