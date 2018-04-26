@@ -1,7 +1,11 @@
 package sdk.dive.tv.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -23,6 +27,10 @@ import com.touchvie.sdk.model.Seasons;
 import com.touchvie.sdk.model.Single;
 import com.touchvie.sdk.model.Text;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
@@ -110,6 +118,7 @@ public class Utils {
     public final static String DEVICE_ID = "device_id";
     public final static String MOVIE_ID = "movie_id";
     public final static String MOVIE_TIMESTAMP = "movie_timestamp";
+    public final static String STYLE = "style";
     public final static String IS_MOVIE = "is_movie";
     public final static String CHANNEL_ID = "channel_id";
     public final static String PREVIOUS_SCREEN = "previous_screen";
@@ -213,6 +222,43 @@ public class Utils {
         }
         return type;
     }
+
+    public static JSONArray getCardDetailStyleconfiguration(Context context) {
+        String jsonString = null;
+
+        int configFile = R.raw.carousel_styles_sdk;
+
+        try {
+            Resources res = context.getResources();
+            InputStream in_s = res.openRawResource(configFile);
+            byte[] b = new byte[in_s.available()];
+            in_s.read(b);
+            jsonString = new String(b);
+        } catch (Exception e) {
+            return null;
+        }
+
+        JSONArray configJson = null;
+        try {
+            configJson = new JSONArray(jsonString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return configJson;
+
+    }
+
+    public static StateListDrawable makeSelector(int colorFocused, int colorUnfocused) {
+        StateListDrawable res = new StateListDrawable();
+        res.setExitFadeDuration(400);
+        res.setAlpha(45);
+        res.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(colorFocused));
+        res.addState(new int[]{android.R.attr.state_focused}, new ColorDrawable(colorFocused));
+        res.addState(new int[]{}, new ColorDrawable(colorUnfocused));
+        return res;
+    }
+
 
     /**
      * Returns a color.

@@ -2,6 +2,7 @@ package sdk.dive.tv.ui.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,11 +22,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.GsonBuilder;
 import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.Duple;
 import com.touchvie.sdk.model.DupleData;
 import com.touchvie.sdk.model.RelationModule;
 import com.touchvie.sdk.model.Single;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,8 +44,10 @@ import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.activities.DiveActivity;
 import sdk.dive.tv.ui.adapters.CarouselCardsAdapter;
 import sdk.dive.tv.ui.adapters.CategoriesAdapter;
+import sdk.dive.tv.ui.builders.CardDetailJson;
 import sdk.dive.tv.ui.cells.CarouselTvCell;
 import sdk.dive.tv.ui.cells.SeeMoreTvCell;
+import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.interfaces.CarouselInterface;
 import sdk.dive.tv.ui.interfaces.DiveInterface;
 import sdk.dive.tv.ui.listeners.CarouselFragmentListener;
@@ -82,6 +89,7 @@ import static sdk.dive.tv.ui.Utils.SEND_FEEDBACK;
 import static sdk.dive.tv.ui.Utils.SEND_INITIAL_FEEDBACK;
 import static sdk.dive.tv.ui.Utils.SEND_MENU_CARDS;
 import static sdk.dive.tv.ui.Utils.SHOW_CAROUSEL_ERROR;
+import static sdk.dive.tv.ui.Utils.STYLE;
 import static sdk.dive.tv.ui.Utils.UPDATE_CURRENT_TIME;
 import static sdk.dive.tv.ui.datawrappers.CardTypes.CHARACTER;
 import static sdk.dive.tv.ui.datawrappers.CardTypes.FASHION;
@@ -155,13 +163,16 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
     protected boolean allReadyCalled = false;
     private boolean sceneHasCommercials = false;
+    private String style;
+    private JSONArray styleConfig;
+    private ModuleStyle styleCarousel;
 
     public Carousel() {
         // Required empty public constructor
 
     }
 
-    public static Carousel newInstance(String apiKey, String movieId, String channelId, Boolean isMovie, int movieTime, String previousScreen, String movieName, String deviceId, OnCarouselInteractionListener listener) {
+    public static Carousel newInstance(String apiKey, String movieId, String channelId, Boolean isMovie, int movieTime, String previousScreen, String movieName, String deviceId, String style, OnCarouselInteractionListener listener) {
         Carousel fragment = new Carousel();
         mListener = listener;
         Bundle extras = new Bundle();
@@ -173,6 +184,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         extras.putInt(MOVIE_TIMESTAMP, movieTime);
         extras.putString(PREVIOUS_SCREEN, previousScreen);
         extras.putString(MOVIE_NAME, movieName);
+        extras.putString(STYLE, style);
         fragment.setArguments(extras);
         return fragment;
     }
@@ -196,11 +208,22 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             channelId = extras.getString(CHANNEL_ID);
             previousScreen = extras.getString(Utils.PREVIOUS_SCREEN);
             movieName = extras.getString(Utils.MOVIE_NAME);
+            style = extras.getString(Utils.STYLE);
         }
         if (SdkClient.getInstance() == null) {
             SdkClient.getOrCreateInstance(getContext(), apiKey, deviceId);
         } else {
             super.onCreate(savedInstanceState);
+        }
+        if (style!=null){
+            if (style != null) {
+                try {
+                    styleConfig = new JSONArray(style);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            styleCarousel = loadStyleCarousel(styleConfig);
         }
 
         mUIHandler = new Handler(this);
@@ -270,6 +293,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             public void onErrorReceived(StreamError error) {
             }
         };
+
         if (channelId != null)
             SdkClient.getInstance().tvChannelStreamConnect(channelId, mSocketListener);
 
@@ -311,6 +335,13 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                     }
                 });
 
+        if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundColor")!=null){
+            int backgroundColor = Color.parseColor(String.valueOf(styleCarousel.getIdModuleStyleData().get("backgroundColor")));
+            carouselContainer.setBackgroundColor(backgroundColor);
+        } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
+            int backgroundDefaultColor = Color.parseColor(String.valueOf(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor")));
+            carouselContainer.setBackgroundColor(backgroundDefaultColor);
+        }
         mLoadingLayer = (FrameLayout) view.findViewById(R.id.carousel_loading_layer);
         mLoadingLayer.setVisibility(View.VISIBLE);
 
@@ -436,6 +467,29 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         return view;
     }
+
+    public ModuleStyle loadStyleCarousel(JSONArray styleConfig) {
+        ModuleStyle[] styles;
+        ModuleStyle idStyle = null;
+        if (styleConfig == null) {
+            return null;
+        } else {
+            styles = new GsonBuilder().create().fromJson(styleConfig.toString(), ModuleStyle[].class); //TODO: test!!!
+            if (styles == null) {
+                return null;
+            } else {
+                if (styles.length > 0) {
+                    for (ModuleStyle style : styles) {
+                        if (style.getModuleName().equals("carousel")) {
+                            idStyle = style;
+                        }
+                    }
+                }
+            }
+            return idStyle;
+        }
+    }
+
 
 
     private void filterCardsByCategory() {

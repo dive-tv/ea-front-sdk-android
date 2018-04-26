@@ -34,10 +34,12 @@ public class DiveSdk {
     private FragmentManager mManager;
     private String apiKey;
     private String deviceId;
+    private String style;
 
-    public void initialize(String deviceId, String apiKey, Context ctx) {
+    public void initialize(String deviceId, String apiKey, Context ctx, String style) {
         this.deviceId = deviceId;
         this.apiKey = apiKey;
+        this.style = style;
         this.settings = new SharedPreferencesHelper(ctx);
         this.settings.storeApiKey(apiKey);
         this.settings.storeDeviceId(deviceId);
@@ -51,7 +53,7 @@ public class DiveSdk {
     }
 
     public Fragment VODStart(String movieId, int timestamp) {
-        Fragment dive = DiveFragment.newInstance(apiKey, movieId, timestamp);
+        Fragment dive = DiveFragment.newInstance(apiKey, movieId, timestamp, style);
         return dive;
     }
 
@@ -78,7 +80,7 @@ public class DiveSdk {
     }
 
     public Fragment tvStart(String channelId){
-        Fragment dive = DiveFragment.newInstance(apiKey, channelId);
+        Fragment dive = DiveFragment.newInstance(apiKey, channelId, style);
         return dive;
     }
 

@@ -1,0 +1,32 @@
+[
+  {
+    "module_name": "carousel",
+    "styles": [
+      {
+        "property": "backgroundColor",
+        "value": "#1c1d1d"
+      }
+    ]
+  },
+  {
+    "module_name":"carddetail",
+    "styles": [
+      {
+        "property": "backgroundColor",
+        "value": "#1c1d1d"
+      },
+      {
+        "property": "backgroundColorCard",
+        "value": "#1c1d1d"
+      },
+      {
+        "property": "selectedColor",
+        "value": "#1c1d1d"
+      },
+      {
+        "property": "unselectedColor",
+        "value": "#1c1d1d"
+      }
+    ]
+  }
+]
