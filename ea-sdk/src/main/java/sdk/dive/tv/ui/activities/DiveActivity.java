@@ -19,6 +19,7 @@ import sdk.client.dive.tv.utils.SharedPreferencesHelper;
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.DiveSdk;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.fragments.CardDetail;
 import sdk.dive.tv.ui.fragments.Carousel;
 import sdk.dive.tv.ui.fragments.DiveFragment;
@@ -407,11 +408,11 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
     @Override
-    public void onShowMoreRelations(Card card) {
+    public void onShowMoreRelations(Card card, ModuleStyle style) {
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
 
-        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance();
+        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(style);
 
         Bundle args = new Bundle();
         args.putSerializable(CAROUSEL_CARD, card);

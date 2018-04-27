@@ -141,11 +141,12 @@ public class SongTvCell extends CarouselTvCell {
                     subtitle.setTextColor(Utils.getColor(context, R.color.pale_grey));
                 } else {
 //                    if (!isLikeBtnFocused) {
-                        onCellUnfocused(context);
+                    onCellUnFocusedColors(context);
+                    onCellUnfocused(context);
 
-                        mSongIcon.setColorFilter(Utils.getColor(context, R.color.warm_grey));
-                        title.setTextColor(Utils.getColor(context, R.color.warm_grey));
-                        subtitle.setTextColor(Utils.getColor(context, R.color.warm_grey));
+                    mSongIcon.setColorFilter(Utils.getColor(context, R.color.warm_grey));
+                    title.setTextColor(Utils.getColor(context, R.color.warm_grey));
+                    subtitle.setTextColor(Utils.getColor(context, R.color.warm_grey));
 //                    }
                 }
             }

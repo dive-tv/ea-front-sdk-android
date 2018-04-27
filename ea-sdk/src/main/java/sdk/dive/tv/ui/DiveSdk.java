@@ -52,6 +52,10 @@ public class DiveSdk {
         return false;
     }
 
+    public String getStyle(){
+        return this.style;
+    }
+
     public Fragment VODStart(String movieId, int timestamp) {
         Fragment dive = DiveFragment.newInstance(apiKey, movieId, timestamp, style);
         return dive;

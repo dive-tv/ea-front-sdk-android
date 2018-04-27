@@ -336,10 +336,10 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 });
 
         if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundColor")!=null){
-            int backgroundColor = Color.parseColor(String.valueOf(styleCarousel.getIdModuleStyleData().get("backgroundColor")));
+            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
             carouselContainer.setBackgroundColor(backgroundColor);
         } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
-            int backgroundDefaultColor = Color.parseColor(String.valueOf(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor")));
+            int backgroundDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
             carouselContainer.setBackgroundColor(backgroundDefaultColor);
         }
         mLoadingLayer = (FrameLayout) view.findViewById(R.id.carousel_loading_layer);
@@ -453,7 +453,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         carouselLayoutManager = new CustomLinearLayoutManagerCarousel(getContext(), CustomLinearLayoutManagerCarousel.HORIZONTAL, false);
         mCarouselList.setLayoutManager(carouselLayoutManager);
 
-        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, mListener, instance);
+        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, styleCarousel, mListener, instance);
         mCarouselList.setAdapter(mAdapter);
 
         mCarouselList.setItemViewCacheSize(0);
@@ -504,7 +504,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         carouselItems.addAll(sceneItems);
         mAdapter = null;
         mCarouselList.setAdapter(null);
-        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, mListener, instance);
+        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, styleCarousel, mListener, instance);
         mCarouselList.setAdapter(mAdapter);
 
         if (carouselItems.size() > 0) {
@@ -1115,7 +1115,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         void onCallCardDetail(String cardId, String versionId, Card.TypeEnum type);
 
-        void onShowMoreRelations(Card card);
+        void onShowMoreRelations(Card card, ModuleStyle style);
 
         void setOuterFocus(boolean b);
 

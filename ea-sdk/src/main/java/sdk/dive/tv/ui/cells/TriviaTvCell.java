@@ -157,6 +157,7 @@ public class TriviaTvCell extends CarouselTvCell {
                     title.setTextColor(Utils.getColor(context, R.color.pale_grey));
                 } else {
                     if (!isSeeMoreFocused && !isLikeBtnFocused) {
+                        onCellUnFocusedColors(context);
                         onCellUnfocused(context);
                         title.setTextColor(Utils.getColor(context, R.color.warm_grey));
                     }
@@ -178,6 +179,7 @@ public class TriviaTvCell extends CarouselTvCell {
                 } else if (!isLikeBtnFocused) {
                     cellLayout.setFocusable(true);
                     cellLayout.setFocusableInTouchMode(true);
+                    onCellUnFocusedColors(context);
                     onCellUnfocused(context);
                     title.setTextColor(Utils.getColor(context, R.color.warm_grey));
                 }

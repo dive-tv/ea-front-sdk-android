@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -258,6 +259,16 @@ public class Utils {
         res.addState(new int[]{}, new ColorDrawable(colorUnfocused));
         return res;
     }
+
+    public static GradientDrawable makeShape(int borderColor) {
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+//        shape.setCornerRadii(new float[] { 8, 8, 8, 8, 0, 0, 0, 0 });
+        shape.setColor(Color.parseColor("#00000000"));
+        shape.setStroke(3, borderColor);
+        return shape;
+    }
+
 
 
     /**
