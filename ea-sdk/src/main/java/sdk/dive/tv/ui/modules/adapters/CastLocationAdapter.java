@@ -149,10 +149,10 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     darkStyle = true;
                 }
             }
-            if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
-                genericStyles = tvCardDetailListener.getGenericStyles();
-            }
             styleConfigRetrieved = true;
+        }
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
         }
     }
 

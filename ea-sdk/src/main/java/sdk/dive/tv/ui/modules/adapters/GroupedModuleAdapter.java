@@ -178,10 +178,10 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
                     darkStyle = true;
                 }
             }
-            if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
-                genericStyles = tvCardDetailListener.getGenericStyles();
-            }
             styleConfigRetrieved = true;
+        }
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
         }
     }
 

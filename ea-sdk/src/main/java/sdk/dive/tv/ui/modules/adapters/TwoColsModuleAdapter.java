@@ -120,9 +120,9 @@ public class TwoColsModuleAdapter extends BaseAdapter {
                     darkStyle = true;
                 }
             }
-            if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
-                genericStyles = tvCardDetailListener.getGenericStyles();
-            }
+        }
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
         }
     }
 
