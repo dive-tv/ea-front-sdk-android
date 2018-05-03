@@ -132,7 +132,12 @@ public class TwoColsModuleAdapter extends BaseAdapter {
 
     private void configureStyle(sdk.dive.tv.ui.modules.adapters.TwoColsModuleAdapter.TwoColsItemHolder holder) {
 
-        if (darkStyle) {
+        if (genericStyles!=null){
+            int backgroundColor = Color.parseColor(genericStyles.get("backgroundColor").getValue());
+            holder.container.setBackgroundColor(Utils.getColor(context, backgroundColor));
+        } else if (darkStyle) {
+
+            holder.container.setBackgroundColor(Utils.getColor(context, R.color.black));
 
             int currentapiVersion = android.os.Build.VERSION.SDK_INT;
             if (currentapiVersion >= android.os.Build.VERSION_CODES.M) {
@@ -148,10 +153,7 @@ public class TwoColsModuleAdapter extends BaseAdapter {
             }
 
         }
-        if (genericStyles!=null){
-            int backgroundColor = Color.parseColor(genericStyles.get("backgroundColor").getValue());
-            holder.container.setBackgroundColor(Utils.getColor(context, backgroundColor));
-        }
+
     }
 
 
