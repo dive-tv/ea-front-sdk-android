@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
@@ -21,6 +22,7 @@ import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.data.ModuleMainStyle;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.data.ModuleStyleProperty;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.data.SquareImageRowData;
@@ -125,6 +127,7 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
                     darkStyle = true;
                 }
             }
+
             styleConfigRetrieved = true;
         }
     }

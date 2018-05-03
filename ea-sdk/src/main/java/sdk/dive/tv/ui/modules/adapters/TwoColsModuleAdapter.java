@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.data.ModuleMainStyle;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.data.ModuleStyleProperty;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.data.TwoTextRowData;
@@ -35,6 +38,7 @@ public class TwoColsModuleAdapter extends BaseAdapter {
     private boolean darkStyle = false;
 
     private String moduleTitle;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     public TwoColsModuleAdapter(Context context, ArrayList<TwoTextRowData> rows, TvCardDetailListener tvCardDetailListener) {
         this.rows = rows;
@@ -116,6 +120,9 @@ public class TwoColsModuleAdapter extends BaseAdapter {
                     darkStyle = true;
                 }
             }
+            if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+                genericStyles = tvCardDetailListener.getGenericStyles();
+            }
         }
     }
 
@@ -141,7 +148,10 @@ public class TwoColsModuleAdapter extends BaseAdapter {
             }
 
         }
-
+        if (genericStyles!=null){
+            int backgroundColor = Color.parseColor(genericStyles.get("backgroundColor").getValue());
+            holder.container.setBackgroundColor(Utils.getColor(context, backgroundColor));
+        }
     }
 
 

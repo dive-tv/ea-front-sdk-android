@@ -520,6 +520,11 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         if (!isAdded())
             return;
 
+        if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundColorNotif")!=null){
+            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
+            mCarouselBottomMsg.setBackgroundColor(backgroundColor);
+        }
+
         if (number == 1) {
             mCarouselBottomMsg.setText(getString(R.string.CAROUSEL_NEW_CARD_ADDED));
         } else {

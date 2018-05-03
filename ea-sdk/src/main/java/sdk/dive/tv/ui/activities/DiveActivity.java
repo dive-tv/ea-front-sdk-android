@@ -64,6 +64,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     private String deviceId;
     private ComponentsInterface mListener;
 
+    private String style;
     /**
      * Instantiates a new Video activity.
      */
@@ -438,6 +439,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     @Override
     public void addCarousel(String apiKey, String movieId, String channelId, boolean isMovie, int movieTime, String previousScreen, String movieName, String style) {
         deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        this.style = style;
         carouselFragment = Carousel.newInstance(apiKey, movieId, channelId, isMovie, movieTime, previousScreen, movieName, deviceId, style, this);
         isCarousel = true;
         enableBottomLayout(true);
@@ -458,7 +460,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
 
-        CardDetail cardDetail = CardDetail.newInstance(cardId, versionId, typeOfCard, null, isCarousel, mManager);
+        CardDetail cardDetail = CardDetail.newInstance(cardId, versionId, typeOfCard, style, isCarousel, mManager);
 
         mManager.beginTransaction()
                 .replace(R.id.fragment_bottom_overlay, cardDetail, Utils.FragmentNames.CARD_DETAIL.name())

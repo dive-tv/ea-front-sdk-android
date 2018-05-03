@@ -5,27 +5,35 @@
       {
         "property": "backgroundColor",
         "value": "#1c1d1d"
+      },
+      {
+        "property": "backgroundColorNotif",
+        "value": "#e8ebef"
+      },
+      {
+        "property": "selectedColor",
+        "value": "#f7d73b"
+      },
+      {
+        "property": "unselectedColor",
+        "value": "#909090"
       }
     ]
   },
   {
-    "module_name":"carddetail",
+    "module_name": "carddetail",
     "styles": [
       {
         "property": "backgroundColor",
         "value": "#1c1d1d"
       },
       {
-        "property": "backgroundColorCard",
-        "value": "#1c1d1d"
-      },
-      {
         "property": "selectedColor",
-        "value": "#1c1d1d"
+        "value": "#f7d73b"
       },
       {
         "property": "unselectedColor",
-        "value": "#1c1d1d"
+        "value": "#909090"
       }
     ]
   }

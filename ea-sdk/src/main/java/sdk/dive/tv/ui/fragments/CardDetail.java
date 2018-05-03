@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.RelationModule;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,6 +64,7 @@ public class CardDetail extends Fragment implements Serializable {
 
     private LinearLayout mContainer, mUpperContainer;
     private OnCardDetailInteractionListener mListener;
+    private JSONArray styleConfig;
 
 
     public CardDetail() {
@@ -151,10 +153,18 @@ public class CardDetail extends Fragment implements Serializable {
 
                 if (card != null) {
                     Card.TypeEnum cardType = card.getType();
-
+                    if (style!=null){
+                        if (style != null) {
+                            try {
+                                styleConfig = new JSONArray(style);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                     JSONObject configJson = getConfigJSON(cardType);
                     cardDetail = new DiveTvCardDetailJson(getContext(), DiveTVTvCardDetailManager.class.getPackage().getName() + "." + DiveTVTvCardDetailManager.class.getSimpleName());
-                    cardDetail.loadStyleConfig(null).loadDataConfig(configJson).buildAll(cardId, versionId, new ArrayList<RelationModule>(card.getRelations()), mManager, mContainer, mUpperContainer, null, !isCarousel, isCarousel, getActivity());
+                    cardDetail.loadStyleConfig(styleConfig).loadDataConfig(configJson).buildAll(cardId, versionId, new ArrayList<RelationModule>(card.getRelations()), mManager, mContainer, mUpperContainer, null, !isCarousel, isCarousel, getActivity());
                 }
             }
         };

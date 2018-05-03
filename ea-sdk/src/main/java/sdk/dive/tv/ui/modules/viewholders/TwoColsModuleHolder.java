@@ -43,7 +43,7 @@ public abstract class TwoColsModuleHolder extends VerticalListHolder {
     }
 
     protected void setData(ArrayList<TwoTextRowData> data, Context context, String moduleName, String moduleTitle, TvCardDetailListener tvCardDetailListener) {
-//        adapter.setModuleStyle(moduleName);
+        adapter.setModuleStyle(moduleName);
 //        adapter.setModuleTitle(moduleTitle);
 
         mTitle.setText(moduleTitle);

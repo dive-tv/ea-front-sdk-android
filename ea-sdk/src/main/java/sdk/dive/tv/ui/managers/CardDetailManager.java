@@ -209,6 +209,11 @@ public class CardDetailManager implements CardDetailListener {
     }
 
     @Override
+    public HashMap<String, ModuleStyleData> getGenericStyles() {
+        return idStyle.get("carddetail") != null ? idStyle.get("carddetail").getIdModuleStyleData() : null;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
