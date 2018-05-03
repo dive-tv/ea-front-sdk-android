@@ -137,7 +137,8 @@ public class TwoColsModuleAdapter extends BaseAdapter {
             int backgroundColor = Color.parseColor(genericStyles.get("backgroundColor").getValue());
             Log.e("kkkkkkkk",genericStyles.keySet().toString());
             Log.e("kkkkkkkk",genericStyles.get("backgroundColor").getValue());
-            holder.container.setBackgroundColor(Utils.getColor(context, backgroundColor));
+            Log.e("kkkkkkkk", String.valueOf(backgroundColor));
+            holder.container.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("backgroundColor").getValue())));
         } else if (darkStyle) {
 
             holder.container.setBackgroundColor(Utils.getColor(context, R.color.black));
