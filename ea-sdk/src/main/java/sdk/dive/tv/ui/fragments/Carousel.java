@@ -521,7 +521,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             return;
 
         if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundColorNotif")!=null){
-            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
+            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColorNotif").getValue());
             mCarouselBottomMsg.setBackgroundColor(backgroundColor);
         }
 
