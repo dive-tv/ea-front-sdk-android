@@ -3,6 +3,7 @@ package sdk.dive.tv.ui.modules.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -134,6 +135,8 @@ public class TwoColsModuleAdapter extends BaseAdapter {
 
         if (genericStyles!=null){
             int backgroundColor = Color.parseColor(genericStyles.get("backgroundColor").getValue());
+            Log.e("kkkkkkkk",genericStyles.keySet().toString());
+            Log.e("kkkkkkkk",genericStyles.get("backgroundColor").getValue());
             holder.container.setBackgroundColor(Utils.getColor(context, backgroundColor));
         } else if (darkStyle) {
 
