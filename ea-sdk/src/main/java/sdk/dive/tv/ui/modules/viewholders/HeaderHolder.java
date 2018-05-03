@@ -1,8 +1,10 @@
 package sdk.dive.tv.ui.modules.viewholders;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -11,8 +13,11 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.touchvie.sdk.model.Card;
 
+import java.util.HashMap;
+
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.utils.CropSquareTransformation2;
@@ -37,6 +42,9 @@ public class HeaderHolder extends TvModuleHolder {
     protected TextView mLikeTxt;
     protected TextView trivia;
     protected ImageView mLikeIcon;
+    protected FrameLayout imageBorder;
+    protected TextView txtvType;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     /**
      * Default constructor
@@ -52,6 +60,8 @@ public class HeaderHolder extends TvModuleHolder {
         image = (ImageView) view.findViewById(R.id.tv_module_header_image);
         noimage = (ImageView) view.findViewById(R.id.tv_module_header_noimage);
         trivia = (TextView)view.findViewById(R.id.tv_module_header_trivia);
+        imageBorder = (FrameLayout) view.findViewById(R.id.tv_module_header_image_border);
+        txtvType = (TextView) view.findViewById(R.id.tv_module_header_type);
     }
 
     @Override
@@ -105,6 +115,14 @@ public class HeaderHolder extends TvModuleHolder {
         } else {
             type.setText("");
         }
+
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            imageBorder.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue())));
+            txtvType.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue())));
+        }
+
+
 
 /*        mLikeTxt.setTypeface(Utils.getFont(context, Utils.TypeFaces.LATO_SEMIBOLD));
         if (cardData.getUser() != null && cardData.getUser().isLiked()) {

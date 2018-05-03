@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
     private Context context;
     private String parentId;
     private String parentType;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     public SquareImageItemsAdapter(Context context, ArrayList<SquareImageRowData> rows, TvCardDetailListener tvCardDetailListener, String cardId) {
         super();
@@ -127,6 +129,9 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
                     darkStyle = true;
                 }
             }
+            if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+                genericStyles = tvCardDetailListener.getGenericStyles();
+            }
 
             styleConfigRetrieved = true;
         }
@@ -134,7 +139,9 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private void configureStyle(sdk.dive.tv.ui.modules.adapters.SquareImageItemsAdapter.SquareImageItemsItemHolder holder) {
 
-        if (darkStyle) {
+        if (genericStyles!=null){
+            holder.container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundColor").getValue()));
+        } else if (darkStyle) {
             holder.container.setBackgroundColor(Utils.getColor(context, R.color.black));
 
             holder.info.setBackgroundColor(Utils.getColor(context, R.color.black));

@@ -254,9 +254,9 @@ public class Utils {
         StateListDrawable res = new StateListDrawable();
         res.setExitFadeDuration(400);
         res.setAlpha(45);
-        res.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(colorFocused));
-        res.addState(new int[]{android.R.attr.state_focused}, new ColorDrawable(colorFocused));
-        res.addState(new int[]{}, new ColorDrawable(colorUnfocused));
+        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused));
+        res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused));
+        res.addState(new int[]{}, makeShape(colorUnfocused));
         return res;
     }
 
