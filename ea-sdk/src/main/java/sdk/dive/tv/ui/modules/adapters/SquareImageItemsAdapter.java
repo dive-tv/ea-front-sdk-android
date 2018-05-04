@@ -141,6 +141,7 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         if (genericStyles!=null){
             holder.container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundColor").getValue()));
+            holder.info.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundColor").getValue()));
         } else if (darkStyle) {
             holder.container.setBackgroundColor(Utils.getColor(context, R.color.black));
 
