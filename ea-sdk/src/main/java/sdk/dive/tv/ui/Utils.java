@@ -252,13 +252,13 @@ public class Utils {
 
     public static StateListDrawable makeSelector(int colorFocused, int colorUnfocused) {
         StateListDrawable res = new StateListDrawable();
-        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused));
-        res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused));
-        res.addState(new int[]{}, makeShape(colorUnfocused));
+        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2));
+        res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused,2));
+        res.addState(new int[]{}, makeShape(colorUnfocused,1));
         return res;
     }
 
-    public static GradientDrawable makeShape(int borderColor) {
+    public static GradientDrawable makeShape(int borderColor, int width) {
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
 //        shape.setCornerRadii(new float[] { 8, 8, 8, 8, 0, 0, 0, 0 });

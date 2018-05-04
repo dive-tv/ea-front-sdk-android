@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +15,14 @@ import com.squareup.picasso.Picasso;
 import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
 import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.data.HorizontalItemData;
 
@@ -32,6 +35,7 @@ public class HorizontalListAdapter extends TVScrollAdapter {
     private final TvCardDetailListener tvCardDetailListener;
     Context context;
     Picasso mPicasso;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     /**
      * Instantiates a new Cards gallery grid adapter.
@@ -85,6 +89,11 @@ public class HorizontalListAdapter extends TVScrollAdapter {
         } else {
             ((HorizontalItemHolder) holder).noimage.setVisibility(View.VISIBLE);
             ((HorizontalItemHolder) holder).image.setVisibility(View.GONE);
+        }
+
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            ((HorizontalItemHolder) holder).frame.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue())));
         }
 
         ((HorizontalItemHolder) holder).container.setOnClickListener(new View.OnClickListener() {

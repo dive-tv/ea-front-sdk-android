@@ -49,7 +49,7 @@ public class GalleryHolder extends HorizontalListHolder {
         final ArrayList<ImageData> images = new ArrayList<>();
         images.addAll(((Image) container).getData());
 
-        GalleryAdapter adapter = new GalleryAdapter(context, images);
+        GalleryAdapter adapter = new GalleryAdapter(context, images, cardDetailListener);
         super.setAdapter(adapter, images.size());
     }
 }

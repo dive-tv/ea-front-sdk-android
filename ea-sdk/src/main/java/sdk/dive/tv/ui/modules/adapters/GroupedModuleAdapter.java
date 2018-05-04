@@ -197,8 +197,7 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         }
         if (genericStyles!=null){
-            int backgroundColor = Color.parseColor(genericStyles.get("backgroundColor").getValue());
-            holder.container.setBackgroundColor(Utils.getColor(context, backgroundColor));
+            holder.container.setBackgroundColor(Utils.getColor(context,  Color.parseColor(genericStyles.get("backgroundColor").getValue())));
         }
     }
 
@@ -216,8 +215,7 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         }
         if (genericStyles!=null){
-            int backgroundColor = Color.parseColor(genericStyles.get("backgroundColor").getValue());
-            holder.container.setBackgroundColor(Utils.getColor(context, backgroundColor));
+            holder.container.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("backgroundColor").getValue())));
         }
 
     }

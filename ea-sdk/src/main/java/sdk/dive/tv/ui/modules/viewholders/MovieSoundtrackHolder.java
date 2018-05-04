@@ -56,7 +56,7 @@ public class MovieSoundtrackHolder extends HorizontalListHolder {
             rows.add(row);
         }
 
-        MovieSoundtrackAdapter adapter = new MovieSoundtrackAdapter(context, rows);
+        MovieSoundtrackAdapter adapter = new MovieSoundtrackAdapter(context, rows, cardDetailListener);
         super.setAdapter(adapter, rows.size());
 
     }
