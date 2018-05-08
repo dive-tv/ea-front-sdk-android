@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -198,6 +199,7 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         if (genericStyles!=null){
             holder.container.setBackgroundColor(Utils.getColor(context,  Color.parseColor(genericStyles.get("backgroundColor").getValue())));
+            holder.shopButton.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("selectedColor").getValue())));
         }
     }
 
@@ -231,12 +233,14 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView price;
         TextView merchant;
         LinearLayout container;
+        FrameLayout shopButton;
 
         GroupedBuyItemHolder(View v) {
             super(v);
             image = (ImageView) v.findViewById(R.id.shop_image);
             price = (TextView) v.findViewById(R.id.shop_price);
             merchant = (TextView) v.findViewById(R.id.shop_shop);
+            shopButton = (FrameLayout) v.findViewById(R.id.shop_button);
             container = (LinearLayout) v.findViewById(R.id.simageitems_container);
         }
     }

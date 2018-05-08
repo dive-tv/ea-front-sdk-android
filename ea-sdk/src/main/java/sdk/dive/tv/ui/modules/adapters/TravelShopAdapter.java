@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,12 +17,14 @@ import com.touchvie.sdk.model.Product;
 
 import java.util.ArrayList;
 import java.util.Currency;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
 import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenWeb;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 
 import static android.view.View.GONE;
@@ -37,6 +40,7 @@ public class TravelShopAdapter extends TVScrollTravelShopAdapter {
     Picasso mPicasso;
     private Typeface latoRegular;
     private Typeface latoSemibold;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     /**
      * Instantiates a new Cards gallery grid adapter.
@@ -218,7 +222,12 @@ public class TravelShopAdapter extends TVScrollTravelShopAdapter {
         } else {
             ((TravelShopItemHolder) holder).bookNow.setVisibility(GONE);
         }
-
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null) {
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            if (genericStyles != null) {
+                ((TravelShopItemHolder) holder).bookNow.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("selectedColor").getValue())));
+            }
+        }
     }
 
     private static class TravelShopItemHolder extends RecyclerView.ViewHolder {

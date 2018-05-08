@@ -94,6 +94,7 @@ public class HorizontalListAdapter extends TVScrollAdapter {
         if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
             genericStyles = tvCardDetailListener.getGenericStyles();
             ((HorizontalItemHolder) holder).frame.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue())));
+            ((HorizontalItemHolder) holder).title.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue())));
         }
 
         ((HorizontalItemHolder) holder).container.setOnClickListener(new View.OnClickListener() {
