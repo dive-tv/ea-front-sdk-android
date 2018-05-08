@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.google.gson.GsonBuilder;
 import com.touchvie.sdk.model.Card;
@@ -65,7 +66,7 @@ public class CardDetail extends Fragment implements Serializable {
     private LinearLayout mButtons;
     private FrameLayout mExitButton;
     private FrameLayout mMinimizeButton;
-
+    private RelativeLayout mRelativeContainer ;
     private LinearLayout mContainer, mUpperContainer;
     private OnCardDetailInteractionListener mListener;
     private JSONArray styleConfig;
@@ -152,18 +153,19 @@ public class CardDetail extends Fragment implements Serializable {
             styleCarddetail = loadStyleCarddetail(styleConfig);
         }
 
-        mContainer = (LinearLayout) view.findViewById(R.id.main_carddetail_layout);
+        mContainer = (LinearLayout) view.findViewById(R.id.card_detail_container);
+        mRelativeContainer = (RelativeLayout) view.findViewById(R.id.main_carddetail_layout);
 
         mUpperContainer = (LinearLayout) view.findViewById(R.id.card_detail_upper_container);
         if (styleCarddetail!=null && styleCarddetail.getIdModuleStyleData().get("backgroundColor")!=null){
             int backgroundColor = Color.parseColor(styleCarddetail.getIdModuleStyleData().get("backgroundColor").getValue());
-            mContainer.setBackgroundColor(backgroundColor);
+            mRelativeContainer .setBackgroundColor(backgroundColor);
             mUpperContainer.setBackgroundColor(backgroundColor);
             mMinimizeButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
             mExitButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
         } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
             int backgroundDefaultColor = Color.parseColor(loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
-            mContainer.setBackgroundColor(backgroundDefaultColor);
+            mRelativeContainer .setBackgroundColor(backgroundDefaultColor);
             mUpperContainer.setBackgroundColor(backgroundDefaultColor);
             mMinimizeButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
             mExitButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
