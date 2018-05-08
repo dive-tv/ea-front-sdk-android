@@ -260,8 +260,8 @@ public class Utils {
 
     public static StateListDrawable makeSelector(int colorFocused, int colorUnfocused, String background) {
         StateListDrawable res = new StateListDrawable();
-        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2));
-        res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused,2));
+        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2,background));
+        res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused,2,background));
         res.addState(new int[]{}, makeShape(colorUnfocused,1, background));
         return res;
     }
