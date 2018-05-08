@@ -152,17 +152,22 @@ public class CardDetail extends Fragment implements Serializable {
             styleCarddetail = loadStyleCarddetail(styleConfig);
         }
 
-        mContainer = (LinearLayout) view.findViewById(R.id.card_detail_container);
+        mContainer = (LinearLayout) view.findViewById(R.id.main_carddetail_layout);
 
         mUpperContainer = (LinearLayout) view.findViewById(R.id.card_detail_upper_container);
         if (styleCarddetail!=null && styleCarddetail.getIdModuleStyleData().get("backgroundColor")!=null){
             int backgroundColor = Color.parseColor(styleCarddetail.getIdModuleStyleData().get("backgroundColor").getValue());
             mContainer.setBackgroundColor(backgroundColor);
             mUpperContainer.setBackgroundColor(backgroundColor);
+            mMinimizeButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
+            mExitButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
         } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
             int backgroundDefaultColor = Color.parseColor(loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
             mContainer.setBackgroundColor(backgroundDefaultColor);
             mUpperContainer.setBackgroundColor(backgroundDefaultColor);
+            mMinimizeButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
+            mExitButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
+
         }
 
         ClientCallback<Card> callback = new ClientCallback<Card>() {
