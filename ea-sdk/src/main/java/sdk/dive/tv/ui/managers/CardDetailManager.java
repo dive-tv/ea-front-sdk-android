@@ -210,7 +210,8 @@ public class CardDetailManager implements CardDetailListener {
 
     @Override
     public HashMap<String, ModuleStyleData> getGenericStyles() {
-        Log.e("Styles:",idStyle.get("carddetail").toString());
+        Log.e("Styles:",idStyle.get("carddetail").getIdModuleStyleData().keySet().toString());
+        Log.e("Styles:",idStyle.get("carddetail").getIdModuleStyleData().entrySet().toString());
         return idStyle.get("carddetail") != null ? idStyle.get("carddetail").getIdModuleStyleData() : null;
     }
 
