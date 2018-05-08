@@ -265,6 +265,13 @@ public class Utils {
         res.addState(new int[]{}, makeShape(colorUnfocused,1, background));
         return res;
     }
+    public static StateListDrawable makeButtonSelector(int colorFocused, int colorUnfocused, String background) {
+        StateListDrawable res = new StateListDrawable();
+        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2,background));
+        res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused,2,background));
+        res.addState(new int[]{}, makeShape(colorUnfocused,1));
+        return res;
+    }
 
 
     public static GradientDrawable makeShape(int borderColor, int width) {
