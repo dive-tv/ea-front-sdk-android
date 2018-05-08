@@ -258,15 +258,32 @@ public class Utils {
         return res;
     }
 
+    public static StateListDrawable makeSelector(int colorFocused, int colorUnfocused, String background) {
+        StateListDrawable res = new StateListDrawable();
+        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2));
+        res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused,2));
+        res.addState(new int[]{}, makeShape(colorUnfocused,1, background));
+        return res;
+    }
+
+
     public static GradientDrawable makeShape(int borderColor, int width) {
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
 //        shape.setCornerRadii(new float[] { 8, 8, 8, 8, 0, 0, 0, 0 });
         shape.setColor(Color.parseColor("#00000000"));
-        shape.setStroke(3, borderColor);
+        shape.setStroke(width, borderColor);
         return shape;
     }
 
+    public static GradientDrawable makeShape(int borderColor, int width, String background) {
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+//        shape.setCornerRadii(new float[] { 8, 8, 8, 8, 0, 0, 0, 0 });
+        shape.setColor(Color.parseColor(background));
+        shape.setStroke(width, borderColor);
+        return shape;
+    }
 
 
     /**
