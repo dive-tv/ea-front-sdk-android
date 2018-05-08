@@ -70,7 +70,7 @@ public class DescriptionHolder extends TextHolder {
         }
         if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
             genericStyles = tvCardDetailListener.getGenericStyles();
-            container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()),Color.parseColor("#00000000")));
+            container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("backgroundModuleColor").getValue())));
         }
 
     }

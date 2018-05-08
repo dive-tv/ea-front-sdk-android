@@ -18,7 +18,6 @@ import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
-import sdk.dive.tv.ui.modules.adapters.HorizontalListAdapter;
 
 import static android.view.View.GONE;
 import static com.touchvie.sdk.model.Text.ContentTypeEnum.BIOGRAPHY;
@@ -73,7 +72,7 @@ public class BiographyHolder extends TextHolder {
         }
         if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
             genericStyles = tvCardDetailListener.getGenericStyles();
-            container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()),Color.parseColor("#00000000")));
+            container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("backgroundModuleColor").getValue())));
         }
 
     }
