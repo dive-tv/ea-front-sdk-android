@@ -70,8 +70,8 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final CastLocationRowData row = rows.get(position);
 
-        if(genericStyles!=null && genericStyles.get("backgroundColor")!=null) {
-            ((CastLocationItemHolder) holder).container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundColor").getValue()));
+        if(genericStyles!=null && genericStyles.get("backgroundModuleColor")!=null) {
+            ((CastLocationItemHolder) holder).container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
         }
 
         if (row.getImage() != null && row.getImage().getThumb() != null) {

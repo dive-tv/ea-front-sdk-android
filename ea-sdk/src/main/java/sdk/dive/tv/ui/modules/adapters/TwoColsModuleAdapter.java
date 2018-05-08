@@ -134,7 +134,7 @@ public class TwoColsModuleAdapter extends BaseAdapter {
     private void configureStyle(sdk.dive.tv.ui.modules.adapters.TwoColsModuleAdapter.TwoColsItemHolder holder) {
 
         if (genericStyles!=null){
-            holder.container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundColor").getValue()));
+            holder.container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
         } else if (darkStyle) {
 
             holder.container.setBackgroundColor(Utils.getColor(context, R.color.black));

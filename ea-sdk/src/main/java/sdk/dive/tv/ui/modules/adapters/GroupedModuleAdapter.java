@@ -198,7 +198,7 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         }
         if (genericStyles!=null){
-            holder.container.setBackgroundColor(Utils.getColor(context,  Color.parseColor(genericStyles.get("backgroundColor").getValue())));
+            holder.container.setBackgroundColor(Utils.getColor(context,  Color.parseColor(genericStyles.get("backgroundModuleColor").getValue())));
             holder.shopButton.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("selectedColor").getValue())));
         }
     }
@@ -217,7 +217,7 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         }
         if (genericStyles!=null){
-            holder.container.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("backgroundColor").getValue())));
+            holder.container.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("backgroundModuleColor").getValue())));
         }
 
     }
