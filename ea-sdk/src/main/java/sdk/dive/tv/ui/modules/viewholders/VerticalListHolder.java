@@ -25,7 +25,7 @@ public abstract class VerticalListHolder extends TvModuleHolder {
     TvLinearListLayout mList;
     protected TextView mTitle;
     protected ScrollView scroll;
-    private FrameLayout btnDown, btnUp;
+    FrameLayout btnDown, btnUp;
 
     /**
      * Default constructor
