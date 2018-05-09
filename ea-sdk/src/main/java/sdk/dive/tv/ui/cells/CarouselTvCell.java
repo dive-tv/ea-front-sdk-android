@@ -127,10 +127,10 @@ public class CarouselTvCell {
         }
         if (this.mSeeMoreContainer != null) {
             if (styleCell==null) {
-                this.mSeeMoreContainer.setBackgroundResource(R.drawable.focus_border_yellow);
-                this.mSeeMoreContainer.setTextColor(R.drawable.focus_border_yellow);
+                this.mSeeMoreContainer.setBackgroundResource(R.drawable.carousel_button_seemore_focus_selector);
+                this.mSeeMoreContainer.setTextColor(R.drawable.carousel_button_focus_selector_txt);
             } else {
-                this.mSeeMoreContainer.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()), 2));
+                this.mSeeMoreContainer.setBackground(Utils.makeButtonSeeMoreSelector(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue()), styleCell.getIdModuleStyleData().get("backgroundColor").getValue()));
                 this.mSeeMoreContainer.setTextColor(Utils.makeTextButtonSelector(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue())));
             }
         }

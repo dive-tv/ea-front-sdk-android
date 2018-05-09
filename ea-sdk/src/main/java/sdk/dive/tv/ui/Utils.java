@@ -267,6 +267,7 @@ public class Utils {
         res.addState(new int[]{}, makeShape(colorUnfocused,1, background));
         return res;
     }
+
     public static StateListDrawable makeButtonSelector(int colorFocused, int colorUnfocused, String background) {
         StateListDrawable res = new StateListDrawable();
         res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2,background));
@@ -274,6 +275,16 @@ public class Utils {
         res.addState(new int[]{}, makeShape(colorUnfocused,1));
         return res;
     }
+
+    public static StateListDrawable makeButtonSeeMoreSelector(int colorFocused, int colorUnfocused, String background) {
+        StateListDrawable res = new StateListDrawable();
+        res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2,background));
+        res.addState(new int[]{android.R.attr.state_focused}, new ColorDrawable(Color.parseColor(String.valueOf(colorFocused))));
+        res.addState(new int[]{}, makeShape(colorUnfocused,1, "#909090"));
+        return res;
+    }
+
+
     public static ColorStateList makeTextButtonSelector(int colorFocused, int colorUnfocused) {
         ColorStateList colorStateList = new ColorStateList(
                 new int[][]{
