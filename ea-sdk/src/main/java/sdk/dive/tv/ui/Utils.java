@@ -279,7 +279,7 @@ public class Utils {
     public static StateListDrawable makeButtonSeeMoreSelector(int colorFocused, int colorUnfocused, String background) {
         StateListDrawable res = new StateListDrawable();
         res.addState(new int[]{android.R.attr.state_pressed}, makeShape(colorFocused,2,background));
-        res.addState(new int[]{android.R.attr.state_focused}, new ColorDrawable(Color.parseColor(String.valueOf(colorFocused))));
+        res.addState(new int[]{android.R.attr.state_focused}, new ColorDrawable(colorFocused));
         res.addState(new int[]{}, makeShape(colorUnfocused,1, "#909090"));
         return res;
     }
