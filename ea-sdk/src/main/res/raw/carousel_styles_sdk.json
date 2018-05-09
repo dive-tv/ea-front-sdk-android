@@ -1,40 +1,40 @@
 [
   {
     "module_name": "carousel",
-    "styles": [
-      {
-        "property": "backgroundColor",
-        "value": "#1c1d1d"
-      },
+    "styles": [{
+      "property": "backgroundColor",
+      "value": "#3DF2DA"
+    },
       {
         "property": "backgroundColorNotif",
         "value": "#e8ebef"
       },
       {
         "property": "selectedColor",
-        "value": "#f7d73b"
+        "value": "#C715D4"
       },
       {
         "property": "unselectedColor",
-        "value": "#909090"
-      }
-    ]
+        "value": "#D45815"
+      }]
   },
   {
     "module_name": "carddetail",
-    "styles": [
+    "styles": [{
+      "property": "backgroundColor",
+      "value": "#3DF2DA"
+    },
       {
-        "property": "backgroundColor",
+        "property": "backgroundModuleColor",
         "value": "#1c1d1d"
       },
       {
         "property": "selectedColor",
-        "value": "#f7d73b"
+        "value": "#C715D4"
       },
       {
         "property": "unselectedColor",
-        "value": "#909090"
-      }
-    ]
+        "value": "#D45815"
+      }]
   }
 ]
