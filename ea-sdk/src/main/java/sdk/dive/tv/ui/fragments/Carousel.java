@@ -438,10 +438,13 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
         } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
             int backgroundDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
+            int selectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue());
+            String strSelectedDefaultColor = loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue();
+            int unselectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
             carouselContainer.setBackgroundColor(backgroundDefaultColor);
-            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
-            mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
-            mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+            mCategories.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
         }
 
         ViewGroup promptContainer = (ViewGroup) view.findViewById(R.id.socket_events_layout);
