@@ -68,6 +68,20 @@
         </FrameLayout>
 
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/carousel_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo_powered"
+            android:layout_marginEnd="0dp"
+            />
+    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/card_detail_container"
