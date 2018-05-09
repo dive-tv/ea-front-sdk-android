@@ -126,10 +126,13 @@ public class CarouselTvCell {
                 this.mInfoBorder.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()),2));
         }
         if (this.mSeeMoreContainer != null) {
-            if (styleCell==null)
+            if (styleCell==null) {
                 this.mSeeMoreContainer.setBackgroundResource(R.drawable.focus_border_yellow);
-            else
-                this.mSeeMoreContainer.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()),2));
+                this.mSeeMoreContainer.setTextColor(R.drawable.focus_border_yellow);
+            } else {
+                this.mSeeMoreContainer.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()), 2));
+                this.mSeeMoreContainer.setTextColor(Utils.makeTextButtonSelector(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue())));
+            }
         }
 
     }

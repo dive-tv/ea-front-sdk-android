@@ -1,10 +1,12 @@
 package sdk.dive.tv.ui;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -271,6 +273,23 @@ public class Utils {
         res.addState(new int[]{android.R.attr.state_focused}, makeShape(colorFocused,2,background));
         res.addState(new int[]{}, makeShape(colorUnfocused,1));
         return res;
+    }
+    public static ColorStateList makeTextButtonSelector(int colorFocused, int colorUnfocused) {
+        ColorStateList colorStateList = new ColorStateList(
+                new int[][]{
+                        new int[]{android.R.attr.state_pressed},
+                        new int[]{android.R.attr.state_selected},
+                        new int[]{android.R.attr.state_focused},
+                        new int[]{android.R.attr.state_selected | android.R.attr.state_focused},
+                        new int[]{},
+                },
+                new int[]{
+                        colorFocused,
+                        colorFocused,
+                        Color.parseColor("#252526"),
+                        Color.parseColor("#252526"),
+                        colorUnfocused});
+        return colorStateList;
     }
 
 
