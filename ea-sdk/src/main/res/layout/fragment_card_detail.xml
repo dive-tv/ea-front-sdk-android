@@ -68,19 +68,14 @@
         </FrameLayout>
 
     </LinearLayout>
-    <RelativeLayout
-        android:id="@+id/carousel_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:background="@android:color/transparent"
-        android:layout_alignParentEnd="true" >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/logo_powered"
-            android:layout_marginEnd="0dp"
-            />
-    </RelativeLayout>
+    <ImageView
+        android:layout_width="@dimen/carousel_logo_width"
+        android:layout_height="@dimen/carousel_logo_height"
+        android:src="@drawable/logo_powered"
+        android:layout_marginEnd="@dimen/carousel_logo_margin_end"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitCenter"
+        />
 
 
     <LinearLayout
