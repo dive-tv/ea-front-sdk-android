@@ -188,13 +188,13 @@ public class CardDetail extends Fragment implements Serializable {
                 if (card != null) {
                     Card.TypeEnum cardType = card.getType();
                     if (style!=null){
-                        if (style != null) {
-                            try {
-                                styleConfig = new JSONArray(style);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                        try {
+                            styleConfig = new JSONArray(style);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+                    }else{
+                        styleConfig = null;
                     }
                     JSONObject configJson = getConfigJSON(cardType);
                     cardDetail = new DiveTvCardDetailJson(getContext(), DiveTVTvCardDetailManager.class.getPackage().getName() + "." + DiveTVTvCardDetailManager.class.getSimpleName());
