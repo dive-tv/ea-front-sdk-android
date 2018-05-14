@@ -31,7 +31,7 @@ Class | Method | HTTP request
 *user_id* | *String* | *unique id that tracks a unique client of your service* 
 *api_key* | *String* | *client api key provided by Dive*
 *context* | *Context* | *context where the fragment will be inflated*
-*style* | *String* | *Json string with colors configuration*
+*style* | *String* | *Json string with colors configuration. NULL for default config*
 
 #### Return:
 N/A
