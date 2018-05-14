@@ -20,7 +20,7 @@ The following sections describe the different functions that SDK contains to int
 
 ### Initialize
 ````java
-initialize(user_id, api_key, context)
+initialize(user_id, api_key, context, style)
 ````
 Initializes the library with the specified configuration
 
@@ -31,6 +31,7 @@ Class | Method | HTTP request
 *user_id* | *String* | *unique id that tracks a unique client of your service* 
 *api_key* | *String* | *client api key provided by Dive*
 *context* | *Context* | *context where the fragment will be inflated*
+*style* | *String* | *Json string with colors configuration*
 
 #### Return:
 N/A
@@ -40,13 +41,110 @@ N/A
 DiveSDK diveSDK = new DiveSDK();
 String apiKey = "client_api_key_example"; // String | Client api key provided by Dive
 String userId = "user_id_example"; // String | Unique id that tracks a unique client of your s
+String style = "[\n" +
+                "  {\n" +
+                "    \"module_name\": \"carousel\",\n" +
+                "    \"styles\": [{\n" +
+                "      \"property\": \"backgroundColor\",\n" +
+                "      \"value\": \"#1c1d1d\"\n" +
+                "    },\n" +
+                "      {\n" +
+                "        \"property\": \"backgroundColorNotif\",\n" +
+                "        \"value\": \"#e8ebef\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"property\": \"selectedColor\",\n" +
+                "        \"value\": \"#f7d73b\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"property\": \"unselectedColor\",\n" +
+                "        \"value\": \"#909090\"\n" +
+                "      }]\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"module_name\": \"carddetail\",\n" +
+                "    \"styles\": [{\n" +
+                "\t  \"property\": \"backgroundColor\",\n" +
+                "\t  \"value\": \"#1c1d1d\"\n" +
+                "\t},\n" +
+                "      {\n" +
+                "        \"property\": \"backgroundModuleColor\",\n" +
+                "        \"value\": \"#252526\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"property\": \"selectedColor\",\n" +
+                "        \"value\": \"#f7d73b\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"property\": \"unselectedColor\",\n" +
+                "        \"value\": \"#909090\"\n" +
+                "      }]\n" +
+                "  }\n" +
+                "]";
 try {
-    diveSDK.initialize(userId, apiKey, getApplicationContext());
+    diveSDK.initialize(userId, apiKey, getApplicationContext(), style);
 } catch (ApiException e) {
     System.err.println("Exception when calling DiveSDK#initialize");
     e.printStackTrace();
 }
 ````
+
+### Json Style guide
+[
+  {
+    "module_name": "carousel",
+    "styles": [{
+      "property": "backgroundColor",
+      "value": "#1c1d1d"
+    },
+      {
+        "property": "backgroundColorNotif",
+        "value": "#e8ebef"
+      },
+      {
+        "property": "selectedColor",
+        "value": "#f7d73b"
+      },
+      {
+        "property": "unselectedColor",
+        "value": "#909090"
+      }]
+  },
+  {
+    "module_name": "carddetail",
+    "styles": [{
+	  "property": "backgroundColor",
+	  "value": "#1c1d1d"
+	},
+      {
+        "property": "backgroundModuleColor",
+        "value": "#252526"
+      },
+      {
+        "property": "selectedColor",
+        "value": "#f7d73b"
+      },
+      {
+        "property": "unselectedColor",
+        "value": "#909090"
+      }]
+  }
+]
+
+#### module_name 
+You can choose carousel or carddetail for customize colors for Carousel or Card Detail
+
+#### styles
+
+Name | Description | 
+------------ | ------------- |
+*backgroundcolor* | *set background color for carousel or carddetail* 
+*backgroundModuleColor* | *set background of modules inside card detail*
+*backgroundColorNotif* | *set background of notif message*
+*selectedColor* | *set color of selected card or module*
+*unselectedColor* | *set color of unselected card or module*
+ 
+
 
 ### Movie sync availability
 ````java
