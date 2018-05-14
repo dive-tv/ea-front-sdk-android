@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,12 +17,14 @@ import com.touchvie.sdk.model.Product;
 
 import java.util.ArrayList;
 import java.util.Currency;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
 import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenWeb;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 
 /**
@@ -39,6 +42,7 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private boolean darkStyle = false;
     private String parentId;
     private String parentType;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     public ShopAdapter(Context context, ArrayList<Product> data, TvCardDetailListener tvCardDetailListener, String cardId, String cardType) {
         super();
@@ -99,6 +103,12 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             });
         }
 
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null) {
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            if (genericStyles != null) {
+                ((ShopItemHolder) holder).shopNow.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("selectedColor").getValue())));
+            }
+        }
     }
 
     @Override

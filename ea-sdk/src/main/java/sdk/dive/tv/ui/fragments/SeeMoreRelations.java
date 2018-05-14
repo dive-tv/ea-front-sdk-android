@@ -30,12 +30,14 @@ import sdk.dive.tv.ui.cells.CarouselTvCell;
 import sdk.dive.tv.ui.cells.GenericTvCell;
 import sdk.dive.tv.ui.cells.PersonTvCell;
 import sdk.dive.tv.ui.cells.SeeMoreTvCell;
+import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.interfaces.CarouselInterface;
 import sdk.dive.tv.ui.managers.CarouselPromptManager;
 import sdk.dive.tv.ui.relations.LocalContentTypes;
 
 import static com.touchvie.sdk.model.Duple.ContentTypeEnum.FEATURED_IN;
 import static sdk.dive.tv.ui.Utils.CAROUSEL_CARD;
+import static sdk.dive.tv.ui.Utils.STYLE;
 import static sdk.dive.tv.ui.relations.LocalContentTypes.HOME_OFF_RELATION;
 
 /**
@@ -58,6 +60,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
     private FrameLayout mCloseLayout;
     private RecyclerView mCarouselList;
     private View lastClickedView = null;
+    private ModuleStyle style;
 
     public SeeMoreRelations() {
         // Required empty public constructor
@@ -69,8 +72,12 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
      *
      * @return A new instance of fragment CardDetail.
      */
-    public static SeeMoreRelations newInstance() {
+    public static SeeMoreRelations newInstance(ModuleStyle style) {
+
         SeeMoreRelations fragment = new SeeMoreRelations();
+        Bundle extras = new Bundle();
+        extras.putSerializable(STYLE, style);
+
         return fragment;
     }
 
@@ -80,6 +87,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         instance = this;
         Bundle extras = getArguments();
         if (extras != null) {
+            style = (ModuleStyle) extras.getSerializable(STYLE);
             carouselCard = (Card) extras.getSerializable(CAROUSEL_CARD);
         }
         carouselItems = new ArrayList<>();
@@ -104,7 +112,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         LinearLayoutManager carouselLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mCarouselList.setLayoutManager(carouselLayoutManager);
 
-        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, false, mCarouselListener, instance);
+        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, false, style, mCarouselListener, instance);
         mAdapter.inSeeMoreFragment(true);
         mCarouselList.setAdapter(mAdapter);
 

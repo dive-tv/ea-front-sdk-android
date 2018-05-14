@@ -28,8 +28,8 @@ public abstract class HorizontalListHolder extends TvModuleHolder {
 
     protected TextView mTitle;
     private RecyclerView mList;
-    private FrameLayout btnBack;
-    private FrameLayout btnNext;
+    FrameLayout btnBack;
+    FrameLayout btnNext;
     private int itemCount = 0;
     private int currentItem = 0;
     private int itemThreshold = 2;

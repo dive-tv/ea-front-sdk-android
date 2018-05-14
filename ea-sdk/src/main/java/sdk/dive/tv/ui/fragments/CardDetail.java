@@ -2,6 +2,7 @@ package sdk.dive.tv.ui.fragments;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import com.google.gson.GsonBuilder;
 import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.RelationModule;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,7 +29,9 @@ import sdk.client.dive.tv.SdkClient;
 import sdk.client.dive.tv.rest.callbacks.ClientCallback;
 import sdk.client.dive.tv.rest.enums.RestAPIError;
 import sdk.dive.tv.R;
+import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.builders.DiveTvCardDetailJson;
+import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.interfaces.DiveInterface;
 import sdk.dive.tv.ui.managers.DiveTVTvCardDetailManager;
 
@@ -60,9 +66,11 @@ public class CardDetail extends Fragment implements Serializable {
     private LinearLayout mButtons;
     private FrameLayout mExitButton;
     private FrameLayout mMinimizeButton;
-
+    private RelativeLayout mRelativeContainer ;
     private LinearLayout mContainer, mUpperContainer;
     private OnCardDetailInteractionListener mListener;
+    private JSONArray styleConfig;
+    private ModuleStyle styleCarddetail;
 
 
     public CardDetail() {
@@ -134,9 +142,37 @@ public class CardDetail extends Fragment implements Serializable {
                     ((DiveInterface) mListener).minimizeDive();
             }
         });
+        if (style!=null){
+            if (style != null) {
+                try {
+                    styleConfig = new JSONArray(style);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            styleCarddetail = loadStyleCarddetail(styleConfig);
+        }
 
         mContainer = (LinearLayout) view.findViewById(R.id.card_detail_container);
+        mRelativeContainer = (RelativeLayout) view.findViewById(R.id.main_carddetail_layout);
+
         mUpperContainer = (LinearLayout) view.findViewById(R.id.card_detail_upper_container);
+        if (styleCarddetail!=null && styleCarddetail.getIdModuleStyleData().get("backgroundColor")!=null){
+            int backgroundColor = Color.parseColor(styleCarddetail.getIdModuleStyleData().get("backgroundColor").getValue());
+            mRelativeContainer .setBackgroundColor(backgroundColor);
+            mUpperContainer.setBackgroundColor(backgroundColor);
+            mMinimizeButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
+            mExitButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
+        } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
+            int backgroundDefaultColor = Color.parseColor(loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
+            int selectedDefaultColor = Color.parseColor(loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue());
+            String strSelectedDefaultColor = loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue();
+            int unselectedDefaultColor = Color.parseColor(loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
+            mRelativeContainer .setBackgroundColor(backgroundDefaultColor);
+            mUpperContainer.setBackgroundColor(backgroundDefaultColor);
+            mMinimizeButton.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+            mExitButton.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+        }
 
         ClientCallback<Card> callback = new ClientCallback<Card>() {
             @Override
@@ -151,10 +187,18 @@ public class CardDetail extends Fragment implements Serializable {
 
                 if (card != null) {
                     Card.TypeEnum cardType = card.getType();
-
+                    if (style!=null){
+                        try {
+                            styleConfig = new JSONArray(style);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }else{
+                        styleConfig = null;
+                    }
                     JSONObject configJson = getConfigJSON(cardType);
                     cardDetail = new DiveTvCardDetailJson(getContext(), DiveTVTvCardDetailManager.class.getPackage().getName() + "." + DiveTVTvCardDetailManager.class.getSimpleName());
-                    cardDetail.loadStyleConfig(null).loadDataConfig(configJson).buildAll(cardId, versionId, new ArrayList<RelationModule>(card.getRelations()), mManager, mContainer, mUpperContainer, null, !isCarousel, isCarousel, getActivity());
+                    cardDetail.loadStyleConfig(styleConfig).loadDataConfig(configJson).buildAll(cardId, versionId, new ArrayList<RelationModule>(card.getRelations()), mManager, mContainer, mUpperContainer, null, !isCarousel, isCarousel, getActivity());
                 }
             }
         };
@@ -292,6 +336,29 @@ public class CardDetail extends Fragment implements Serializable {
             return;
         mButtons.requestFocus();
     }
+
+    public ModuleStyle loadStyleCarddetail(JSONArray styleConfig) {
+        ModuleStyle[] styles;
+        ModuleStyle idStyle = null;
+        if (styleConfig == null) {
+            return null;
+        } else {
+            styles = new GsonBuilder().create().fromJson(styleConfig.toString(), ModuleStyle[].class); //TODO: test!!!
+            if (styles == null) {
+                return null;
+            } else {
+                if (styles.length > 0) {
+                    for (ModuleStyle style : styles) {
+                        if (style.getModuleName().equals("carddetail")) {
+                            idStyle = style;
+                        }
+                    }
+                }
+            }
+            return idStyle;
+        }
+    }
+
 
     public interface OnCardDetailInteractionListener extends Serializable {
         void onCloseCardDetail(String cardId, boolean isLiked);

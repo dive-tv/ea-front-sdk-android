@@ -1,11 +1,13 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import java.util.HashMap;
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.data.ModuleMainStyle;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.data.ModuleStyleProperty;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.utils.CropSquareTransformation2;
@@ -40,6 +43,7 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
     private boolean darkStyle = false;
     private boolean styleConfigRetrieved = false;
     private String parentId;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     public GroupedModuleAdapter(Context context, ArrayList<Card> rows, TvCardDetailListener tvCardDetailListener, String cardId) {
         super();
@@ -177,6 +181,9 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
             styleConfigRetrieved = true;
         }
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+        }
     }
 
     private void configureStyle(sdk.dive.tv.ui.modules.adapters.GroupedModuleAdapter.GroupedBuyItemHolder holder) {
@@ -189,6 +196,10 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
             } else {
                 holder.price.setTextAppearance(R.style.MinicardTitleLight);
             }
+        }
+        if (genericStyles!=null){
+            holder.container.setBackgroundColor(Utils.getColor(context,  Color.parseColor(genericStyles.get("backgroundModuleColor").getValue())));
+            holder.shopButton.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("selectedColor").getValue())));
         }
     }
 
@@ -205,6 +216,9 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
 
         }
+        if (genericStyles!=null){
+            holder.container.setBackgroundColor(Utils.getColor(context, Color.parseColor(genericStyles.get("backgroundModuleColor").getValue())));
+        }
 
     }
 
@@ -219,12 +233,14 @@ public class GroupedModuleAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView price;
         TextView merchant;
         LinearLayout container;
+        FrameLayout shopButton;
 
         GroupedBuyItemHolder(View v) {
             super(v);
             image = (ImageView) v.findViewById(R.id.shop_image);
             price = (TextView) v.findViewById(R.id.shop_price);
             merchant = (TextView) v.findViewById(R.id.shop_shop);
+            shopButton = (FrameLayout) v.findViewById(R.id.shop_button);
             container = (LinearLayout) v.findViewById(R.id.simageitems_container);
         }
     }

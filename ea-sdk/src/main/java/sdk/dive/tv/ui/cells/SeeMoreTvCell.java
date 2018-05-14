@@ -43,7 +43,7 @@ public class SeeMoreTvCell extends CarouselTvCell {
         cellLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mActivityListener.onShowMoreRelations(getCard());
+                mActivityListener.onShowMoreRelations(getCard(), getStyleCell());
                 if (cellLayout != null && mCarouselInterface != null)
                     mCarouselInterface.clickedView(cellLayout);
             }
@@ -56,6 +56,7 @@ public class SeeMoreTvCell extends CarouselTvCell {
                     onCellFocused();
                     iconImage.setColorFilter(Utils.getColor(context, R.color.white)); // White Tint
                 } else {
+                    onCellUnFocusedColors(context);
                     onCellUnfocused(context);
                     iconImage.setColorFilter(Utils.getColor(context, R.color.warm_grey)); // White Tint
                 }

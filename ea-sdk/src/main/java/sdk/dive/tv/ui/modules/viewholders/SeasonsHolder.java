@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.viewholders;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
@@ -11,9 +12,11 @@ import com.touchvie.sdk.model.SeasonsData;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.adapters.HorizontalListAdapter;
@@ -28,6 +31,7 @@ import static com.touchvie.sdk.model.Seasons.ContentTypeEnum.SEASONS;
  */
 
 public class SeasonsHolder extends HorizontalListHolder {
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     protected SeasonsAdapter adapter;
     protected ArrayList<ImageRowData> data;
@@ -74,6 +78,11 @@ public class SeasonsHolder extends HorizontalListHolder {
         HorizontalListAdapter adapter = new HorizontalListAdapter(context, rows, tvCardDetailListener);
 //        SeasonsAdapter adapter = new SeasonsAdapter(context, rows, this);
         super.setAdapter(adapter, rows.size());
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            btnBack.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+            btnNext.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+        }
 
     }
 }

@@ -25,7 +25,25 @@ public class DiveTvCardDetailJson extends CardDetailJson {
     }
 
     public CardDetailJson loadStyleConfig(JSONArray styleConfig) {
-
+     /*   ModuleStyle[] styles;
+        ModuleStyle idStyle = null;
+        if (styleConfig == null) {
+            return null;
+        } else {
+            styles = new GsonBuilder().create().fromJson(styleConfig.toString(), ModuleStyle[].class); //TODO: test!!!
+            if (styles == null) {
+                return null;
+            } else {
+                if (styles.length > 0) {
+                    for (ModuleStyle style : styles) {
+                        if (style.getModuleName().equals("carddetail")) {
+                            idStyle = style;
+                        }
+                    }
+                }
+            }
+            return idStyle;
+        }*/
         if (styleConfig == null) {
             requestDataStyle();
         } else {
@@ -35,7 +53,9 @@ public class DiveTvCardDetailJson extends CardDetailJson {
             } else {
                 if (styles.length > 0) {
                     for (ModuleStyle style : styles) {
-                        idStyle.put(style.getModuleName(), style);
+                        if (style.getModuleName().equals("carddetail")) {
+                            idStyle.put(style.getModuleName(), style);
+                        }
                     }
                 }
             }

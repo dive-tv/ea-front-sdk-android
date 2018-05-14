@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.cells.CarouselTvCell;
+import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.fragments.Carousel;
 import sdk.dive.tv.ui.interfaces.CarouselInterface;
 import sdk.dive.tv.ui.interfaces.PocketAdapterInterface;
@@ -31,13 +32,15 @@ public class CarouselCardsAdapter extends RecyclerView.Adapter<CarouselCardsAdap
     private ArrayList<CarouselTvCell> carouselItems;
     private boolean canRefreshFocus = true;
     private boolean inSeeMoreFragment = false;
+    private ModuleStyle styleCarousel;
 
-    public CarouselCardsAdapter(Context context, ArrayList<CarouselTvCell> carouselItems, boolean isFiltered,
+    public CarouselCardsAdapter(Context context, ArrayList<CarouselTvCell> carouselItems, boolean isFiltered, ModuleStyle style,
                                 Carousel.OnCarouselInteractionListener listener, CarouselInterface carouselInterface) {
         this.context = context;
         this.mInflater = LayoutInflater.from(context);
         this.carouselItems = carouselItems;
         this.isFiltered = isFiltered;
+        this.styleCarousel = style;
         this.mListener = listener;
         this.mCarouselInterface = carouselInterface;
     }
@@ -57,6 +60,8 @@ public class CarouselCardsAdapter extends RecyclerView.Adapter<CarouselCardsAdap
         cell.setActivityListener(mListener);
         cell.setCarouselInterface(mCarouselInterface);
         cell.setPocketInterface(this);
+        if (styleCarousel!=null)
+            cell.setStyleCell(styleCarousel);
         View view = cell.getView(holder.row.getContext());
         if (!isFiltered && cell.hasRelations()) {
             holder.separator.setVisibility(View.VISIBLE);

@@ -64,6 +64,7 @@ public abstract class TextHolder extends TvModuleHolder {
 
             }
         });
+
     }
 
     void manageSource(final TextData containerText) {

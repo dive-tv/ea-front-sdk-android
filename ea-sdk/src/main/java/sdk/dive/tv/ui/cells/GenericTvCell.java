@@ -178,6 +178,7 @@ public class GenericTvCell extends CarouselTvCell {
                     noImage.setColorFilter(Utils.getColor(context, R.color.white));
                 } else {
                     if (!isSeeMoreFocused && !isLikeBtnFocused) {
+                        onCellUnFocusedColors(context);
                         onCellUnfocused(context);
                         noImage.setColorFilter(Utils.getColor(context, R.color.warm_grey));
                     }
@@ -202,6 +203,7 @@ public class GenericTvCell extends CarouselTvCell {
                     cellLayout.setFocusable(true);
                     cellLayout.setFocusableInTouchMode(true);
 
+                    onCellUnFocusedColors(context);
                     onCellUnfocused(context);
                     noImage.setColorFilter(Utils.getColor(context, R.color.warm_grey)); // White Tint
                 }

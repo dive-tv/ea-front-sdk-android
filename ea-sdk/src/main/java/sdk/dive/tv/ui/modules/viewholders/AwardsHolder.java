@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.viewholders;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -13,9 +14,11 @@ import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.CardContainer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.adapters.AwardsAdapter;
@@ -32,6 +35,7 @@ public class AwardsHolder extends VerticalListHolder {
     protected ArrayList<AwardsData> data;
     protected ScrollView scroll;
     protected FrameLayout btnDown, btnUp;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     /**
      * Default constructor
@@ -68,5 +72,12 @@ public class AwardsHolder extends VerticalListHolder {
 
         adapter = new AwardsAdapter(context, ((Awards) container).getData(), true, sectionListener.isCarousel(), tvCardDetailListener);
         super.setAdapter(adapter, true, separator);
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            mContainer.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()), genericStyles.get("backgroundModuleColor").getValue()));
+            btnDown.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+            btnUp.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+        }
+
     }
 }

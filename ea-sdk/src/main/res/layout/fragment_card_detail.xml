@@ -68,6 +68,15 @@
         </FrameLayout>
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="@dimen/carousel_logo_width"
+        android:layout_height="@dimen/carousel_logo_height"
+        android:src="@drawable/logo_powered"
+        android:layout_marginEnd="@dimen/carousel_logo_margin_end"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitCenter"
+        />
+
 
     <LinearLayout
         android:id="@+id/card_detail_container"

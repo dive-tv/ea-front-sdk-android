@@ -1,7 +1,9 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
@@ -20,6 +23,7 @@ import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.data.ModuleMainStyle;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.data.ModuleStyleProperty;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.data.CastLocationRowData;
@@ -42,6 +46,7 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private boolean styleConfigRetrieved = false;
     private boolean darkStyle = false;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     public CastLocationAdapter(Context context, ArrayList<CastLocationRowData> rows, TvCardDetailListener tvCardDetailListener, String cardId) {
         super();
@@ -64,6 +69,10 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final CastLocationRowData row = rows.get(position);
+
+        if(genericStyles!=null && genericStyles.get("backgroundModuleColor")!=null) {
+            ((CastLocationItemHolder) holder).container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+        }
 
         if (row.getImage() != null && row.getImage().getThumb() != null) {
             ((CastLocationItemHolder) holder).image.getLayoutParams().height = (int) context.getResources().getDimension(R.dimen.simageitems_image_height);
@@ -141,6 +150,9 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     darkStyle = true;
                 }
             }
+            if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+                genericStyles = tvCardDetailListener.getGenericStyles();
+            }
             styleConfigRetrieved = true;
         }
     }
@@ -152,11 +164,13 @@ public class CastLocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public static class CastLocationItemHolder extends RecyclerView.ViewHolder {
 
+        private CardView container;
         private ImageView image;
         private TextView fictionalItem;
 
         public CastLocationItemHolder(View v) {
             super(v);
+            container = (CardView) v.findViewById(R.id.cview_container);
             image = (ImageView) v.findViewById(R.id.castlocation_image);
             fictionalItem = (TextView) v.findViewById(R.id.tv_cast_row_title);
         }

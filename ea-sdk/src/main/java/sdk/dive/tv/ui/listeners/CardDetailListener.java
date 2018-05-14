@@ -56,6 +56,8 @@ public interface CardDetailListener extends Parcelable {
 
     HashMap<String, ModuleStyleData> getModuleStyles(String moduleName);
 
+    HashMap<String, ModuleStyleData> getGenericStyles();
+
     @Override
     public void writeToParcel(Parcel parcel, int i);
 

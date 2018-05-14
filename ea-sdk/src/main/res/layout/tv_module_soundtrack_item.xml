@@ -10,6 +10,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/tv_module_container_border"
         android:layout_width="@dimen/module_gallery_item_image_width"
         android:layout_height="@dimen/module_gallery_item_image_height"
         android:layout_gravity="center"

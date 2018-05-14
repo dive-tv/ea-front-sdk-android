@@ -2,6 +2,7 @@ package sdk.dive.tv.ui.cells;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.fragments.Carousel;
 import sdk.dive.tv.ui.interfaces.CarouselInterface;
 import sdk.dive.tv.ui.interfaces.PocketAdapterInterface;
@@ -47,6 +49,7 @@ public class CarouselTvCell {
     protected CarouselInterface mCarouselInterface;
     PocketAdapterInterface mPocketInterface;
     private HashMap<String, ArrayList<RelationModule>> contentTypeRelations = null;
+    private ModuleStyle styleCell = null;
 
     //Common views
     CarouselTVCellLinear cellLayout;
@@ -92,18 +95,44 @@ public class CarouselTvCell {
         return cellLayout;
     }
 
+    public void setStyleCell(ModuleStyle style){
+        this.styleCell = style;
+    }
+
+    public ModuleStyle getStyleCell(){
+        return this.styleCell;
+    }
+
     void onCellFocusedSetColors(Context context) {
         if (this.mImageBorder != null) {
-            this.mImageBorder.setBackgroundResource(R.drawable.focus_border_yellow);
+            if (styleCell==null)
+                this.mImageBorder.setBackgroundResource(R.drawable.focus_border_yellow);
+            else
+                this.mImageBorder.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()),2));
         }
 
         if (this.mTypeBox != null) {
-            this.mTypeBox.setBackgroundResource(R.drawable.focus_border_yellow);
+            if (styleCell==null)
+                this.mTypeBox.setBackgroundResource(R.drawable.focus_border_yellow);
+            else
+                this.mTypeBox.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()),2));
             this.mTypeBox.setTextColor(Utils.getColor(context, R.color.pale_grey));
         }
 
         if (this.mInfoBorder != null) {
-            this.mInfoBorder.setBackgroundResource(R.drawable.focus_border_yellow);
+            if (styleCell==null)
+                this.mInfoBorder.setBackgroundResource(R.drawable.focus_border_yellow);
+            else
+                this.mInfoBorder.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()),2));
+        }
+        if (this.mSeeMoreContainer != null) {
+            if (styleCell==null) {
+                this.mSeeMoreContainer.setBackgroundResource(R.drawable.carousel_button_seemore_focus_selector);
+                this.mSeeMoreContainer.setTextColor(R.drawable.carousel_button_focus_selector_txt);
+            } else {
+                this.mSeeMoreContainer.setBackground(Utils.makeButtonSeeMoreSelector(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue()), styleCell.getIdModuleStyleData().get("backgroundColor").getValue()));
+                this.mSeeMoreContainer.setTextColor(Utils.makeTextButtonSelector(Color.parseColor(styleCell.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue())));
+            }
         }
 
     }
@@ -112,6 +141,30 @@ public class CarouselTvCell {
         if (this.mInfoContainer != null && openWhenFocused != null) {
             this.openWhenFocused.setFocus();
             this.handler.postDelayed(openWhenFocused, DELAY);
+        }
+    }
+
+    void onCellUnFocusedColors(Context context){
+        if (this.mImageBorder != null) {
+            if (styleCell==null)
+                return;
+            else
+                this.mImageBorder.setBackground( Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue()),1));
+        }
+
+        if (this.mTypeBox != null) {
+            if (styleCell==null)
+                return;
+            else
+                this.mTypeBox.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue()),1));
+            this.mTypeBox.setTextColor(Utils.getColor(context, R.color.pale_grey));
+        }
+
+        if (this.mInfoBorder != null) {
+            if (styleCell==null)
+                return;
+            else
+                this.mInfoBorder.setBackground(Utils.makeShape(Color.parseColor(styleCell.getIdModuleStyleData().get("unselectedColor").getValue()),1));
         }
     }
 

@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import com.touchvie.sdk.model.Card;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.eventbus.EventBusManager;
@@ -21,6 +23,7 @@ import sdk.dive.tv.eventbus.EventBusIds;
 import sdk.dive.tv.eventbus.OpenCard;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.data.ModuleMainStyle;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.data.ModuleStyleProperty;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.modules.data.SquareImageRowData;
@@ -42,6 +45,7 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
     private Context context;
     private String parentId;
     private String parentType;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     public SquareImageItemsAdapter(Context context, ArrayList<SquareImageRowData> rows, TvCardDetailListener tvCardDetailListener, String cardId) {
         super();
@@ -125,13 +129,20 @@ public class SquareImageItemsAdapter extends RecyclerView.Adapter<RecyclerView.V
                     darkStyle = true;
                 }
             }
+            if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+                genericStyles = tvCardDetailListener.getGenericStyles();
+            }
+
             styleConfigRetrieved = true;
         }
     }
 
     private void configureStyle(sdk.dive.tv.ui.modules.adapters.SquareImageItemsAdapter.SquareImageItemsItemHolder holder) {
 
-        if (darkStyle) {
+        if (genericStyles!=null){
+            holder.container.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+            holder.info.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+        } else if (darkStyle) {
             holder.container.setBackgroundColor(Utils.getColor(context, R.color.black));
 
             holder.info.setBackgroundColor(Utils.getColor(context, R.color.black));

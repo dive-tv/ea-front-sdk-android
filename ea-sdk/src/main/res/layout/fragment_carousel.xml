@@ -86,6 +86,14 @@
             android:spinnerMode="dropdown" />
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="@dimen/carousel_logo_width"
+        android:layout_height="@dimen/carousel_logo_height"
+        android:src="@drawable/logo_powered"
+        android:layout_marginEnd="@dimen/carousel_logo_margin_end"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitCenter"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/carousel_card_list"

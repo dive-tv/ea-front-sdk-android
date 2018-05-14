@@ -1,0 +1,44 @@
+[
+  {
+    "module_name": "carousel",
+    "styles": [
+      {
+        "property": "backgroundColor",
+        "value": "#1c1d1d"
+      },
+      {
+        "property": "backgroundColorNotif",
+        "value": "#e8ebef"
+      },
+      {
+        "property": "selectedColor",
+        "value": "#f7d73b"
+      },
+      {
+        "property": "unselectedColor",
+        "value": "#909090"
+      }
+    ]
+  },
+  {
+    "module_name": "carddetail",
+    "styles": [
+      {
+        "property": "backgroundColor",
+        "value": "#1c1d1d"
+      },
+      {
+        "property": "backgroundModuleColor",
+        "value": "#252526"
+      },
+      {
+        "property": "selectedColor",
+        "value": "#f7d73b"
+      },
+      {
+        "property": "unselectedColor",
+        "value": "#909090"
+      }
+    ]
+  }
+]

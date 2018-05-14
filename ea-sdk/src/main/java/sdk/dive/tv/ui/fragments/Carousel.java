@@ -2,6 +2,7 @@ package sdk.dive.tv.ui.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,11 +22,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.GsonBuilder;
 import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.Duple;
 import com.touchvie.sdk.model.DupleData;
 import com.touchvie.sdk.model.RelationModule;
 import com.touchvie.sdk.model.Single;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,8 +44,10 @@ import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.activities.DiveActivity;
 import sdk.dive.tv.ui.adapters.CarouselCardsAdapter;
 import sdk.dive.tv.ui.adapters.CategoriesAdapter;
+import sdk.dive.tv.ui.builders.CardDetailJson;
 import sdk.dive.tv.ui.cells.CarouselTvCell;
 import sdk.dive.tv.ui.cells.SeeMoreTvCell;
+import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.interfaces.CarouselInterface;
 import sdk.dive.tv.ui.interfaces.DiveInterface;
 import sdk.dive.tv.ui.listeners.CarouselFragmentListener;
@@ -82,6 +89,7 @@ import static sdk.dive.tv.ui.Utils.SEND_FEEDBACK;
 import static sdk.dive.tv.ui.Utils.SEND_INITIAL_FEEDBACK;
 import static sdk.dive.tv.ui.Utils.SEND_MENU_CARDS;
 import static sdk.dive.tv.ui.Utils.SHOW_CAROUSEL_ERROR;
+import static sdk.dive.tv.ui.Utils.STYLE;
 import static sdk.dive.tv.ui.Utils.UPDATE_CURRENT_TIME;
 import static sdk.dive.tv.ui.datawrappers.CardTypes.CHARACTER;
 import static sdk.dive.tv.ui.datawrappers.CardTypes.FASHION;
@@ -155,13 +163,16 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
     protected boolean allReadyCalled = false;
     private boolean sceneHasCommercials = false;
+    private String style;
+    private JSONArray styleConfig;
+    private ModuleStyle styleCarousel;
 
     public Carousel() {
         // Required empty public constructor
 
     }
 
-    public static Carousel newInstance(String apiKey, String movieId, String channelId, Boolean isMovie, int movieTime, String previousScreen, String movieName, String deviceId, OnCarouselInteractionListener listener) {
+    public static Carousel newInstance(String apiKey, String movieId, String channelId, Boolean isMovie, int movieTime, String previousScreen, String movieName, String deviceId, String style, OnCarouselInteractionListener listener) {
         Carousel fragment = new Carousel();
         mListener = listener;
         Bundle extras = new Bundle();
@@ -173,6 +184,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         extras.putInt(MOVIE_TIMESTAMP, movieTime);
         extras.putString(PREVIOUS_SCREEN, previousScreen);
         extras.putString(MOVIE_NAME, movieName);
+        extras.putString(STYLE, style);
         fragment.setArguments(extras);
         return fragment;
     }
@@ -196,11 +208,22 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             channelId = extras.getString(CHANNEL_ID);
             previousScreen = extras.getString(Utils.PREVIOUS_SCREEN);
             movieName = extras.getString(Utils.MOVIE_NAME);
+            style = extras.getString(Utils.STYLE);
         }
         if (SdkClient.getInstance() == null) {
             SdkClient.getOrCreateInstance(getContext(), apiKey, deviceId);
         } else {
             super.onCreate(savedInstanceState);
+        }
+        if (style!=null){
+            if (style != null) {
+                try {
+                    styleConfig = new JSONArray(style);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            styleCarousel = loadStyleCarousel(styleConfig);
         }
 
         mUIHandler = new Handler(this);
@@ -270,6 +293,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             public void onErrorReceived(StreamError error) {
             }
         };
+
         if (channelId != null)
             SdkClient.getInstance().tvChannelStreamConnect(channelId, mSocketListener);
 
@@ -406,6 +430,23 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         mCarouselList = (RecyclerView) view.findViewById(R.id.carousel_card_list);
 
+        if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundColor")!=null){
+            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
+            carouselContainer.setBackgroundColor(backgroundColor);
+            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+            mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+        } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
+            int backgroundDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
+            int selectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue());
+            String strSelectedDefaultColor = loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue();
+            int unselectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
+            carouselContainer.setBackgroundColor(backgroundDefaultColor);
+            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+            mCategories.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+        }
+
         ViewGroup promptContainer = (ViewGroup) view.findViewById(R.id.socket_events_layout);
         mainPromptContainer = (ViewGroup) view.findViewById(R.id.socket_events_main_layout);
         mCommercialView = (CommercialView) getActivity().getLayoutInflater().inflate(R.layout.commercial, promptContainer, false);
@@ -422,7 +463,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         carouselLayoutManager = new CustomLinearLayoutManagerCarousel(getContext(), CustomLinearLayoutManagerCarousel.HORIZONTAL, false);
         mCarouselList.setLayoutManager(carouselLayoutManager);
 
-        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, mListener, instance);
+        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, styleCarousel, mListener, instance);
         mCarouselList.setAdapter(mAdapter);
 
         mCarouselList.setItemViewCacheSize(0);
@@ -437,6 +478,29 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         return view;
     }
 
+    public ModuleStyle loadStyleCarousel(JSONArray styleConfig) {
+        ModuleStyle[] styles;
+        ModuleStyle idStyle = null;
+        if (styleConfig == null) {
+            return null;
+        } else {
+            styles = new GsonBuilder().create().fromJson(styleConfig.toString(), ModuleStyle[].class); //TODO: test!!!
+            if (styles == null) {
+                return null;
+            } else {
+                if (styles.length > 0) {
+                    for (ModuleStyle style : styles) {
+                        if (style.getModuleName().equals("carousel")) {
+                            idStyle = style;
+                        }
+                    }
+                }
+            }
+            return idStyle;
+        }
+    }
+
+
 
     private void filterCardsByCategory() {
         if (!isAdded())
@@ -450,7 +514,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         carouselItems.addAll(sceneItems);
         mAdapter = null;
         mCarouselList.setAdapter(null);
-        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, mListener, instance);
+        mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, isFiltered, styleCarousel, mListener, instance);
         mCarouselList.setAdapter(mAdapter);
 
         if (carouselItems.size() > 0) {
@@ -465,6 +529,11 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     private void showNewCardsMsg(int number) {
         if (!isAdded())
             return;
+
+        if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundColorNotif")!=null){
+            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColorNotif").getValue());
+            mCarouselBottomMsg.setBackgroundColor(backgroundColor);
+        }
 
         if (number == 1) {
             mCarouselBottomMsg.setText(getString(R.string.CAROUSEL_NEW_CARD_ADDED));
@@ -1061,7 +1130,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         void onCallCardDetail(String cardId, String versionId, Card.TypeEnum type);
 
-        void onShowMoreRelations(Card card);
+        void onShowMoreRelations(Card card, ModuleStyle style);
 
         void setOuterFocus(boolean b);
 

@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -204,8 +205,19 @@ public class CardDetailManager implements CardDetailListener {
 
     @Override
     public HashMap<String, ModuleStyleData> getModuleStyles(String moduleName) {
-
         return idStyle.get(moduleName) != null ? idStyle.get(moduleName).getIdModuleStyleData() : null;
+    }
+
+    @Override
+    public HashMap<String, ModuleStyleData> getGenericStyles() {
+        if (idStyle!=null && idStyle.get("carddetail")!=null) {
+            Log.e("Styles:", idStyle.get("carddetail").getIdModuleStyleData().keySet().toString());
+            Log.e("Styles:", idStyle.get("carddetail").getIdModuleStyleData().get("backgroundColor").getValue());
+            Log.e("Styles:", idStyle.get("carddetail").getIdModuleStyleData().get("selectedColor").getValue());
+            Log.e("Styles:", idStyle.get("carddetail").getIdModuleStyleData().get("unselectedColor").getValue());
+            return idStyle.get("carddetail") != null ? idStyle.get("carddetail").getIdModuleStyleData() : null;
+        }
+        return null;
     }
 
     @Override

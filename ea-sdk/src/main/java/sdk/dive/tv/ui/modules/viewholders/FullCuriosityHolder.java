@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.viewholders;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Html;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,8 +13,11 @@ import com.touchvie.sdk.model.CardContainer;
 import com.touchvie.sdk.model.Text;
 import com.touchvie.sdk.model.TextData;
 
+import java.util.HashMap;
+
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 
@@ -29,6 +33,7 @@ public class FullCuriosityHolder extends TextHolder {
     protected FrameLayout mContainer;
     protected TextView mTitle;
     protected TextView mText;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     /**
      * Default constructor
@@ -53,14 +58,14 @@ public class FullCuriosityHolder extends TextHolder {
 
         this.source_cont.setPadding(0, 0, 0, 0);
 
-        CardContainer container = Utils.getContainer(cardData.getInfo().toArray(new CardContainer[cardData.getInfo().size()]), CURIOSITY.getValue());
-        if (container == null) {
+        CardContainer mContainer = Utils.getContainer(cardData.getInfo().toArray(new CardContainer[cardData.getInfo().size()]), CURIOSITY.getValue());
+        if (mContainer == null) {
             btnUp.setVisibility(GONE);
             btnDown.setVisibility(GONE);
             return;
         }
-        Text curiosity = (Text) container;
-        if (((Text) container).getData() != null && ((Text) container).getData().size() == 1) {
+        Text curiosity = (Text) mContainer;
+        if (((Text) mContainer).getData() != null && ((Text) mContainer).getData().size() == 1) {
             TextData containerText = curiosity.getData().get(0);
             if (containerText == null)
                 return;
@@ -80,6 +85,13 @@ public class FullCuriosityHolder extends TextHolder {
             manageSource(containerText);
             checkScrollAndButtons();
         }
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor("#00000000"), genericStyles.get("backgroundModuleColor").getValue()));
+            btnDown.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+            btnUp.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+        }
+
     }
 }
 

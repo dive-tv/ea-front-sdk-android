@@ -24,6 +24,7 @@ import static sdk.dive.tv.ui.Utils.API_KEY;
 import static sdk.dive.tv.ui.Utils.CHANNEL_ID;
 import static sdk.dive.tv.ui.Utils.MOVIE_ID;
 import static sdk.dive.tv.ui.Utils.MOVIE_TIMESTAMP;
+import static sdk.dive.tv.ui.Utils.STYLE;
 
 /**
  * Created by emilio.alvarez on 22/11/2017.
@@ -50,6 +51,7 @@ public class DiveFragment extends Fragment {
     private SharedPreferencesHelper settings;
 
     private static DiveFragment instance;
+    private String style;
 
     private boolean isApplicationClosing = false;
 
@@ -70,23 +72,25 @@ public class DiveFragment extends Fragment {
 
     }
 
-    public static Fragment newInstance(String apiKey, String movieId, int timestamp) {
+    public static Fragment newInstance(String apiKey, String movieId, int timestamp, String style) {
 
         Fragment fragment = new DiveFragment();
         Bundle extras = new Bundle();
         extras.putString(API_KEY, apiKey);
         extras.putString(MOVIE_ID, movieId);
         extras.putInt(MOVIE_TIMESTAMP, timestamp);
+        extras.putString(STYLE,style);
         fragment.setArguments(extras);
         return fragment;
     }
 
-    public static Fragment newInstance(String apiKey, String channelId) {
+    public static Fragment newInstance(String apiKey, String channelId, String style) {
 
         Fragment fragment = new DiveFragment();
         Bundle extras = new Bundle();
         extras.putString(API_KEY, apiKey);
         extras.putString(CHANNEL_ID, channelId);
+        extras.putString(STYLE,style);
         fragment.setArguments(extras);
         return fragment;
     }
@@ -110,6 +114,7 @@ public class DiveFragment extends Fragment {
             movieId = extras.getString(Utils.MOVIE_ID);
             movieTime = extras.getInt(Utils.MOVIE_TIMESTAMP);
             channelId = extras.getString(CHANNEL_ID);
+            style = extras.getString(STYLE);
         }
 
         View view = inflater.inflate(R.layout.dive_fragment, container, false);
@@ -120,7 +125,7 @@ public class DiveFragment extends Fragment {
         mProductLayout = (FrameLayout) view.findViewById(R.id.product_container);
 
         manager = getActivity().getSupportFragmentManager();
-        mListener.addCarousel(apiKey, movieId, channelId, true, movieTime, null, null);
+        mListener.addCarousel(apiKey, movieId, channelId, true, movieTime, null, null, style);
 
         return view;
     }

@@ -10,7 +10,7 @@ import com.touchvie.sdk.model.Card;
 
 public interface ComponentsInterface {
 
-    void addCarousel(String apiKey, String movieId, String channelId, boolean isMovie, int movieTime, String previousScreen, String movieName);
+    void addCarousel(String apiKey, String movieId, String channelId, boolean isMovie, int movieTime, String previousScreen, String movieName, String style);
 
     void removeCarousel();
 
