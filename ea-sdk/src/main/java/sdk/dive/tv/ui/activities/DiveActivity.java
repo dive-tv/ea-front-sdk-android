@@ -330,10 +330,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     private void enableBottomLayout(boolean enable) {
         if (DiveFragment.getInstance()!=null) {
             DiveFragment.getInstance().enableBottomLayout(enable);
-            if (enable)
-                mBottomLayout.setVisibility(VISIBLE);
-            else
-                mBottomLayout.setVisibility(INVISIBLE);
         }
     }
 
@@ -467,7 +463,6 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
 
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
-        mBottomLayout.setVisibility(INVISIBLE);
 
         CardDetail cardDetail = CardDetail.newInstance(cardId, versionId, typeOfCard, style, isCarousel, mManager);
 

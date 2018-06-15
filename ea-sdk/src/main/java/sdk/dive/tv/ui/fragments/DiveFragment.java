@@ -19,6 +19,7 @@ import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.interfaces.ComponentsInterface;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 import static sdk.dive.tv.ui.Utils.API_KEY;
 import static sdk.dive.tv.ui.Utils.CHANNEL_ID;
@@ -177,6 +178,7 @@ public class DiveFragment extends Fragment {
     public void enableBottomLayout(boolean enable) {
 
         if (enable) {
+            mBottomLayout.setVisibility(VISIBLE);
             //CardDetail
             mBottomOverlay.setVisibility(GONE);
             mBottomOverlay.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
@@ -184,6 +186,8 @@ public class DiveFragment extends Fragment {
             mBottomLayout.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
         } else {
             mBottomOverlay.setVisibility(View.VISIBLE);
+            mBottomLayout.setVisibility(GONE);
+
             //Carousel & TvGrid
             mBottomLayout.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
             //CardDetail
