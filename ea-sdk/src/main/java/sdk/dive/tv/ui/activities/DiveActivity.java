@@ -330,7 +330,10 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     private void enableBottomLayout(boolean enable) {
         if (DiveFragment.getInstance()!=null) {
             DiveFragment.getInstance().enableBottomLayout(enable);
-            mBottomLayout.setVisibility(VISIBLE);
+            if (enable)
+                mBottomLayout.setVisibility(VISIBLE);
+            else
+                mBottomLayout.setVisibility(INVISIBLE);
         }
     }
 
