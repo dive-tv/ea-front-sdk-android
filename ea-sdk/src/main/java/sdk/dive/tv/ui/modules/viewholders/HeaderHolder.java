@@ -118,6 +118,7 @@ public class HeaderHolder extends TvModuleHolder {
 
         if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
             genericStyles = tvCardDetailListener.getGenericStyles();
+            container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor("#00000000"), genericStyles.get("backgroundModuleColor").getValue()));
             imageBorder.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue())));
             txtvType.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue())));
         }

@@ -130,12 +130,12 @@ public class AppearsInLocationHolder extends HorizontalListHolder {
         }
         HorizontalListAdapter adapter = new HorizontalListAdapter(context, rows, tvCardDetailListener);
         super.setAdapter(adapter, rows.size());
-        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null) {
             genericStyles = tvCardDetailListener.getGenericStyles();
-            btnBack.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
-            btnNext.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+            mContainer.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+            btnBack.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()), Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+            btnNext.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()), Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
         }
-
     }
 
 }

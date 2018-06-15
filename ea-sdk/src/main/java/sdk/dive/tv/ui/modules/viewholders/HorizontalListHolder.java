@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -27,6 +28,7 @@ import static android.view.View.VISIBLE;
 public abstract class HorizontalListHolder extends TvModuleHolder {
 
     protected TextView mTitle;
+    private LinearLayout mContainer;
     private RecyclerView mList;
     FrameLayout btnBack;
     FrameLayout btnNext;
@@ -37,6 +39,7 @@ public abstract class HorizontalListHolder extends TvModuleHolder {
 
     public HorizontalListHolder(View itemView) {
         super(itemView);
+        this.mContainer = (LinearLayout) itemView.findViewById(R.id.rel_container);
         this.mTitle = (TextView) itemView.findViewById(R.id.txtv_tv_title);
         this.mList = (RecyclerView) itemView.findViewById(R.id.rv_carousel_list);
         this.btnBack = (FrameLayout) itemView.findViewById(R.id.tv_module_text_btn_back);

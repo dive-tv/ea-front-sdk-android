@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.modules.viewholders;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,8 +12,11 @@ import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.CardContainer;
 import com.touchvie.sdk.model.Map;
 
+import java.util.HashMap;
+
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 
@@ -27,6 +31,7 @@ public class MapHolder extends TvModuleHolder {
     private LinearLayout mContainer;
     private TextView mTitle;
     private ImageView mImage;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
 
     public MapHolder(View itemView, String simpleName) {
@@ -56,6 +61,11 @@ public class MapHolder extends TvModuleHolder {
             mPicasso
                     .load("https://maps.googleapis.com/maps/api/staticmap?center=" + location + "&size=" + (int) context.getResources().getDimension(R.dimen.cardetail_module_map_width) + "x" + (int) context.getResources().getDimension(R.dimen.cardetail_module_map_height))
                     .into(mImage);
+
+        }
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            mContainer.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor("#00000000"), genericStyles.get("backgroundModuleColor").getValue()));
 
         }
     }

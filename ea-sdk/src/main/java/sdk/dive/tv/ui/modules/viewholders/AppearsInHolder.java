@@ -67,12 +67,12 @@ public class AppearsInHolder extends HorizontalListHolder {
         HorizontalListAdapter adapter = new HorizontalListAdapter(context, rows, cardDetailListener);
         super.setAdapter(adapter, rows.size());
 
-        if (cardDetailListener != null && cardDetailListener.getGenericStyles() != null){
+        if (cardDetailListener != null && cardDetailListener.getGenericStyles() != null) {
             genericStyles = cardDetailListener.getGenericStyles();
-            btnBack.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
-            btnNext.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+            mContainer.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+            btnBack.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()), Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
+            btnNext.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()), Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
         }
-
     }
 
 }

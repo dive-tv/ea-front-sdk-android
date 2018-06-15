@@ -14,6 +14,7 @@ import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
+import sdk.dive.tv.ui.modules.adapters.CastLocationAdapter;
 import sdk.dive.tv.ui.modules.adapters.TwoColsModuleAdapter;
 import sdk.dive.tv.ui.modules.data.TwoTextRowData;
 
@@ -57,7 +58,9 @@ public abstract class TwoColsModuleHolder extends VerticalListHolder {
     protected void setData(ArrayList<TwoTextRowData> data, Context context, String moduleName, String moduleTitle, TvCardDetailListener tvCardDetailListener) {
         adapter.setModuleStyle(moduleName);
 //        adapter.setModuleTitle(moduleTitle);
-
+        if(genericStyles!=null && genericStyles.get("backgroundModuleColor")!=null) {
+            mContainer.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+        }
         mTitle.setText(moduleTitle);
         this.data.addAll(data);
 

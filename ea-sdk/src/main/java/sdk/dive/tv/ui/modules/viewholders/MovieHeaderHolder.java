@@ -2,6 +2,7 @@ package sdk.dive.tv.ui.modules.viewholders;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -24,9 +25,11 @@ import com.touchvie.sdk.model.RelationModule;
 import com.touchvie.sdk.model.Single;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
+import sdk.dive.tv.ui.data.ModuleStyleData;
 import sdk.dive.tv.ui.listeners.SectionListener;
 import sdk.dive.tv.ui.listeners.TvCardDetailListener;
 import sdk.dive.tv.ui.other.CustomTypefaceSpan;
@@ -55,6 +58,7 @@ public class MovieHeaderHolder extends TvModuleHolder {
     private LinearLayout mLikeContainer;
     private TextView mLikeTxt;
     private ImageView mLikeIcon;
+    private HashMap<String, ModuleStyleData> genericStyles;
 
     enum TypeOfHeader {MOVIE, SERIE, CHAPTER}
 
@@ -213,6 +217,11 @@ public class MovieHeaderHolder extends TvModuleHolder {
                     genre.setTypeface(Utils.getFont(context, Utils.TypeFaces.LATO_REGULAR));
                 }
             }
+        }
+        if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
+            genericStyles = tvCardDetailListener.getGenericStyles();
+            container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor("#00000000"), genericStyles.get("backgroundModuleColor").getValue()));
+
         }
     }
 }
