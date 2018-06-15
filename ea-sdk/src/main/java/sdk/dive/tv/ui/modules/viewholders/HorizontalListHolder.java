@@ -28,7 +28,7 @@ import static android.view.View.VISIBLE;
 public abstract class HorizontalListHolder extends TvModuleHolder {
 
     protected TextView mTitle;
-    private LinearLayout mContainer;
+    LinearLayout mContainer;
     private RecyclerView mList;
     FrameLayout btnBack;
     FrameLayout btnNext;
