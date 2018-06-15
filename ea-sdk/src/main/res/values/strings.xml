@@ -146,9 +146,6 @@
     <string name="POCKET_TITLE_2">The content you\'ve liked</string>
     <string name="POCKET_NO_CARDS_TITLE">NO SAVED CARDS YET</string>
     <string name="POCKET_NO_CARDS_TXT">Save every card you like by pressing on the heart icon or activate your account to see the cards saved from your Dive mobile version.</string>
-    <string name="POCKET_FAKE_CARD_TITLE">Ben Stiller</string>
-    <string name="POCKET_FAKE_CARD_SUBTITLE">as Walter Mitty</string>
-    <string name="POCKET_FAKE_CARD_TEXT">Walter Mitty is a fictional character in James Thurber\'s short story …</string>
     <string name="POCKET_NEW_CARDS_TITLE">YOU\'VE GOT NEW CARDS</string>
     <string name="POCKET_NEW_CARDS_SUBTITLE">¡ %1$s new cards have been added! Please refresh to add them to your collection.</string>
     <string name="POCKET_OK_REFRESH">OK, REFRESH</string>

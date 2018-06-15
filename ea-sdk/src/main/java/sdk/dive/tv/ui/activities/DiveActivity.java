@@ -30,6 +30,8 @@ import sdk.dive.tv.ui.interfaces.ComponentsInterface;
 import sdk.dive.tv.ui.interfaces.DiveInterface;
 
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 import static sdk.dive.tv.ui.Utils.CAROUSEL_CARD;
 
@@ -326,8 +328,10 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
     private void enableBottomLayout(boolean enable) {
-        if (DiveFragment.getInstance()!=null)
+        if (DiveFragment.getInstance()!=null) {
             DiveFragment.getInstance().enableBottomLayout(enable);
+            mBottomLayout.setVisibility(VISIBLE);
+        }
     }
 
     private Fragment checkNextFragmentIsCarousel() {
@@ -455,10 +459,12 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     public void addCardDetail(String cardId, String versionId, Card.TypeEnum typeOfCard) {
         if (mBottomOverlay == null) {
             mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
+            mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
         }
 
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
+        mBottomLayout.setVisibility(INVISIBLE);
 
         CardDetail cardDetail = CardDetail.newInstance(cardId, versionId, typeOfCard, style, isCarousel, mManager);
 

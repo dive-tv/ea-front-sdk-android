@@ -49,7 +49,7 @@ String style = "[\n" +
                 "      \"value\": \"#1c1d1d\"\n" +
                 "    },\n" +
                 "      {\n" +
-                "        \"property\": \"backgroundColorNotif\",\n" +
+                "        \"property\": \"backgroundNotifColor\",\n" +
                 "        \"value\": \"#e8ebef\"\n" +
                 "      },\n" +
                 "      {\n" +
@@ -98,7 +98,7 @@ try {
       "value": "#1c1d1d"
     },
       {
-        "property": "backgroundColorNotif",
+        "property": "backgroundNotifColor",
         "value": "#e8ebef"
       },
       {
@@ -140,7 +140,7 @@ Name | Description |
 ------------ | ------------- |
 *backgroundcolor* | *set background color for carousel or carddetail* 
 *backgroundModuleColor* | *set background of modules inside card detail*
-*backgroundColorNotif* | *set background of notif message*
+*backgroundNotifColor* | *set background of notif message*
 *selectedColor* | *set color of selected card or module*
 *unselectedColor* | *set color of unselected card or module*
  
