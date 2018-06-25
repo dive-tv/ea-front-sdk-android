@@ -426,7 +426,8 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             mCategories.setVisibility(GONE);
 
             categories = new ArrayList<String>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
-            filterCardsByCategory();
+            if (categories.size() > 0)
+                filterCardsByCategory();
         }
 
 
@@ -518,7 +519,8 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         if (!isAdded())
             return;
 
-        mAdapter.notifyItemRangeRemoved(0, carouselItems.size());
+        if (mAdapter!=null)
+            mAdapter.notifyItemRangeRemoved(0, carouselItems.size());
         carouselItems.clear();
 
         ArrayList<CarouselTvCell> sceneItems = applyFilters(carouselSceneItems);
