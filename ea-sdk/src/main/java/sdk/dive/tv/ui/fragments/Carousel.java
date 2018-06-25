@@ -344,6 +344,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         });
 
         mCloseImage = (ImageView) view.findViewById(R.id.carousel_image_close);
+        mCarouselList = (RecyclerView) view.findViewById(R.id.carousel_card_list);
 
         final SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getActivity().getApplicationContext());
         if (sharedPreferencesHelper.getCategoriesVisible()) {
@@ -430,9 +431,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 filterCardsByCategory();
         }
 
-
-        mCarouselList = (RecyclerView) view.findViewById(R.id.carousel_card_list);
-
         if (styleCarousel != null && styleCarousel.getIdModuleStyleData().get("backgroundColor") != null) {
             int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
             carouselContainer.setBackgroundColor(backgroundColor);
@@ -502,18 +500,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             return idStyle;
         }
     }
-
-    public ArrayList<String> loadStyleCategories(JSONArray styleConfig) {
-
-
-        return null;
-    }
-
-    public boolean isCatFilterVisible(){
-
-        return false;
-    }
-
 
     private void filterCardsByCategory() {
         if (!isAdded())
