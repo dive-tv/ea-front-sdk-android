@@ -10,7 +10,6 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,20 +32,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import sdk.client.dive.tv.SdkClient;
 import sdk.client.dive.tv.socket.SocketListener;
 import sdk.client.dive.tv.socket.model.StreamError;
+import sdk.client.dive.tv.utils.SharedPreferencesHelper;
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.Utils;
 import sdk.dive.tv.ui.activities.DiveActivity;
 import sdk.dive.tv.ui.adapters.CarouselCardsAdapter;
 import sdk.dive.tv.ui.adapters.CategoriesAdapter;
-import sdk.dive.tv.ui.builders.CardDetailJson;
 import sdk.dive.tv.ui.cells.CarouselTvCell;
 import sdk.dive.tv.ui.cells.SeeMoreTvCell;
+import sdk.dive.tv.ui.data.CategoriesData;
 import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.interfaces.CarouselInterface;
 import sdk.dive.tv.ui.interfaces.DiveInterface;
@@ -64,6 +67,7 @@ import sdk.dive.tv.ui.views.OffView;
 import sdk.dive.tv.ui.views.ReadyView;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static sdk.dive.tv.ui.Utils.ALL_READY;
 import static sdk.dive.tv.ui.Utils.API_KEY;
 import static sdk.dive.tv.ui.Utils.CHANNEL_ID;
@@ -101,43 +105,34 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     private static OnCarouselInteractionListener mListener;
 
     protected Handler mUIHandler = null;
-
-    boolean resume = false;
-
-    private boolean isWaitingMovie = false;
-
-    boolean flowBlocked = false;
-
     protected String movieId;
     protected String apiKey;
     protected String deviceId;
     protected String channelId;
+    protected DiveCarouselLogic carouselLogic;
+    protected String movieName;
+    protected boolean allReadyCalled = false;
+    boolean resume = false;
+    boolean flowBlocked = false;
+    private boolean isWaitingMovie = false;
     private boolean isMovie;
     private int movieTime;
     private String previousScreen;
-    protected DiveCarouselLogic carouselLogic;
-    protected String movieName;
-
     private boolean newScene;
     private boolean isCommercialPending = false;
     private boolean isCommercialAdded = false;
     private boolean isPaused = false;
     private boolean isRewind = false;
     private boolean isPlaying = false;
-
     private Carousel instance;
-
     private SparseArray<ArrayList<CarouselTvCell>> allCarouselItems = null;
     private ArrayList<CarouselTvCell> carouselItems = null;
     private ArrayList<CarouselTvCell> carouselSceneItems = null;
-
     private TextView mTimeText = null;
-
     private RecyclerView mCarouselList = null;
     private LinearLayoutManager carouselLayoutManager;
     private CarouselCardsAdapter mAdapter = null;
     private boolean isFiltered = false;
-
     private CarouselPromptManager mPromptManager = null;
     private CommercialView mCommercialView = null;
     private ReadyView mReadyView = null;
@@ -148,20 +143,13 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     private FrameLayout mLoadingLayer;
     private FrameLayout mCloseLayout = null;
     private FrameLayout mMinimizeLayout = null;
-
     private ImageView mCloseImage = null;
-
     private Handler carouselHandler = null;
-
     private CarouselSpinner mCategories = null;
-
     private FrameLayout mSeparator1 = null;
     private FrameLayout mSeparator2 = null;
-
     private ArrayList<String> categories;
     private View lastClickedView = null;
-
-    protected boolean allReadyCalled = false;
     private boolean sceneHasCommercials = false;
     private String style;
     private JSONArray styleConfig;
@@ -215,7 +203,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         } else {
             super.onCreate(savedInstanceState);
         }
-        if (style!=null){
+        if (style != null) {
             if (style != null) {
                 try {
                     styleConfig = new JSONArray(style);
@@ -357,94 +345,108 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         mCloseImage = (ImageView) view.findViewById(R.id.carousel_image_close);
 
-        final String[] arraySpinner = new String[]{
-                getString(R.string.SELECTOR_ALL_CATEGORIES),
-                getString(R.string.SELECTOR_CAST_CHARACTER),
-                getString(R.string.SELECTOR_FASHION_BEAUTY),
-                getString(R.string.SELECTOR_MUSIC),
-                getString(R.string.SELECTOR_PLACES_TRAVEL),
-                getString(R.string.SELECTOR_CARS_MORE),
-                getString(R.string.SELECTOR_FUN_FACTS),
-                getString(R.string.SELECTOR_OTHER_CATEGORIES)
-        };
-        mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
+        final SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getActivity().getApplicationContext());
+        if (sharedPreferencesHelper.getCategoriesVisible()) {
+            final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
+            final String[] arraySpinner = new String[]{
+                    getString(R.string.SELECTOR_ALL_CATEGORIES),
+                    getString(R.string.SELECTOR_CAST_CHARACTER),
+                    getString(R.string.SELECTOR_FASHION_BEAUTY),
+                    getString(R.string.SELECTOR_MUSIC),
+                    getString(R.string.SELECTOR_PLACES_TRAVEL),
+                    getString(R.string.SELECTOR_CARS_MORE),
+                    getString(R.string.SELECTOR_FUN_FACTS),
+                    getString(R.string.SELECTOR_OTHER_CATEGORIES)
+            };
+            mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
+            mCategories.setVisibility(VISIBLE);
 
-        CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, arraySpinner);
-        adapter.setDropDownViewResource(R.layout.category_dropdown_row);
+            CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner : arraySpinner);
+            adapter.setDropDownViewResource(R.layout.category_dropdown_row);
 
-        mCategories.setAdapter(adapter);
-        mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //TODO call FilterCardsBy Category
-                categories.clear();
-                String selected = arraySpinner[position];
-                isFiltered = true;
-                if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
-                    isFiltered = false;
+            mCategories.setAdapter(adapter);
+            mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    //TODO call FilterCardsBy Category
                     categories.clear();
-                    filterCardsByCategory();
-                    return;
-                } else if (selected.equals(getString(R.string.SELECTOR_CAST_CHARACTER))) {
-                    categories.add(Card.TypeEnum.CHARACTER.getValue());
-                    categories.add(Card.TypeEnum.PERSON.getValue());
-                } else if (selected.equals(getString(R.string.SELECTOR_FASHION_BEAUTY))) {
-                    isFiltered = false;
-                    categories.add(Card.TypeEnum.CHARACTER.getValue());
-                    categories.add(Card.TypeEnum.PERSON.getValue());
-                    categories.add(Card.TypeEnum.FASHION.getValue());
-                    categories.add(Card.TypeEnum.LOOK.getValue());
-                } else if (selected.equals(getString(R.string.SELECTOR_MUSIC))) {
-                    categories.add(Card.TypeEnum.SONG.getValue());
-                    categories.add(Card.TypeEnum.OST.getValue());
-                } else if (selected.equals(getString(R.string.SELECTOR_PLACES_TRAVEL))) {
-                    categories.add(Card.TypeEnum.LOCATION.getValue());
-                } else if (selected.equals(getString(R.string.SELECTOR_CARS_MORE))) {
-                    categories.add(Card.TypeEnum.VEHICLE.getValue());
-                } else if (selected.equals(getString(R.string.SELECTOR_FUN_FACTS))) {
-                    categories.add(Card.TypeEnum.TRIVIA.getValue());
-                    categories.add(Card.TypeEnum.REFERENCE.getValue());
-                    categories.add(Card.TypeEnum.QUOTE.getValue());
-                } else if (selected.equals(getString(R.string.SELECTOR_OTHER_CATEGORIES))) {
+                    String selected = sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner[position] : arraySpinner[position];
+                    isFiltered = true;
+                    if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
+                        isFiltered = false;
+                        categories.clear();
+                        filterCardsByCategory();
+                        return;
+                    } else if (selected.equals(getString(R.string.SELECTOR_CAST_CHARACTER))) {
+                        categories.add(Card.TypeEnum.CHARACTER.getValue());
+                        categories.add(Card.TypeEnum.PERSON.getValue());
+                    } else if (selected.equals(getString(R.string.SELECTOR_FASHION_BEAUTY))) {
+                        isFiltered = false;
+                        categories.add(Card.TypeEnum.CHARACTER.getValue());
+                        categories.add(Card.TypeEnum.PERSON.getValue());
+                        categories.add(Card.TypeEnum.FASHION.getValue());
+                        categories.add(Card.TypeEnum.LOOK.getValue());
+                    } else if (selected.equals(getString(R.string.SELECTOR_MUSIC))) {
+                        categories.add(Card.TypeEnum.SONG.getValue());
+                        categories.add(Card.TypeEnum.OST.getValue());
+                    } else if (selected.equals(getString(R.string.SELECTOR_PLACES_TRAVEL))) {
+                        categories.add(Card.TypeEnum.LOCATION.getValue());
+                    } else if (selected.equals(getString(R.string.SELECTOR_CARS_MORE))) {
+                        categories.add(Card.TypeEnum.VEHICLE.getValue());
+                    } else if (selected.equals(getString(R.string.SELECTOR_FUN_FACTS))) {
+                        categories.add(Card.TypeEnum.TRIVIA.getValue());
+                        categories.add(Card.TypeEnum.REFERENCE.getValue());
+                        categories.add(Card.TypeEnum.QUOTE.getValue());
+                    } else if (selected.equals(getString(R.string.SELECTOR_OTHER_CATEGORIES))) {
 //                    categories.add(Card.TypeEnum.ACTION_EMOTION.getValue());
-                    categories.add(Card.TypeEnum.ART.getValue());
-                    categories.add(Card.TypeEnum.BUSINESS.getValue());
-                    categories.add(Card.TypeEnum.FAUNA_FLORA.getValue());
-                    categories.add(Card.TypeEnum.FOOD_DRINK.getValue());
-                    categories.add(Card.TypeEnum.HEALTH_BEAUTY.getValue());
-                    categories.add(Card.TypeEnum.HISTORIC.getValue());
-                    categories.add(Card.TypeEnum.HOME.getValue());
-                    categories.add(Card.TypeEnum.LEISURE_SPORT.getValue());
-                    categories.add(Card.TypeEnum.TECHNOLOGY.getValue());
-                    categories.add(Card.TypeEnum.WEAPON.getValue());
+                        categories.add(Card.TypeEnum.ART.getValue());
+                        categories.add(Card.TypeEnum.BUSINESS.getValue());
+                        categories.add(Card.TypeEnum.FAUNA_FLORA.getValue());
+                        categories.add(Card.TypeEnum.FOOD_DRINK.getValue());
+                        categories.add(Card.TypeEnum.HEALTH_BEAUTY.getValue());
+                        categories.add(Card.TypeEnum.HISTORIC.getValue());
+                        categories.add(Card.TypeEnum.HOME.getValue());
+                        categories.add(Card.TypeEnum.LEISURE_SPORT.getValue());
+                        categories.add(Card.TypeEnum.TECHNOLOGY.getValue());
+                        categories.add(Card.TypeEnum.WEAPON.getValue());
+                    }
+                    if (categories != null && categories.size() > 0)
+                        filterCardsByCategory();
                 }
-                if (categories != null && categories.size() > 0)
-                    filterCardsByCategory();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+                }
+            });
+
+
+        } else {
+            mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
+            mCategories.setVisibility(GONE);
+
+            categories = new ArrayList<String>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
+            filterCardsByCategory();
+        }
+
 
         mCarouselList = (RecyclerView) view.findViewById(R.id.carousel_card_list);
 
-        if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundColor")!=null){
+        if (styleCarousel != null && styleCarousel.getIdModuleStyleData().get("backgroundColor") != null) {
             int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
             carouselContainer.setBackgroundColor(backgroundColor);
-            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
-            mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
-            mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
-        } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
+            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+            mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+        } else if (Utils.getCardDetailStyleconfiguration(getContext()) != null) {
             int backgroundDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
             int selectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue());
             String strSelectedDefaultColor = loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue();
             int unselectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
             carouselContainer.setBackgroundColor(backgroundDefaultColor);
-            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
-            mCloseLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
-            mCategories.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
+            mCategories.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
         }
 
         ViewGroup promptContainer = (ViewGroup) view.findViewById(R.id.socket_events_layout);
@@ -500,6 +502,16 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         }
     }
 
+    public ArrayList<String> loadStyleCategories(JSONArray styleConfig) {
+
+
+        return null;
+    }
+
+    public boolean isCatFilterVisible(){
+
+        return false;
+    }
 
 
     private void filterCardsByCategory() {
@@ -530,7 +542,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         if (!isAdded())
             return;
 
-        if (styleCarousel!=null && styleCarousel.getIdModuleStyleData().get("backgroundNotifColor")!=null){
+        if (styleCarousel != null && styleCarousel.getIdModuleStyleData().get("backgroundNotifColor") != null) {
             int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundNotifColor").getValue());
             mCarouselBottomMsg.setBackgroundColor(backgroundColor);
         }

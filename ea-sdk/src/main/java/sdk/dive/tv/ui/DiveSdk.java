@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import com.touchvie.sdk.model.ChannelStatus;
 import com.touchvie.sdk.model.MovieStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sdk.client.dive.tv.SdkClient;
@@ -36,13 +37,15 @@ public class DiveSdk {
     private String deviceId;
     private String style;
 
-    public void initialize(String deviceId, String apiKey, Context ctx, String style) {
+    public void initialize(String deviceId, String apiKey, Context ctx, String style, ArrayList<String> categories, boolean areCategoriesVisibles) {
         this.deviceId = deviceId;
         this.apiKey = apiKey;
         this.style = style;
         this.settings = new SharedPreferencesHelper(ctx);
         this.settings.storeApiKey(apiKey);
         this.settings.storeDeviceId(deviceId);
+        this.settings.storeCategories(categories.toString());
+        this.settings.storeCategoriesVisible(areCategoriesVisibles);
         this.ctx = ctx;
         launchService();
     }
