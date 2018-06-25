@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 
 import com.touchvie.sdk.model.ChannelStatus;
 import com.touchvie.sdk.model.MovieStatus;
@@ -44,7 +45,7 @@ public class DiveSdk {
         this.settings = new SharedPreferencesHelper(ctx);
         this.settings.storeApiKey(apiKey);
         this.settings.storeDeviceId(deviceId);
-        this.settings.storeCategories(categories.toString());
+        this.settings.storeCategories(TextUtils.join(", ", categories));
         this.settings.storeCategoriesVisible(areCategoriesVisibles);
         this.ctx = ctx;
         launchService();

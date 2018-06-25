@@ -10,6 +10,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -427,6 +428,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             mCategories.setVisibility(GONE);
 
             categories = new ArrayList<String>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
+            Log.e("KKKKKKK: ", "Categorias: "+categories.toString());
             if (categories.size() > 0)
                 filterCardsByCategory();
         }
