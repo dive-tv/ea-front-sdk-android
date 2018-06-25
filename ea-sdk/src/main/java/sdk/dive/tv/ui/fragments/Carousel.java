@@ -427,7 +427,10 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
             mCategories.setVisibility(GONE);
 
-            categories = new ArrayList<String>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
+            categories.clear();
+            isFiltered = true;
+
+            categories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
             Log.e("KKKKKKK: ", "Categorias: "+categories.toString());
             if (categories.size() > 0)
                 filterCardsByCategory();
