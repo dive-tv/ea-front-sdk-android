@@ -809,7 +809,9 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             CarouselTvCell card = cellsToFilter.get(i);
 
             for (String categoryName : categories) {
+                Log.e("applyFilters", "categoryName: " + categoryName);
                 if (card != null && categoryName.equals(card.getCard().getType().getValue())) {
+                    Log.e("applyFilters", "card categoryName: " + card.getCard().getType().getValue());
                     if (!isFiltered) {
                         if (card instanceof SeeMoreTvCell) {
                             filteredCells.add(card);
