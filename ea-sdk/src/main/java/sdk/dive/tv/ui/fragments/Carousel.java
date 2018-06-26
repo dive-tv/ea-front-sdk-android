@@ -812,7 +812,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
             for (String categoryName : categories) {
                 Log.e("applyFilters", "categoryName: " + categoryName);
-                if (card != null && categoryName.equals(card.getCard().getType().getValue())) {
+                if (card != null && categoryName.trim().toLowerCase().equals(card.getCard().getType().getValue().trim().toLowerCase())) {
                     Log.e("applyFilters", "card categoryName: " + card.getCard().getType().getValue());
                     if (!isFiltered) {
                         if (card instanceof SeeMoreTvCell) {
