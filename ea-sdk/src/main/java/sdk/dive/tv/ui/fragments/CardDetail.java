@@ -35,6 +35,8 @@ import sdk.dive.tv.ui.data.ModuleStyle;
 import sdk.dive.tv.ui.interfaces.DiveInterface;
 import sdk.dive.tv.ui.managers.DiveTVTvCardDetailManager;
 
+import static android.view.View.GONE;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -135,13 +137,14 @@ public class CardDetail extends Fragment implements Serializable {
             }
         });
         mMinimizeButton = (FrameLayout) view.findViewById(R.id.carddetail_button_minimize);
-        mMinimizeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mListener instanceof DiveInterface)
-                    ((DiveInterface) mListener).minimizeDive();
-            }
-        });
+        mMinimizeButton.setVisibility(GONE);
+//        mMinimizeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mListener instanceof DiveInterface)
+//                    ((DiveInterface) mListener).minimizeDive();
+//            }
+//        });
         if (style!=null){
             if (style != null) {
                 try {
@@ -161,7 +164,7 @@ public class CardDetail extends Fragment implements Serializable {
             int backgroundColor = Color.parseColor(styleCarddetail.getIdModuleStyleData().get("backgroundColor").getValue());
             mRelativeContainer .setBackgroundColor(backgroundColor);
             mUpperContainer.setBackgroundColor(backgroundColor);
-            mMinimizeButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
+//            mMinimizeButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
             mExitButton.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()),Color.parseColor(styleCarddetail.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarddetail.getIdModuleStyleData().get("selectedColor").getValue()));
         } else if (Utils.getCardDetailStyleconfiguration(getContext())!=null){
             int backgroundDefaultColor = Color.parseColor(loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
@@ -170,7 +173,7 @@ public class CardDetail extends Fragment implements Serializable {
             int unselectedDefaultColor = Color.parseColor(loadStyleCarddetail(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
             mRelativeContainer .setBackgroundColor(backgroundDefaultColor);
             mUpperContainer.setBackgroundColor(backgroundDefaultColor);
-            mMinimizeButton.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
+//            mMinimizeButton.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
             mExitButton.setBackground(Utils.makeButtonSelector(selectedDefaultColor,unselectedDefaultColor, strSelectedDefaultColor));
         }
 

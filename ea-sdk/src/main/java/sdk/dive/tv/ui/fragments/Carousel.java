@@ -144,6 +144,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
     private FrameLayout mLoadingLayer;
     private FrameLayout mCloseLayout = null;
     private FrameLayout mMinimizeLayout = null;
+    private FrameLayout mSeparator = null;
     private ImageView mCloseImage = null;
     private Handler carouselHandler = null;
     private CarouselSpinner mCategories = null;
@@ -336,13 +337,17 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         });
 
         mMinimizeLayout = (FrameLayout) view.findViewById(R.id.carousel_button_minimize);
-        mMinimizeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mListener instanceof DiveInterface)
-                    ((DiveInterface) mListener).minimizeDive();
-            }
-        });
+        mMinimizeLayout.setVisibility(GONE);
+//        mMinimizeLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mListener instanceof DiveInterface)
+//                    ((DiveInterface) mListener).minimizeDive();
+//            }
+//        });
+
+        mSeparator = (FrameLayout) view.findViewById(R.id.carousel_separator1);
+        mSeparator.setVisibility(GONE);
 
         mCloseImage = (ImageView) view.findViewById(R.id.carousel_image_close);
         mCarouselList = (RecyclerView) view.findViewById(R.id.carousel_card_list);
@@ -439,7 +444,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
         if (styleCarousel != null && styleCarousel.getIdModuleStyleData().get("backgroundColor") != null) {
             int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
             carouselContainer.setBackgroundColor(backgroundColor);
-            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+//            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
             mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
             mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
         } else if (Utils.getCardDetailStyleconfiguration(getContext()) != null) {
@@ -448,7 +453,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             String strSelectedDefaultColor = loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue();
             int unselectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
             carouselContainer.setBackgroundColor(backgroundDefaultColor);
-            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
+//            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
             mCloseLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
             mCategories.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
         }

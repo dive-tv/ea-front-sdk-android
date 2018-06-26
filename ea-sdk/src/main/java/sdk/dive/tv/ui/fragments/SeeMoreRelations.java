@@ -1,6 +1,7 @@
 package sdk.dive.tv.ui.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,12 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
+import com.google.gson.GsonBuilder;
 import com.touchvie.sdk.model.Card;
 import com.touchvie.sdk.model.Duple;
 import com.touchvie.sdk.model.DupleData;
 import com.touchvie.sdk.model.RelationModule;
 import com.touchvie.sdk.model.Single;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,10 +63,13 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
     private ArrayList<CarouselTvCell> carouselItems;
     private CarouselCardsAdapter mAdapter;
 
+    private RelativeLayout mSeeMoreContainer;
     private FrameLayout mCloseLayout;
     private RecyclerView mCarouselList;
     private View lastClickedView = null;
     private ModuleStyle style;
+    private JSONArray styleConfig;
+    private ModuleStyle styleCarousel;
 
     public SeeMoreRelations() {
         // Required empty public constructor
@@ -99,7 +108,16 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_see_more_relations, container, false);
-
+        if (style != null) {
+            if (style != null) {
+                try {
+                    styleConfig = new JSONArray(style);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            styleCarousel = loadStyleCarousel(styleConfig);
+        }
         mCloseLayout = (FrameLayout) view.findViewById(R.id.fragment_see_more_button_close);
         mCloseLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +126,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
             }
         });
 
+        mSeeMoreContainer = (RelativeLayout) view.findViewById(R.id.seemore_container);
         mCarouselList = (RecyclerView) view.findViewById(R.id.fragment_see_more_card_list);
         LinearLayoutManager carouselLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mCarouselList.setLayoutManager(carouselLayoutManager);
@@ -115,6 +134,23 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         mAdapter = new CarouselCardsAdapter(getContext(), carouselItems, false, style, mCarouselListener, instance);
         mAdapter.inSeeMoreFragment(true);
         mCarouselList.setAdapter(mAdapter);
+
+        if (styleCarousel != null && styleCarousel.getIdModuleStyleData().get("backgroundColor") != null) {
+            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
+            mSeeMoreContainer.setBackgroundColor(backgroundColor);
+//            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+//            mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+        } else if (Utils.getCardDetailStyleconfiguration(getContext()) != null) {
+            int backgroundDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
+            int selectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue());
+            String strSelectedDefaultColor = loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue();
+            int unselectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
+            mSeeMoreContainer.setBackgroundColor(backgroundDefaultColor);
+//            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
+//            mCategories.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
+        }
 
         getRelationsFromCarouselCard();
 
@@ -294,6 +330,28 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
             return;
 
         mCloseLayout.requestFocus();
+    }
+
+    public ModuleStyle loadStyleCarousel(JSONArray styleConfig) {
+        ModuleStyle[] styles;
+        ModuleStyle idStyle = null;
+        if (styleConfig == null) {
+            return null;
+        } else {
+            styles = new GsonBuilder().create().fromJson(styleConfig.toString(), ModuleStyle[].class); //TODO: test!!!
+            if (styles == null) {
+                return null;
+            } else {
+                if (styles.length > 0) {
+                    for (ModuleStyle style : styles) {
+                        if (style.getModuleName().equals("carousel")) {
+                            idStyle = style;
+                        }
+                    }
+                }
+            }
+            return idStyle;
+        }
     }
 
 }

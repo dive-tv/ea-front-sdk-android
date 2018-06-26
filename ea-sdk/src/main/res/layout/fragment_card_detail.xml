@@ -56,7 +56,8 @@
             android:focusableInTouchMode="true"
             android:nextFocusDown="@+id/card_detail_container"
             android:nextFocusLeft="@id/carddetail_exit_btn"
-            android:nextFocusRight="@+id/carddetail_button_minimize">
+            android:nextFocusRight="@+id/carddetail_button_minimize"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/carousel_image_minimize"
