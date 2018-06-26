@@ -41,12 +41,13 @@ public class TwoColsModuleAdapter extends BaseAdapter {
     private String moduleTitle;
     private HashMap<String, ModuleStyleData> genericStyles;
 
-    public TwoColsModuleAdapter(Context context, ArrayList<TwoTextRowData> rows, TvCardDetailListener tvCardDetailListener) {
+    public TwoColsModuleAdapter(Context context, ArrayList<TwoTextRowData> rows, TvCardDetailListener tvCardDetailListener, HashMap<String, ModuleStyleData> genericStyles) {
         this.rows = rows;
         this.mInflater = LayoutInflater.from(context);
         latoRegular = Utils.getFont(context, Utils.TypeFaces.LATO_REGULAR);
         latoSemiBold = Utils.getFont(context, Utils.TypeFaces.LATO_SEMIBOLD);
         this.tvCardDetailListener = tvCardDetailListener;
+        this.genericStyles = genericStyles;
         this.context = context;
     }
 
@@ -96,7 +97,11 @@ public class TwoColsModuleAdapter extends BaseAdapter {
             }
 //        }
 
-        configureStyle(holder);
+        if (genericStyles!=null){
+            holder.container.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()), genericStyles.get("backgroundModuleColor").getValue()));
+        } else {
+            configureStyle(holder);
+        }
         holder.text1.setTypeface(latoSemiBold);
         holder.text2.setTypeface(latoRegular);
 
@@ -111,7 +116,7 @@ public class TwoColsModuleAdapter extends BaseAdapter {
     public void setModuleStyle(String moduleName) {
 
 
-        if (styleConfigRetrieved == false) {
+        if (!styleConfigRetrieved) {
             if (tvCardDetailListener != null && tvCardDetailListener.getModuleStyles(moduleName) != null) {
                 if (ModuleMainStyle.DARK.getName().equals(tvCardDetailListener.getModuleStyles(moduleName).get(ModuleStyleProperty.MAIN_STYLE.getName()).getValue())) {
                     darkStyle = true;

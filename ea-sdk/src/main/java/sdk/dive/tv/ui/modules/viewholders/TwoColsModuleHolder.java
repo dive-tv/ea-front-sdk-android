@@ -44,7 +44,7 @@ public abstract class TwoColsModuleHolder extends VerticalListHolder {
 //        mTitle.setVisibility(GONE);
 //        mContainer.setPadding(0, 0, 0, 0);
         data = new ArrayList<>();
-        adapter = new TwoColsModuleAdapter(context, data, tvCardDetailListener);
+        adapter = new TwoColsModuleAdapter(context, data, tvCardDetailListener, genericStyles);
         if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
             genericStyles = tvCardDetailListener.getGenericStyles();
             mContainer.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()), genericStyles.get("backgroundModuleColor").getValue()));
