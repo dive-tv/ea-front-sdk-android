@@ -121,10 +121,10 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
                 mListener.onSeeMoreRelationsClose();
             }
         });
-        if (style != null) {
-            if (style != null) {
+        if (jsonStyle != null) {
+            if (jsonStyle != null) {
                 try {
-                    styleConfig = new JSONArray(style);
+                    styleConfig = new JSONArray(jsonStyle);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
