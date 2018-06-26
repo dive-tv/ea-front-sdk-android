@@ -101,14 +101,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
-        Bundle extras = getArguments();
-        if (extras != null) {
-            style = (ModuleStyle) extras.getSerializable(STYLE);
-            carouselCard = (Card) extras.getSerializable(CAROUSEL_CARD);
-            jsonStyle = (String) extras.getString(JSONSTYLE);
-            Log.e("jsonStyle oncreate : ", jsonStyle);
 
-        }
         carouselItems = new ArrayList<>();
     }
 
@@ -118,7 +111,14 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_see_more_relations, container, false);
+        Bundle extras = getArguments();
+        if (extras != null) {
+            style = (ModuleStyle) extras.getSerializable(STYLE);
+            carouselCard = (Card) extras.getSerializable(CAROUSEL_CARD);
+            jsonStyle =  extras.getString(JSONSTYLE);
+            Log.e("jsonStyle createview: ", jsonStyle);
 
+        }
         mCloseLayout = (FrameLayout) view.findViewById(R.id.fragment_see_more_button_close);
         mCloseLayout.setOnClickListener(new View.OnClickListener() {
             @Override
