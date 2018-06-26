@@ -91,6 +91,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         extras.putSerializable(STYLE, style);
         extras.putString(JSONSTYLE, jsonstyle);
         Log.e("jsonStyle new : ", jsonstyle);
+        fragment.setArguments(extras);
 
 
         return fragment;
