@@ -89,7 +89,9 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         SeeMoreRelations fragment = new SeeMoreRelations();
         Bundle extras = new Bundle();
         extras.putSerializable(STYLE, style);
-        extras.putSerializable(JSONSTYLE, jsonstyle);
+        extras.putString(JSONSTYLE, jsonstyle);
+        Log.e("jsonStyle new : ", jsonstyle);
+
 
         return fragment;
     }
@@ -102,7 +104,9 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         if (extras != null) {
             style = (ModuleStyle) extras.getSerializable(STYLE);
             carouselCard = (Card) extras.getSerializable(CAROUSEL_CARD);
-            jsonStyle = (String) extras.getSerializable(JSONSTYLE);
+            jsonStyle = (String) extras.getString(JSONSTYLE);
+            Log.e("jsonStyle oncreate : ", jsonStyle);
+
         }
         carouselItems = new ArrayList<>();
     }
@@ -132,7 +136,6 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
             }
         }
         styleCarousel = loadStyleCarousel(styleConfig);
-        Log.e("styleConfig: ", styleCarousel.toString());
 
 
         mSeeMoreContainer = (RelativeLayout) view.findViewById(R.id.seemore_container);
