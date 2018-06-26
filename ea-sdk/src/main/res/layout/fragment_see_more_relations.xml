@@ -10,7 +10,7 @@
 
     <FrameLayout
         android:id="@+id/fragment_see_more_button_close"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/carousel_button_height"
         android:layout_marginBottom="@dimen/carousel_menu_margin2"
         android:layout_marginStart="@dimen/carousel_margin_leftright"
