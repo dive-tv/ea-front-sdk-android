@@ -418,7 +418,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
     @Override
-    public void onShowMoreRelations(Card card, ModuleStyle style, String jsonstyle) {
+    public void onShowMoreRelations(Card card, ModuleStyle style) {
         if (mBottomOverlay == null) {
             mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
             mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
@@ -427,7 +427,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
 
-        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(style, jsonstyle);
+        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(style, this.style);
 
         Bundle args = new Bundle();
         args.putSerializable(CAROUSEL_CARD, card);

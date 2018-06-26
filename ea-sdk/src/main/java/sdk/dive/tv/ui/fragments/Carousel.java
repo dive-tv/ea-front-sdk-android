@@ -1140,7 +1140,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         void onCallCardDetail(String cardId, String versionId, Card.TypeEnum type);
 
-        void onShowMoreRelations(Card card, ModuleStyle style, String jsonStyle);
+        void onShowMoreRelations(Card card, ModuleStyle style);
 
         void setOuterFocus(boolean b);
 
