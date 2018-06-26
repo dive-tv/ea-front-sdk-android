@@ -413,6 +413,11 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
 
     @Override
     public void onShowMoreRelations(Card card, ModuleStyle style) {
+        if (mBottomOverlay == null) {
+            mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
+            mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
+        }
+
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
 
