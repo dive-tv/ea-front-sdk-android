@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -418,7 +419,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
     @Override
-    public void onShowMoreRelations(Card card, ModuleStyle style) {
+    public void onShowMoreRelations(Card card, ModuleStyle styles) {
         if (mBottomOverlay == null) {
             mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
             mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
@@ -426,8 +427,9 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
 
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
+        Log.e("Style see more: " , this.style);
 
-        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(style, this.style);
+        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(styles, this.style);
 
         Bundle args = new Bundle();
         args.putSerializable(CAROUSEL_CARD, card);
@@ -454,6 +456,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     public void addCarousel(String apiKey, String movieId, String channelId, boolean isMovie, int movieTime, String previousScreen, String movieName, String style) {
         deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         this.style = style;
+        Log.e("Style carousel: " , style);
         carouselFragment = Carousel.newInstance(apiKey, movieId, channelId, isMovie, movieTime, previousScreen, movieName, deviceId, style, this);
         isCarousel = true;
         enableBottomLayout(true);
