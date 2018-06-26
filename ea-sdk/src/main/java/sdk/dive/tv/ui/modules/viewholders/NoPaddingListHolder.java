@@ -47,6 +47,7 @@ public abstract class NoPaddingListHolder extends VerticalListHolder {
         if (tvCardDetailListener != null && tvCardDetailListener.getGenericStyles() != null){
             genericStyles = tvCardDetailListener.getGenericStyles();
             mContainer.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()), genericStyles.get("backgroundModuleColor").getValue()));
+            mList.setBackground(Utils.makeSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()), genericStyles.get("backgroundModuleColor").getValue()));
             btnDown.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
             btnUp.setBackground(Utils.makeButtonSelector(Color.parseColor(genericStyles.get("selectedColor").getValue()),Color.parseColor(genericStyles.get("unselectedColor").getValue()), genericStyles.get("selectedColor").getValue()));
         }
@@ -54,6 +55,10 @@ public abstract class NoPaddingListHolder extends VerticalListHolder {
     }
 
     protected void setData(ArrayList<ImageRowData> data, boolean withSeparator, View customView, Context context) {
+        if(genericStyles!=null && genericStyles.get("backgroundModuleColor")!=null) {
+            mContainer.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+            mList.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+        }
         this.data.addAll(data);
         adapter.notifyDataSetChanged();
         super.notifyDataSetChanged(withSeparator, customView, context);

@@ -61,6 +61,7 @@ public abstract class TwoColsModuleHolder extends VerticalListHolder {
 //        adapter.setModuleTitle(moduleTitle);
         if(genericStyles!=null && genericStyles.get("backgroundModuleColor")!=null) {
             mContainer.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
+            mList.setBackgroundColor(Color.parseColor(genericStyles.get("backgroundModuleColor").getValue()));
         }
         mTitle.setText(moduleTitle);
         this.data.addAll(data);
