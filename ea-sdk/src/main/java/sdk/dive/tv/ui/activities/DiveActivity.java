@@ -429,11 +429,11 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         mBottomOverlay.setVisibility(View.VISIBLE);
         Log.e("Style see more: " , this.style);
 
-        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(styles, this.style);
+        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(styles, card, this.style);
 
-        Bundle args = new Bundle();
-        args.putSerializable(CAROUSEL_CARD, card);
-        seeMoreRelations.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putSerializable(CAROUSEL_CARD, card);
+//        seeMoreRelations.setArguments(args);
 
         mManager.beginTransaction()
                 .add(R.id.fragment_bottom_overlay, seeMoreRelations, Utils.FragmentNames.SEE_MORE_RELATIONS.name())

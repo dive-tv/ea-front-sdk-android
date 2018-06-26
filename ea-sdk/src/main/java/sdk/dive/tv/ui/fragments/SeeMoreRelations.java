@@ -84,11 +84,12 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
      *
      * @return A new instance of fragment CardDetail.
      */
-    public static SeeMoreRelations newInstance(ModuleStyle style, String jsonstyle) {
+    public static SeeMoreRelations newInstance(ModuleStyle style, Card card, String jsonstyle) {
 
         SeeMoreRelations fragment = new SeeMoreRelations();
         Bundle extras = new Bundle();
         extras.putSerializable(STYLE, style);
+        extras.putSerializable(CAROUSEL_CARD, card);
         extras.putString(JSONSTYLE, jsonstyle);
         Log.e("jsonStyle new : ", jsonstyle);
         fragment.setArguments(extras);
