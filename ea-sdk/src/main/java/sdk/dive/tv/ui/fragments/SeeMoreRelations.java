@@ -121,16 +121,20 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
                 mListener.onSeeMoreRelationsClose();
             }
         });
+
         if (jsonStyle != null) {
-            if (jsonStyle != null) {
-                try {
-                    styleConfig = new JSONArray(jsonStyle);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            Log.e("jsonStyle: ", jsonStyle);
+            try {
+                styleConfig = new JSONArray(jsonStyle);
+                Log.e("styleConfig: ", styleConfig.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            styleCarousel = loadStyleCarousel(styleConfig);
         }
+        styleCarousel = loadStyleCarousel(styleConfig);
+        Log.e("styleConfig: ", styleCarousel.toString());
+
+
         mSeeMoreContainer = (RelativeLayout) view.findViewById(R.id.seemore_container);
         mCarouselList = (RecyclerView) view.findViewById(R.id.fragment_see_more_card_list);
         LinearLayoutManager carouselLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
