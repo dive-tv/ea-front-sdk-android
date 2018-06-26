@@ -432,8 +432,10 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
             categories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
             Log.e("KKKKKKK: ", "Categorias: "+categories.toString());
-            if (categories.size() > 0)
+            if (categories.size() > 0) {
+                Log.e("KKKKKKK: ", "Categorias: "+categories.size());
                 filterCardsByCategory();
+            }
         }
 
         if (styleCarousel != null && styleCarousel.getIdModuleStyleData().get("backgroundColor") != null) {
