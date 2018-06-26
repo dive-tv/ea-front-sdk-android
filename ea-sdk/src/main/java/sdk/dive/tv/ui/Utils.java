@@ -122,6 +122,7 @@ public class Utils {
     public final static String MOVIE_ID = "movie_id";
     public final static String MOVIE_TIMESTAMP = "movie_timestamp";
     public final static String STYLE = "style";
+    public final static String JSONSTYLE = "jsonstyle";
     public final static String IS_MOVIE = "is_movie";
     public final static String CHANNEL_ID = "channel_id";
     public final static String PREVIOUS_SCREEN = "previous_screen";

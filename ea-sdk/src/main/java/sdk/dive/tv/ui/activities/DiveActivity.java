@@ -15,6 +15,9 @@ import android.widget.FrameLayout;
 
 import com.touchvie.sdk.model.Card;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import sdk.client.dive.tv.utils.SharedPreferencesHelper;
 import sdk.dive.tv.R;
 import sdk.dive.tv.ui.DiveSdk;
@@ -67,6 +70,9 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     private ComponentsInterface mListener;
 
     private String style;
+    private JSONArray styleConfig;
+    private ModuleStyle styleCarousel;
+
     /**
      * Instantiates a new Video activity.
      */
@@ -412,7 +418,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
     }
 
     @Override
-    public void onShowMoreRelations(Card card, ModuleStyle style) {
+    public void onShowMoreRelations(Card card, ModuleStyle style, String jsonstyle) {
         if (mBottomOverlay == null) {
             mBottomOverlay = (FrameLayout) findViewById(R.id.fragment_bottom_overlay);
             mBottomLayout = (FrameLayout) findViewById(R.id.fragment_bottom);
@@ -421,7 +427,7 @@ public class DiveActivity extends FragmentActivity implements ComponentsInterfac
         enableBottomLayout(false);
         mBottomOverlay.setVisibility(View.VISIBLE);
 
-        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(style);
+        SeeMoreRelations seeMoreRelations = SeeMoreRelations.newInstance(style, jsonstyle);
 
         Bundle args = new Bundle();
         args.putSerializable(CAROUSEL_CARD, card);

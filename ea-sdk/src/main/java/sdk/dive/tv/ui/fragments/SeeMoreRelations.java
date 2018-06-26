@@ -43,6 +43,7 @@ import sdk.dive.tv.ui.relations.LocalContentTypes;
 
 import static com.touchvie.sdk.model.Duple.ContentTypeEnum.FEATURED_IN;
 import static sdk.dive.tv.ui.Utils.CAROUSEL_CARD;
+import static sdk.dive.tv.ui.Utils.JSONSTYLE;
 import static sdk.dive.tv.ui.Utils.STYLE;
 import static sdk.dive.tv.ui.relations.LocalContentTypes.HOME_OFF_RELATION;
 
@@ -70,6 +71,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
     private ModuleStyle style;
     private JSONArray styleConfig;
     private ModuleStyle styleCarousel;
+    private String jsonStyle;
 
     public SeeMoreRelations() {
         // Required empty public constructor
@@ -81,11 +83,12 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
      *
      * @return A new instance of fragment CardDetail.
      */
-    public static SeeMoreRelations newInstance(ModuleStyle style) {
+    public static SeeMoreRelations newInstance(ModuleStyle style, String jsonstyle) {
 
         SeeMoreRelations fragment = new SeeMoreRelations();
         Bundle extras = new Bundle();
         extras.putSerializable(STYLE, style);
+        extras.putSerializable(JSONSTYLE, jsonstyle);
 
         return fragment;
     }
@@ -98,6 +101,7 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         if (extras != null) {
             style = (ModuleStyle) extras.getSerializable(STYLE);
             carouselCard = (Card) extras.getSerializable(CAROUSEL_CARD);
+            jsonStyle = (String) extras.getSerializable(JSONSTYLE);
         }
         carouselItems = new ArrayList<>();
     }
@@ -116,7 +120,16 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
                 mListener.onSeeMoreRelationsClose();
             }
         });
-
+        if (style != null) {
+            if (style != null) {
+                try {
+                    styleConfig = new JSONArray(style);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            styleCarousel = loadStyleCarousel(styleConfig);
+        }
         mSeeMoreContainer = (RelativeLayout) view.findViewById(R.id.seemore_container);
         mCarouselList = (RecyclerView) view.findViewById(R.id.fragment_see_more_card_list);
         LinearLayoutManager carouselLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -126,17 +139,17 @@ public class SeeMoreRelations extends Fragment implements CarouselInterface {
         mAdapter.inSeeMoreFragment(true);
         mCarouselList.setAdapter(mAdapter);
 
-        if (style != null && style.getIdModuleStyleData().get("backgroundColor") != null) {
-            int backgroundColor = Color.parseColor(style.getIdModuleStyleData().get("backgroundColor").getValue());
+        if (styleCarousel != null && styleCarousel.getIdModuleStyleData().get("backgroundColor") != null) {
+            int backgroundColor = Color.parseColor(styleCarousel.getIdModuleStyleData().get("backgroundColor").getValue());
             mSeeMoreContainer.setBackgroundColor(backgroundColor);
-//            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(style.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(style.getIdModuleStyleData().get("unselectedColor").getValue()), style.getIdModuleStyleData().get("selectedColor").getValue()));
-            mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(style.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(style.getIdModuleStyleData().get("unselectedColor").getValue()), style.getIdModuleStyleData().get("selectedColor").getValue()));
-//            mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(style.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(style.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+//            mMinimizeLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+            mCloseLayout.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
+//            mCategories.setBackground(Utils.makeButtonSelector(Color.parseColor(styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()), Color.parseColor(styleCarousel.getIdModuleStyleData().get("unselectedColor").getValue()), styleCarousel.getIdModuleStyleData().get("selectedColor").getValue()));
         } else if (Utils.getCardDetailStyleconfiguration(getContext()) != null) {
-            int backgroundDefaultColor = Color.parseColor(style.getIdModuleStyleData().get("backgroundColor").getValue());
-            int selectedDefaultColor = Color.parseColor(style.getIdModuleStyleData().get("selectedColor").getValue());
-            String strSelectedDefaultColor = style.getIdModuleStyleData().get("selectedColor").getValue();
-            int unselectedDefaultColor = Color.parseColor(style.getIdModuleStyleData().get("unselectedColor").getValue());
+            int backgroundDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("backgroundColor").getValue());
+            int selectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue());
+            String strSelectedDefaultColor = loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("selectedColor").getValue();
+            int unselectedDefaultColor = Color.parseColor(loadStyleCarousel(Utils.getCardDetailStyleconfiguration(getContext())).getIdModuleStyleData().get("unselectedColor").getValue());
             mSeeMoreContainer.setBackgroundColor(backgroundDefaultColor);
 //            mMinimizeLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
             mCloseLayout.setBackground(Utils.makeButtonSelector(selectedDefaultColor, unselectedDefaultColor, strSelectedDefaultColor));
