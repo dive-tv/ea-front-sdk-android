@@ -431,9 +431,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             isFiltered = true;
 
             categories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
-            Log.e("KKKKKKK: ", "Categorias: "+categories.toString());
             if (categories.size() > 0) {
-                Log.e("KKKKKKK: ", "Categorias: "+categories.size());
                 filterCardsByCategory();
             }
         }
@@ -811,9 +809,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
             CarouselTvCell card = cellsToFilter.get(i);
 
             for (String categoryName : categories) {
-                Log.e("applyFilters", "categoryName: " + categoryName);
                 if (card != null && categoryName.trim().toLowerCase().equals(card.getCard().getType().getValue().trim().toLowerCase())) {
-                    Log.e("applyFilters", "card categoryName: " + card.getCard().getType().getValue());
                     if (!isFiltered) {
                         if (card instanceof SeeMoreTvCell) {
                             filteredCells.add(card);
