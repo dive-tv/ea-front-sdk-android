@@ -442,24 +442,31 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 customArraySpinner[i]=getString(R.string.SELECTOR_ALL_CATEGORIES);
                 i++;
                 for (String category:customCategories){
+                    Log.e("category: ", category);
                     if (category.trim().toLowerCase().equals(Card.TypeEnum.CHARACTER.getValue().trim().toLowerCase()) || category.equals(Card.TypeEnum.PERSON.getValue().trim().toLowerCase())){
-                            customArraySpinner[i]=getString(R.string.SELECTOR_CAST_CHARACTER);
+                        Log.e("customcategorie: ", "SELECTOR_CAST_CHARACTER");
+                        customArraySpinner[i]=getString(R.string.SELECTOR_CAST_CHARACTER);
                             i++;
                     } else if (category.trim().toLowerCase().equals(Card.TypeEnum.CHARACTER.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.PERSON.getValue().trim().toLowerCase()) ||
                             category.trim().toLowerCase().equals(Card.TypeEnum.FASHION.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.LOOK.getValue().trim().toLowerCase())){
+                        Log.e("customcategorie: ", "SELECTOR_FASHION_BEAUTY");
                         customArraySpinner[i]=getString(R.string.SELECTOR_FASHION_BEAUTY);
                         i++;
                     } else if (category.trim().toLowerCase().equals(Card.TypeEnum.SONG.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.OST.getValue().trim().toLowerCase())){
+                        Log.e("customcategorie: ", "SELECTOR_MUSIC");
                         customArraySpinner[i]=getString(R.string.SELECTOR_MUSIC);
                         i++;
                     } else if (category.trim().toLowerCase().equals(Card.TypeEnum.LOCATION.getValue().trim().toLowerCase())){
+                        Log.e("customcategorie: ", "SELECTOR_PLACES_TRAVEL");
                         customArraySpinner[i]=getString(R.string.SELECTOR_PLACES_TRAVEL);
                         i++;
                     } else if (category.trim().toLowerCase().equals(Card.TypeEnum.VEHICLE.getValue().trim().toLowerCase())){
+                        Log.e("customcategorie: ", "SELECTOR_CARS_MORE");
                         customArraySpinner[i]=getString(R.string.SELECTOR_CARS_MORE);
                         i++;
                     } else if (category.trim().toLowerCase().equals(Card.TypeEnum.TRIVIA.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.REFERENCE.getValue().trim().toLowerCase())
                             || category.trim().toLowerCase().equals(Card.TypeEnum.QUOTE.getValue().trim().toLowerCase())){
+                        Log.e("customcategorie: ", "SELECTOR_FUN_FACTS");
                         customArraySpinner[i]=getString(R.string.SELECTOR_FUN_FACTS);
                         i++;
                     } else if (category.trim().toLowerCase().equals(Card.TypeEnum.ART.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.BUSINESS.getValue().trim().toLowerCase())
@@ -467,6 +474,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                             || category.trim().toLowerCase().equals(Card.TypeEnum.HISTORIC.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.HOME.getValue().trim().toLowerCase())
                             || category.trim().toLowerCase().equals(Card.TypeEnum.LEISURE_SPORT.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.TECHNOLOGY.getValue().trim().toLowerCase())
                             || category.trim().toLowerCase().equals(Card.TypeEnum.WEAPON.getValue().trim().toLowerCase())){
+                        Log.e("customcategorie: ", "SELECTOR_OTHER_CATEGORIES");
                         customArraySpinner[i]=getString(R.string.SELECTOR_OTHER_CATEGORIES);
                         i++;
                     }
@@ -474,8 +482,11 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 //                final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
                 final String[] arraySpinner;
                 if (i>1){
+                    Log.e("customArraySpiner", "custom");
                     arraySpinner = customArraySpinner;
+
                 } else {
+                    Log.e("customArraySpiner", "normal");
                     arraySpinner = new String[]{
                             getString(R.string.SELECTOR_ALL_CATEGORIES),
                             getString(R.string.SELECTOR_CAST_CHARACTER),
@@ -493,7 +504,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 Log.e("customarrayspinner", String.valueOf(customArraySpinner.length));
                 Log.e("arrayspinner", String.valueOf(arraySpinner.length));
 
-                CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner : arraySpinner);
+                CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, i > 1 ? customArraySpinner : arraySpinner);
                 adapter.setDropDownViewResource(R.layout.category_dropdown_row);
 
                 final ArrayList<String> tempCategories = new ArrayList<>();
