@@ -47,6 +47,8 @@ public class DiveSdk {
         this.settings.storeDeviceId(deviceId);
         this.settings.storeCategories(TextUtils.join(", ", categories));
         this.settings.storeCategoriesVisible(areCategoriesVisibles);
+        if (categories.size()>0)
+            this.settings.storeCustomCategories(true);
         this.ctx = ctx;
         launchService();
     }

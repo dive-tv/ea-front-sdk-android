@@ -29,6 +29,7 @@ import com.touchvie.sdk.model.DupleData;
 import com.touchvie.sdk.model.RelationModule;
 import com.touchvie.sdk.model.Single;
 
+import org.apache.commons.collections4.ListUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -354,79 +355,204 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
         final SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getActivity().getApplicationContext());
         if (sharedPreferencesHelper.getCategoriesVisible()) {
-            final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
-            final String[] arraySpinner = new String[]{
-                    getString(R.string.SELECTOR_ALL_CATEGORIES),
-                    getString(R.string.SELECTOR_CAST_CHARACTER),
-                    getString(R.string.SELECTOR_FASHION_BEAUTY),
-                    getString(R.string.SELECTOR_MUSIC),
-                    getString(R.string.SELECTOR_PLACES_TRAVEL),
-                    getString(R.string.SELECTOR_CARS_MORE),
-                    getString(R.string.SELECTOR_FUN_FACTS),
-                    getString(R.string.SELECTOR_OTHER_CATEGORIES)
-            };
-            mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
-            mCategories.setVisibility(VISIBLE);
+            if (!sharedPreferencesHelper.getCustomCategories()) {
+                final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
+                final String[] arraySpinner = new String[]{
+                        getString(R.string.SELECTOR_ALL_CATEGORIES),
+                        getString(R.string.SELECTOR_CAST_CHARACTER),
+                        getString(R.string.SELECTOR_FASHION_BEAUTY),
+                        getString(R.string.SELECTOR_MUSIC),
+                        getString(R.string.SELECTOR_PLACES_TRAVEL),
+                        getString(R.string.SELECTOR_CARS_MORE),
+                        getString(R.string.SELECTOR_FUN_FACTS),
+                        getString(R.string.SELECTOR_OTHER_CATEGORIES)
+                };
+                mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
+                mCategories.setVisibility(VISIBLE);
 
-            CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner : arraySpinner);
-            adapter.setDropDownViewResource(R.layout.category_dropdown_row);
+                CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner : arraySpinner);
+                adapter.setDropDownViewResource(R.layout.category_dropdown_row);
 
-            mCategories.setAdapter(adapter);
-            mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    //TODO call FilterCardsBy Category
-                    categories.clear();
-                    String selected = sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner[position] : arraySpinner[position];
-                    isFiltered = true;
-                    if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
-                        isFiltered = false;
+                mCategories.setAdapter(adapter);
+                mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        //TODO call FilterCardsBy Category
                         categories.clear();
-                        filterCardsByCategory();
-                        return;
-                    } else if (selected.equals(getString(R.string.SELECTOR_CAST_CHARACTER))) {
-                        categories.add(Card.TypeEnum.CHARACTER.getValue());
-                        categories.add(Card.TypeEnum.PERSON.getValue());
-                    } else if (selected.equals(getString(R.string.SELECTOR_FASHION_BEAUTY))) {
-                        isFiltered = false;
-                        categories.add(Card.TypeEnum.CHARACTER.getValue());
-                        categories.add(Card.TypeEnum.PERSON.getValue());
-                        categories.add(Card.TypeEnum.FASHION.getValue());
-                        categories.add(Card.TypeEnum.LOOK.getValue());
-                    } else if (selected.equals(getString(R.string.SELECTOR_MUSIC))) {
-                        categories.add(Card.TypeEnum.SONG.getValue());
-                        categories.add(Card.TypeEnum.OST.getValue());
-                    } else if (selected.equals(getString(R.string.SELECTOR_PLACES_TRAVEL))) {
-                        categories.add(Card.TypeEnum.LOCATION.getValue());
-                    } else if (selected.equals(getString(R.string.SELECTOR_CARS_MORE))) {
-                        categories.add(Card.TypeEnum.VEHICLE.getValue());
-                    } else if (selected.equals(getString(R.string.SELECTOR_FUN_FACTS))) {
-                        categories.add(Card.TypeEnum.TRIVIA.getValue());
-                        categories.add(Card.TypeEnum.REFERENCE.getValue());
-                        categories.add(Card.TypeEnum.QUOTE.getValue());
-                    } else if (selected.equals(getString(R.string.SELECTOR_OTHER_CATEGORIES))) {
+                        String selected = sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner[position] : arraySpinner[position];
+                        isFiltered = true;
+                        if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
+                            isFiltered = false;
+                            categories.clear();
+                            filterCardsByCategory();
+                            return;
+                        } else if (selected.equals(getString(R.string.SELECTOR_CAST_CHARACTER))) {
+                            categories.add(Card.TypeEnum.CHARACTER.getValue());
+                            categories.add(Card.TypeEnum.PERSON.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_FASHION_BEAUTY))) {
+                            isFiltered = false;
+                            categories.add(Card.TypeEnum.CHARACTER.getValue());
+                            categories.add(Card.TypeEnum.PERSON.getValue());
+                            categories.add(Card.TypeEnum.FASHION.getValue());
+                            categories.add(Card.TypeEnum.LOOK.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_MUSIC))) {
+                            categories.add(Card.TypeEnum.SONG.getValue());
+                            categories.add(Card.TypeEnum.OST.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_PLACES_TRAVEL))) {
+                            categories.add(Card.TypeEnum.LOCATION.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_CARS_MORE))) {
+                            categories.add(Card.TypeEnum.VEHICLE.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_FUN_FACTS))) {
+                            categories.add(Card.TypeEnum.TRIVIA.getValue());
+                            categories.add(Card.TypeEnum.REFERENCE.getValue());
+                            categories.add(Card.TypeEnum.QUOTE.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_OTHER_CATEGORIES))) {
 //                    categories.add(Card.TypeEnum.ACTION_EMOTION.getValue());
-                        categories.add(Card.TypeEnum.ART.getValue());
-                        categories.add(Card.TypeEnum.BUSINESS.getValue());
-                        categories.add(Card.TypeEnum.FAUNA_FLORA.getValue());
-                        categories.add(Card.TypeEnum.FOOD_DRINK.getValue());
-                        categories.add(Card.TypeEnum.HEALTH_BEAUTY.getValue());
-                        categories.add(Card.TypeEnum.HISTORIC.getValue());
-                        categories.add(Card.TypeEnum.HOME.getValue());
-                        categories.add(Card.TypeEnum.LEISURE_SPORT.getValue());
-                        categories.add(Card.TypeEnum.TECHNOLOGY.getValue());
-                        categories.add(Card.TypeEnum.WEAPON.getValue());
+                            categories.add(Card.TypeEnum.ART.getValue());
+                            categories.add(Card.TypeEnum.BUSINESS.getValue());
+                            categories.add(Card.TypeEnum.FAUNA_FLORA.getValue());
+                            categories.add(Card.TypeEnum.FOOD_DRINK.getValue());
+                            categories.add(Card.TypeEnum.HEALTH_BEAUTY.getValue());
+                            categories.add(Card.TypeEnum.HISTORIC.getValue());
+                            categories.add(Card.TypeEnum.HOME.getValue());
+                            categories.add(Card.TypeEnum.LEISURE_SPORT.getValue());
+                            categories.add(Card.TypeEnum.TECHNOLOGY.getValue());
+                            categories.add(Card.TypeEnum.WEAPON.getValue());
+                        }
+                        if (categories != null && categories.size() > 0)
+                            filterCardsByCategory();
                     }
-                    if (categories != null && categories.size() > 0)
-                        filterCardsByCategory();
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            } else {
+                mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
+                mCategories.setVisibility(GONE);
+
+                ArrayList<String> customCategories = new ArrayList<>();
+                categories.clear();
+                isFiltered = true;
+
+                customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
+                final String[] customArraySpinner = new String[]{};
+                int i=0;
+                customArraySpinner[i]=getString(R.string.SELECTOR_ALL_CATEGORIES);
+                i++;
+                for (String category:customCategories){
+                    if (category.equals(Card.TypeEnum.CHARACTER.getValue()) || category.equals(Card.TypeEnum.PERSON.getValue())){
+                            customArraySpinner[i]=getString(R.string.SELECTOR_CAST_CHARACTER);
+                            i++;
+                    } else if (category.equals(Card.TypeEnum.CHARACTER.getValue()) || category.equals(Card.TypeEnum.PERSON.getValue()) ||
+                            category.equals(Card.TypeEnum.FASHION.getValue()) || category.equals(Card.TypeEnum.LOOK.getValue())){
+                        customArraySpinner[i]=getString(R.string.SELECTOR_FASHION_BEAUTY);
+                        i++;
+                    } else if (category.equals(Card.TypeEnum.SONG.getValue()) || category.equals(Card.TypeEnum.OST.getValue())){
+                        customArraySpinner[i]=getString(R.string.SELECTOR_MUSIC);
+                        i++;
+                    } else if (category.equals(Card.TypeEnum.LOCATION.getValue())){
+                        customArraySpinner[i]=getString(R.string.SELECTOR_PLACES_TRAVEL);
+                        i++;
+                    } else if (category.equals(Card.TypeEnum.VEHICLE.getValue())){
+                        customArraySpinner[i]=getString(R.string.SELECTOR_CARS_MORE);
+                        i++;
+                    } else if (category.equals(Card.TypeEnum.TRIVIA.getValue()) || category.equals(Card.TypeEnum.REFERENCE.getValue())
+                            || category.equals(Card.TypeEnum.QUOTE.getValue())){
+                        customArraySpinner[i]=getString(R.string.SELECTOR_FUN_FACTS);
+                        i++;
+                    } else if (category.equals(Card.TypeEnum.ART.getValue()) || category.equals(Card.TypeEnum.BUSINESS.getValue())
+                            || category.equals(Card.TypeEnum.FAUNA_FLORA.getValue()) || category.equals(Card.TypeEnum.HEALTH_BEAUTY.getValue())
+                            || category.equals(Card.TypeEnum.HISTORIC.getValue()) || category.equals(Card.TypeEnum.HOME.getValue())
+                            || category.equals(Card.TypeEnum.LEISURE_SPORT.getValue()) || category.equals(Card.TypeEnum.TECHNOLOGY.getValue())
+                            || category.equals(Card.TypeEnum.WEAPON.getValue())){
+                        customArraySpinner[i]=getString(R.string.SELECTOR_OTHER_CATEGORIES);
+                        i++;
+                    }
                 }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
+//                final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
+                final String[] arraySpinner;
+                if (customArraySpinner.length>0){
+                    arraySpinner = customArraySpinner;
+                } else {
+                    arraySpinner = new String[]{
+                            getString(R.string.SELECTOR_ALL_CATEGORIES),
+                            getString(R.string.SELECTOR_CAST_CHARACTER),
+                            getString(R.string.SELECTOR_FASHION_BEAUTY),
+                            getString(R.string.SELECTOR_MUSIC),
+                            getString(R.string.SELECTOR_PLACES_TRAVEL),
+                            getString(R.string.SELECTOR_CARS_MORE),
+                            getString(R.string.SELECTOR_FUN_FACTS),
+                            getString(R.string.SELECTOR_OTHER_CATEGORIES)
+                    };
                 }
-            });
+                mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
+                mCategories.setVisibility(VISIBLE);
 
+                CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner : arraySpinner);
+                adapter.setDropDownViewResource(R.layout.category_dropdown_row);
+
+                final ArrayList<String> tempCategories = new ArrayList<>();
+                mCategories.setAdapter(adapter);
+                final ArrayList<String> finalCustomCategories = customCategories;
+                mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        //TODO call FilterCardsBy Category
+                        categories.clear();
+                        String selected = sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner[position] : arraySpinner[position];
+                        isFiltered = true;
+                        if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
+                            isFiltered = false;
+                            categories=finalCustomCategories;
+                            filterCardsByCategory();
+                            return;
+                        } else if (selected.equals(getString(R.string.SELECTOR_CAST_CHARACTER))) {
+                            tempCategories.add(Card.TypeEnum.CHARACTER.getValue());
+                            tempCategories.add(Card.TypeEnum.PERSON.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_FASHION_BEAUTY))) {
+                            isFiltered = false;
+                            tempCategories.add(Card.TypeEnum.CHARACTER.getValue());
+                            tempCategories.add(Card.TypeEnum.PERSON.getValue());
+                            tempCategories.add(Card.TypeEnum.FASHION.getValue());
+                            tempCategories.add(Card.TypeEnum.LOOK.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_MUSIC))) {
+                            tempCategories.add(Card.TypeEnum.SONG.getValue());
+                            tempCategories.add(Card.TypeEnum.OST.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_PLACES_TRAVEL))) {
+                            tempCategories.add(Card.TypeEnum.LOCATION.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_CARS_MORE))) {
+                            tempCategories.add(Card.TypeEnum.VEHICLE.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_FUN_FACTS))) {
+                            tempCategories.add(Card.TypeEnum.TRIVIA.getValue());
+                            tempCategories.add(Card.TypeEnum.REFERENCE.getValue());
+                            tempCategories.add(Card.TypeEnum.QUOTE.getValue());
+                        } else if (selected.equals(getString(R.string.SELECTOR_OTHER_CATEGORIES))) {
+//                    categories.add(Card.TypeEnum.ACTION_EMOTION.getValue());
+                            tempCategories.add(Card.TypeEnum.ART.getValue());
+                            tempCategories.add(Card.TypeEnum.BUSINESS.getValue());
+                            tempCategories.add(Card.TypeEnum.FAUNA_FLORA.getValue());
+                            tempCategories.add(Card.TypeEnum.FOOD_DRINK.getValue());
+                            tempCategories.add(Card.TypeEnum.HEALTH_BEAUTY.getValue());
+                            tempCategories.add(Card.TypeEnum.HISTORIC.getValue());
+                            tempCategories.add(Card.TypeEnum.HOME.getValue());
+                            tempCategories.add(Card.TypeEnum.LEISURE_SPORT.getValue());
+                            tempCategories.add(Card.TypeEnum.TECHNOLOGY.getValue());
+                            tempCategories.add(Card.TypeEnum.WEAPON.getValue());
+                        }
+                        categories = (ArrayList<String>)ListUtils.intersection(finalCustomCategories, tempCategories);
+
+                        if (categories != null && categories.size() > 0)
+                            filterCardsByCategory();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            }
 
         } else {
             mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
