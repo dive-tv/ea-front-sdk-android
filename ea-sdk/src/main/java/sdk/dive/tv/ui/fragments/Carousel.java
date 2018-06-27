@@ -437,46 +437,35 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 isFiltered = true;
 
                 final ArrayList<String> customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
-                Log.e("customCategories:",sharedPreferencesHelper.getCategories());
-                for (String finalCustomCategoriy:customCategories){
-                    Log.e("customCategory1 filter:" ,finalCustomCategoriy);
-                }
 
                 String[] customArraySpinner = new String[1];
                 int i=0;
                 customArraySpinner[i]=getString(R.string.SELECTOR_ALL_CATEGORIES);
                 i++;
                 for (String category:customCategories){
-                    Log.e("category: ", category);
                     if (!Arrays.asList(customArraySpinner).contains(getString(R.string.SELECTOR_CAST_CHARACTER)) && (category.trim().toLowerCase().equals(Card.TypeEnum.CHARACTER.getValue().trim().toLowerCase()) || category.equals(Card.TypeEnum.PERSON.getValue().trim().toLowerCase()))){
-                        Log.e("customcategories: ", "SELECTOR_CAST_CHARACTER");
                         customArraySpinner = Arrays.copyOf(customArraySpinner,i+1);
                         customArraySpinner[i]=getString(R.string.SELECTOR_CAST_CHARACTER);
                             i++;
                     } else if (!Arrays.asList(customArraySpinner).contains(getString(R.string.SELECTOR_FASHION_BEAUTY)) && (category.trim().toLowerCase().equals(Card.TypeEnum.CHARACTER.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.PERSON.getValue().trim().toLowerCase()) ||
                             category.trim().toLowerCase().equals(Card.TypeEnum.FASHION.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.LOOK.getValue().trim().toLowerCase()))){
-                        Log.e("customcategories: ", "SELECTOR_FASHION_BEAUTY");
                         customArraySpinner = Arrays.copyOf(customArraySpinner,i+1);
                         customArraySpinner[i]=getString(R.string.SELECTOR_FASHION_BEAUTY);
                         i++;
                     } else if (!Arrays.asList(customArraySpinner).contains(getString(R.string.SELECTOR_MUSIC)) && (category.trim().toLowerCase().equals(Card.TypeEnum.SONG.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.OST.getValue().trim().toLowerCase()))){
-                        Log.e("customcategories: ", "SELECTOR_MUSIC");
                         customArraySpinner = Arrays.copyOf(customArraySpinner,i+1);
                         customArraySpinner[i]=getString(R.string.SELECTOR_MUSIC);
                         i++;
                     } else if (!Arrays.asList(customArraySpinner).contains(getString(R.string.SELECTOR_PLACES_TRAVEL)) && (category.trim().toLowerCase().equals(Card.TypeEnum.LOCATION.getValue().trim().toLowerCase()))){
-                        Log.e("customcategories: ", "SELECTOR_PLACES_TRAVEL");
                         customArraySpinner = Arrays.copyOf(customArraySpinner,i+1);
                         customArraySpinner[i]=getString(R.string.SELECTOR_PLACES_TRAVEL);
                         i++;
                     } else if (!Arrays.asList(customArraySpinner).contains(getString(R.string.SELECTOR_CARS_MORE)) && (category.trim().toLowerCase().equals(Card.TypeEnum.VEHICLE.getValue().trim().toLowerCase()))){
-                        Log.e("customcategories: ", "SELECTOR_CARS_MORE");
                         customArraySpinner = Arrays.copyOf(customArraySpinner,i+1);
                         customArraySpinner[i]=getString(R.string.SELECTOR_CARS_MORE);
                         i++;
                     } else if (!Arrays.asList(customArraySpinner).contains(getString(R.string.SELECTOR_FUN_FACTS)) && (category.trim().toLowerCase().equals(Card.TypeEnum.TRIVIA.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.REFERENCE.getValue().trim().toLowerCase())
                             || category.trim().toLowerCase().equals(Card.TypeEnum.QUOTE.getValue().trim().toLowerCase()))){
-                        Log.e("customcategories: ", "SELECTOR_FUN_FACTS");
                         customArraySpinner = Arrays.copyOf(customArraySpinner,i+1);
                         customArraySpinner[i]=getString(R.string.SELECTOR_FUN_FACTS);
                         i++;
@@ -485,7 +474,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                             || category.trim().toLowerCase().equals(Card.TypeEnum.HISTORIC.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.HOME.getValue().trim().toLowerCase())
                             || category.trim().toLowerCase().equals(Card.TypeEnum.LEISURE_SPORT.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.TECHNOLOGY.getValue().trim().toLowerCase())
                             || category.trim().toLowerCase().equals(Card.TypeEnum.WEAPON.getValue().trim().toLowerCase()))){
-                        Log.e("customcategories: ", "SELECTOR_OTHER_CATEGORIES");
                         customArraySpinner = Arrays.copyOf(customArraySpinner,i+1);
                         customArraySpinner[i]=getString(R.string.SELECTOR_OTHER_CATEGORIES);
                         i++;
@@ -513,12 +501,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
                 mCategories.setVisibility(VISIBLE);
 
-                for (int custom =0;custom < customArraySpinner.length; custom++) {
-                    Log.e("customarrayspinner", custom + "    "+customArraySpinner[custom]);
-                }
-                for (int normal =0;normal < arraySpinner.length; normal++) {
-                    Log.e("arrayspinner", normal + "     " + arraySpinner[normal]);
-                }
+
                 CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, i > 1 ? customArraySpinner : arraySpinner);
                 adapter.setDropDownViewResource(R.layout.category_dropdown_row);
 
@@ -581,13 +564,11 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                             tempCategories.add(Card.TypeEnum.TECHNOLOGY.getValue());
                             tempCategories.add(Card.TypeEnum.WEAPON.getValue());
                         }
-                        for (String tempCategory:tempCategories){
-                            Log.e("tempCategory filter:" ,tempCategory);
-                        }
-                        for (String finalCustomCategoriy:customCategories){
-                            Log.e("customCategory filter:" ,finalCustomCategoriy);
-                        }
+
+                        final ArrayList<String> customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
+
                         categories = (ArrayList<String>)ListUtils.intersection(customCategories, tempCategories);
+
                         for (String category:categories){
                             Log.e("category before filter:" ,category);
                         }
