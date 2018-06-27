@@ -532,6 +532,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                         isFiltered = true;
                         if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
 //                            isFiltered = false;
+                            categories.clear();
                             categories=finalCustomCategories;
                             Log.e("Selected: " , " category: all");
                             filterCardsByCategory();
@@ -576,7 +577,16 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                             tempCategories.add(Card.TypeEnum.TECHNOLOGY.getValue());
                             tempCategories.add(Card.TypeEnum.WEAPON.getValue());
                         }
+                        for (String tempCategory:tempCategories){
+                            Log.e("tempCategory filter:" ,tempCategory);
+                        }
+                        for (String finalCustomCategoriy:finalCustomCategories){
+                            Log.e("tempCategory filter:" ,finalCustomCategoriy);
+                        }
                         categories = (ArrayList<String>)ListUtils.intersection(finalCustomCategories, tempCategories);
+                        for (String category:categories){
+                            Log.e("category before filter:" ,category);
+                        }
 
                         if (categories != null && categories.size() > 0)
                             filterCardsByCategory();
