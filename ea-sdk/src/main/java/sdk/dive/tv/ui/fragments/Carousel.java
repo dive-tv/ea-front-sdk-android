@@ -437,7 +437,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 isFiltered = true;
 
                 customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
-                final String[] customArraySpinner = new String[]{};
+                final String[] customArraySpinner = new String[sharedPreferencesHelper.getCategories().length()];
                 int i=0;
                 customArraySpinner[i]=getString(R.string.SELECTOR_ALL_CATEGORIES);
                 i++;
