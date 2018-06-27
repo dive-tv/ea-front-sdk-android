@@ -437,7 +437,10 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 isFiltered = true;
 
                 final ArrayList<String> customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
-
+                Log.e("customCategories:",sharedPreferencesHelper.getCategories());
+                for (String finalCustomCategoriy:customCategories){
+                    Log.e("customCategory1 filter:" ,finalCustomCategoriy);
+                }
 
                 String[] customArraySpinner = new String[1];
                 int i=0;
