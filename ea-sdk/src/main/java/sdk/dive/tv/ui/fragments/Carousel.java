@@ -432,11 +432,11 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
                 mCategories.setVisibility(GONE);
 
-                ArrayList<String> customCategories = new ArrayList<>();
+
                 categories.clear();
                 isFiltered = true;
 
-                customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
+                final ArrayList<String> customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
                 String[] customArraySpinner = new String[1];
                 int i=0;
                 customArraySpinner[i]=getString(R.string.SELECTOR_ALL_CATEGORIES);
@@ -519,7 +519,6 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 
                 final ArrayList<String> tempCategories = new ArrayList<>();
                 mCategories.setAdapter(adapter);
-                final ArrayList<String> finalCustomCategories = customCategories;
                 final String[] finalCustomArraySpinner = customArraySpinner;
                 mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -533,7 +532,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                         if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
 //                            isFiltered = false;
                             categories.clear();
-                            categories=finalCustomCategories;
+                            categories=customCategories;
                             Log.e("Selected: " , " category: all");
                             filterCardsByCategory();
                             return;
@@ -580,10 +579,10 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                         for (String tempCategory:tempCategories){
                             Log.e("tempCategory filter:" ,tempCategory);
                         }
-                        for (String finalCustomCategoriy:finalCustomCategories){
+                        for (String finalCustomCategoriy:customCategories){
                             Log.e("tempCategory filter:" ,finalCustomCategoriy);
                         }
-                        categories = (ArrayList<String>)ListUtils.intersection(finalCustomCategories, tempCategories);
+                        categories = (ArrayList<String>)ListUtils.intersection(customCategories, tempCategories);
                         for (String category:categories){
                             Log.e("category before filter:" ,category);
                         }
