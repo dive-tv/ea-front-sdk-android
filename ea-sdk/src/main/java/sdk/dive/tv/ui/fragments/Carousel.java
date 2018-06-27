@@ -437,6 +437,8 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 isFiltered = true;
 
                 final ArrayList<String> customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
+
+
                 String[] customArraySpinner = new String[1];
                 int i=0;
                 customArraySpinner[i]=getString(R.string.SELECTOR_ALL_CATEGORIES);
@@ -580,7 +582,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                             Log.e("tempCategory filter:" ,tempCategory);
                         }
                         for (String finalCustomCategoriy:customCategories){
-                            Log.e("tempCategory filter:" ,finalCustomCategoriy);
+                            Log.e("customCategory filter:" ,finalCustomCategoriy);
                         }
                         categories = (ArrayList<String>)ListUtils.intersection(customCategories, tempCategories);
                         for (String category:categories){
