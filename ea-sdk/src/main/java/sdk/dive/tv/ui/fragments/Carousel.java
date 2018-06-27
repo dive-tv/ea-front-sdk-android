@@ -442,38 +442,38 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 customArraySpinner[i]=getString(R.string.SELECTOR_ALL_CATEGORIES);
                 i++;
                 for (String category:customCategories){
-                    if (category.equals(Card.TypeEnum.CHARACTER.getValue()) || category.equals(Card.TypeEnum.PERSON.getValue())){
+                    if (category.trim().toLowerCase().equals(Card.TypeEnum.CHARACTER.getValue().trim().toLowerCase()) || category.equals(Card.TypeEnum.PERSON.getValue().trim().toLowerCase())){
                             customArraySpinner[i]=getString(R.string.SELECTOR_CAST_CHARACTER);
                             i++;
-                    } else if (category.equals(Card.TypeEnum.CHARACTER.getValue()) || category.equals(Card.TypeEnum.PERSON.getValue()) ||
-                            category.equals(Card.TypeEnum.FASHION.getValue()) || category.equals(Card.TypeEnum.LOOK.getValue())){
+                    } else if (category.trim().toLowerCase().equals(Card.TypeEnum.CHARACTER.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.PERSON.getValue().trim().toLowerCase()) ||
+                            category.trim().toLowerCase().equals(Card.TypeEnum.FASHION.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.LOOK.getValue().trim().toLowerCase())){
                         customArraySpinner[i]=getString(R.string.SELECTOR_FASHION_BEAUTY);
                         i++;
-                    } else if (category.equals(Card.TypeEnum.SONG.getValue()) || category.equals(Card.TypeEnum.OST.getValue())){
+                    } else if (category.trim().toLowerCase().equals(Card.TypeEnum.SONG.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.OST.getValue().trim().toLowerCase())){
                         customArraySpinner[i]=getString(R.string.SELECTOR_MUSIC);
                         i++;
-                    } else if (category.equals(Card.TypeEnum.LOCATION.getValue())){
+                    } else if (category.trim().toLowerCase().equals(Card.TypeEnum.LOCATION.getValue().trim().toLowerCase())){
                         customArraySpinner[i]=getString(R.string.SELECTOR_PLACES_TRAVEL);
                         i++;
-                    } else if (category.equals(Card.TypeEnum.VEHICLE.getValue())){
+                    } else if (category.trim().toLowerCase().equals(Card.TypeEnum.VEHICLE.getValue().trim().toLowerCase())){
                         customArraySpinner[i]=getString(R.string.SELECTOR_CARS_MORE);
                         i++;
-                    } else if (category.equals(Card.TypeEnum.TRIVIA.getValue()) || category.equals(Card.TypeEnum.REFERENCE.getValue())
-                            || category.equals(Card.TypeEnum.QUOTE.getValue())){
+                    } else if (category.trim().toLowerCase().equals(Card.TypeEnum.TRIVIA.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.REFERENCE.getValue().trim().toLowerCase())
+                            || category.trim().toLowerCase().equals(Card.TypeEnum.QUOTE.getValue().trim().toLowerCase())){
                         customArraySpinner[i]=getString(R.string.SELECTOR_FUN_FACTS);
                         i++;
-                    } else if (category.equals(Card.TypeEnum.ART.getValue()) || category.equals(Card.TypeEnum.BUSINESS.getValue())
-                            || category.equals(Card.TypeEnum.FAUNA_FLORA.getValue()) || category.equals(Card.TypeEnum.HEALTH_BEAUTY.getValue())
-                            || category.equals(Card.TypeEnum.HISTORIC.getValue()) || category.equals(Card.TypeEnum.HOME.getValue())
-                            || category.equals(Card.TypeEnum.LEISURE_SPORT.getValue()) || category.equals(Card.TypeEnum.TECHNOLOGY.getValue())
-                            || category.equals(Card.TypeEnum.WEAPON.getValue())){
+                    } else if (category.trim().toLowerCase().equals(Card.TypeEnum.ART.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.BUSINESS.getValue().trim().toLowerCase())
+                            || category.trim().toLowerCase().equals(Card.TypeEnum.FAUNA_FLORA.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.HEALTH_BEAUTY.getValue().trim().toLowerCase())
+                            || category.trim().toLowerCase().equals(Card.TypeEnum.HISTORIC.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.HOME.getValue().trim().toLowerCase())
+                            || category.trim().toLowerCase().equals(Card.TypeEnum.LEISURE_SPORT.getValue().trim().toLowerCase()) || category.trim().toLowerCase().equals(Card.TypeEnum.TECHNOLOGY.getValue().trim().toLowerCase())
+                            || category.trim().toLowerCase().equals(Card.TypeEnum.WEAPON.getValue().trim().toLowerCase())){
                         customArraySpinner[i]=getString(R.string.SELECTOR_OTHER_CATEGORIES);
                         i++;
                     }
                 }
 //                final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
                 final String[] arraySpinner;
-                if (i>0){
+                if (i>1){
                     arraySpinner = customArraySpinner;
                 } else {
                     arraySpinner = new String[]{
@@ -489,6 +489,9 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 }
                 mCategories = (CarouselSpinner) view.findViewById(R.id.carousel_categories_selector);
                 mCategories.setVisibility(VISIBLE);
+
+                Log.e("customarrayspinner", String.valueOf(customArraySpinner.length));
+                Log.e("arrayspinner", String.valueOf(arraySpinner.length));
 
                 CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, sharedPreferencesHelper.getCategories().split(",").length > 0 ? customArraySpinner : arraySpinner);
                 adapter.setDropDownViewResource(R.layout.category_dropdown_row);
