@@ -482,11 +482,8 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
 //                final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
                 final String[] arraySpinner;
                 if (i>1){
-                    Log.e("customArraySpiner", "custom");
                     arraySpinner = customArraySpinner;
-
                 } else {
-                    Log.e("customArraySpiner", "normal");
                     arraySpinner = new String[]{
                             getString(R.string.SELECTOR_ALL_CATEGORIES),
                             getString(R.string.SELECTOR_CAST_CHARACTER),
@@ -502,19 +499,18 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 mCategories.setVisibility(VISIBLE);
 
 
-                CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, android.R.id.text1, i > 1 ? customArraySpinner : arraySpinner);
+                CategoriesAdapter adapter = new CategoriesAdapter(getContext(), R.layout.category_row, arraySpinner);
                 adapter.setDropDownViewResource(R.layout.category_dropdown_row);
 
                 final ArrayList<String> tempCategories = new ArrayList<>();
                 mCategories.setAdapter(adapter);
-                final String[] finalCustomArraySpinner = customArraySpinner;
                 mCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         //TODO call FilterCardsBy Category
                         categories.clear();
                         tempCategories.clear();
-                        String selected = sharedPreferencesHelper.getCategories().split(",").length > 0 ? finalCustomArraySpinner[position] : arraySpinner[position];
+                        String selected = arraySpinner[position];
 
                         isFiltered = true;
                         if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
@@ -566,7 +562,12 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                         }
 
                         final ArrayList<String> customCategories = new ArrayList<>(Arrays.asList(sharedPreferencesHelper.getCategories().split(",")));
-
+                        for (String customCategory:customCategories){
+                            Log.e("customCategories before" ,customCategory);
+                        }
+                        for (String tempCategory:tempCategories){
+                            Log.e("tempCategories before" ,tempCategory);
+                        }
                         categories = (ArrayList<String>)ListUtils.intersection(customCategories, tempCategories);
 
                         for (String category:categories){
