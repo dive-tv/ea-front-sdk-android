@@ -473,7 +473,7 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                 }
 //                final String[] customArraySpinner = sharedPreferencesHelper.getCategories().split(",");
                 final String[] arraySpinner;
-                if (customArraySpinner.length>0){
+                if (i>0){
                     arraySpinner = customArraySpinner;
                 } else {
                     arraySpinner = new String[]{
