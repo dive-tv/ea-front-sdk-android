@@ -526,18 +526,21 @@ public class Carousel extends Fragment implements Handler.Callback, CarouselFrag
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         //TODO call FilterCardsBy Category
                         categories.clear();
+                        tempCategories.clear();
                         String selected = sharedPreferencesHelper.getCategories().split(",").length > 0 ? finalCustomArraySpinner[position] : arraySpinner[position];
+
                         isFiltered = true;
                         if (selected.equals(getString(R.string.SELECTOR_ALL_CATEGORIES))) {
-                            isFiltered = false;
+//                            isFiltered = false;
                             categories=finalCustomCategories;
+
                             filterCardsByCategory();
                             return;
                         } else if (selected.equals(getString(R.string.SELECTOR_CAST_CHARACTER))) {
                             tempCategories.add(Card.TypeEnum.CHARACTER.getValue());
                             tempCategories.add(Card.TypeEnum.PERSON.getValue());
                         } else if (selected.equals(getString(R.string.SELECTOR_FASHION_BEAUTY))) {
-                            isFiltered = false;
+//                            isFiltered = false;
                             tempCategories.add(Card.TypeEnum.CHARACTER.getValue());
                             tempCategories.add(Card.TypeEnum.PERSON.getValue());
                             tempCategories.add(Card.TypeEnum.FASHION.getValue());
