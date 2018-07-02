@@ -38,7 +38,7 @@ public class DiveSdk {
     private String deviceId;
     private String style;
 
-    public void initialize(String deviceId, String apiKey, Context ctx, String style, ArrayList<String> categories, boolean areCategoriesVisibles) {
+    public void initialize(String deviceId, String apiKey, Context ctx, String style, ArrayList<String> categories) {
         this.deviceId = deviceId;
         this.apiKey = apiKey;
         this.style = style;
@@ -46,7 +46,7 @@ public class DiveSdk {
         this.settings.storeApiKey(apiKey);
         this.settings.storeDeviceId(deviceId);
         this.settings.storeCategories(TextUtils.join(", ", categories));
-        this.settings.storeCategoriesVisible(areCategoriesVisibles);
+        this.settings.storeCategoriesVisible(false);
         if (categories.size()>0)
             this.settings.storeCustomCategories(true);
         this.ctx = ctx;
